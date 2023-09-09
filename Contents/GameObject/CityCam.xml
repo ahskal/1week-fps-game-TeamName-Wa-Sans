@@ -1,0 +1,10 @@
+<Root Name="CityCam" Visible="true" ObType="2">
+    <Shader_Color R="0.5" G="0.5" B="0.5" A="0"/>
+    <Transform>
+        <Position X="-31.312124" Y="32.78698" Z="-12.150688"/>
+        <Scale X="1" Y="1" Z="1"/>
+        <Rotation X="0.73099554" Y="0.50499827" Z="0"/>
+    </Transform>
+    <Camera Ortho="false" Fov="1.047192" Width="1648" Height="1059" NearZ="0.1" FarZ="500" viewportX="0" viewportY="0" viewportW="1648" viewportH="1059"/>
+    <Children Size="0"/>
+</Root>
