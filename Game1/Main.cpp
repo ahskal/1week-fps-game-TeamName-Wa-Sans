@@ -1,17 +1,14 @@
 #include "stdafx.h"
-#include "CityMap.h"
 #include "Main.h"
 
 Main::Main()
 {
-    map = CityMap::Create();
-    map->LoadFile("CityMap.xml");
-    Camera::main = map->GetCam();
+
 }
 
 Main::~Main()
 {
-    map->Release();
+
 }
 
 void Main::Init()
@@ -27,10 +24,9 @@ void Main::Update()
 {
     Camera::ControlMainCam();
     ImGui::Begin("Hierarchy");
-    map->Hierarchy();
+
     ImGui::End();
 
-    map->Update();
 }
 
 void Main::LateUpdate()
@@ -43,12 +39,12 @@ void Main::PreRender()
 
 void Main::Render()
 {
-    map->Render();
+
 }
 
 void Main::ResizeScreen()
 {
-    map->ResizeScreen();
+
 }
 
 int WINAPI wWinMain(HINSTANCE instance, HINSTANCE prevInstance, LPWSTR param, int command)
