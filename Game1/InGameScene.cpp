@@ -5,30 +5,36 @@
 
 InGameScene::InGameScene()
 {
+    MainCam = Camera::Create();
     grid = Grid::Create();
+    PlayerAimUI = Actor::Create();
 
-    cam1 = Camera::Create();
-    cam1->LoadFile("Cam.xml");
-    Camera::main = cam1;
+    MainCam->LoadFile("Cam.xml");
+    PlayerAimUI->LoadFile("PlayerAimUI.xml");
 
-    cam1->viewport.x = 0.0f;
-    cam1->viewport.y = 0.0f;
-    cam1->viewport.width = App.GetWidth();
-    cam1->viewport.height = App.GetHeight();
-    cam1->width = App.GetWidth();
-    cam1->height = App.GetHeight();
+    Camera::main = MainCam;
+
+    MainCam->viewport.x = 0.0f;
+    MainCam->viewport.y = 0.0f;
+    MainCam->viewport.width = App.GetWidth();
+    MainCam->viewport.height = App.GetHeight();
+    MainCam->width = App.GetWidth();
+    MainCam->height = App.GetHeight();
 }
 
 InGameScene::~InGameScene()
 {
+
 }
 
 void InGameScene::Init()
 {
+
 }
 
 void InGameScene::Release()
 {
+
 }
 
 void InGameScene::Update()
@@ -39,41 +45,47 @@ void InGameScene::Update()
     //gui 내부제작 위치 크기 등등
     ImGui::Begin("Hierarchy");
     grid->RenderHierarchy();
-    cam1->RenderHierarchy();
+    MainCam->RenderHierarchy();
+    PlayerAimUI->RenderHierarchy();
     ImGui::End();
 
     //배경 카메라 업데이트
     grid->Update();
-    cam1->Update();
+    MainCam->Update();
+    PlayerAimUI->Update();
 }
 
 void InGameScene::LateUpdate()
 {
-    //마우스 위치로 UI 커서 이동시키는 내용입니다 EX ) 총기에임
-    Ray Up;
-    Up = Utility::MouseToRay();
-    Vector3 ndcMouse = Utility::MouseToNDC();
-    //target->SetWorldPos(ndcMouse);
+    //플레이어 AimUI 크로스헤어
+    {
+        Ray Up;
+        Up = Utility::MouseToRay();
+        Vector3 ndcMouse = Utility::MouseToNDC();
+        PlayerAimUI->SetWorldPos(ndcMouse);
+    }
 }
 
 void InGameScene::PreRender()
 {
+
 }
 
 void InGameScene::Render()
 {
     //객체들 랜더 모아주세요 
-    cam1->Set();
+    MainCam->Set();
     grid->Render();
+    PlayerAimUI->Render();
 }
 
 void InGameScene::ResizeScreen()
 {
     //카메라 화면비 조정 
-    cam1->viewport.x = 0.0f;
-    cam1->viewport.y = 0.0f;
-    cam1->viewport.width = App.GetWidth();
-    cam1->viewport.height = App.GetHeight();
-    cam1->width = App.GetWidth();
-    cam1->height = App.GetHeight();
+    MainCam->viewport.x = 0.0f;
+    MainCam->viewport.y = 0.0f;
+    MainCam->viewport.width = App.GetWidth();
+    MainCam->viewport.height = App.GetHeight();
+    MainCam->width = App.GetWidth();
+    MainCam->height = App.GetHeight();
 }

@@ -30,20 +30,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Txt", "Txt", "{BC1DD457-26F
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{23927E1A-8E5E-46EE-82F6-D613BF3CD580}"
-	ProjectSection(SolutionItems) = preProject
-		Contents\Texture\Skin.png = Contents\Texture\Skin.png
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GameObject", "GameObject", "{2C99B77E-2775-4066-AC03-9062F4F4FC4F}"
 	ProjectSection(SolutionItems) = preProject
-		Contents\Texture\bono.png = Contents\Texture\bono.png
-		Contents\Texture\bono3.png = Contents\Texture\bono3.png
-		Contents\GameObject\bullet.xml = Contents\GameObject\bullet.xml
 		Contents\GameObject\Cam.xml = Contents\GameObject\Cam.xml
 		Contents\GameObject\Grid.xml = Contents\GameObject\Grid.xml
-		Contents\GameObject\Robot.xml = Contents\GameObject\Robot.xml
-		Contents\GameObject\Sun.xml = Contents\GameObject\Sun.xml
-		Contents\GameObject\Target.xml = Contents\GameObject\Target.xml
+		Contents\GameObject\PlayerAimUI.xml = Contents\GameObject\PlayerAimUI.xml
 	EndProjectSection
 EndProject
 Global

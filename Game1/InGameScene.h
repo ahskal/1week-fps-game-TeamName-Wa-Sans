@@ -4,12 +4,13 @@ class InGameScene : public Scene
 {
 	//프라이빗 함수생성
 private:
-	Camera* cam1;
+	Camera* MainCam;
 	Grid* grid;
-
+	Actor* PlayerAimUI;
 
 	//퍼블릭 함수생성
 public:
+	//기본기능함수들
 	InGameScene();
 	~InGameScene();
 	//초기화
@@ -23,6 +24,9 @@ public:
 	virtual void Render();
 	//Window Resize
 	virtual void ResizeScreen();
+	
+	//객체들 상호작용함수
+
 
 
 	//프라이빗 변수생성
