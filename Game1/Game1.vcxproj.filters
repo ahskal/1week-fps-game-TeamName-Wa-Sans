@@ -3,21 +3,13 @@
   <ItemGroup>
     <ClInclude Include="Main.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="Fruit.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="CityMap.h">
-      <Filter>Jin_\Map</Filter>
-    </ClInclude>
+    <ClInclude Include="LobbyScene.h" />
+    <ClInclude Include="InGameScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Fruit.cpp">
-      <Filter>GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="CityMap.cpp">
-      <Filter>Jin_\Map</Filter>
-    </ClCompile>
+    <ClCompile Include="LobbyScene.cpp" />
+    <ClCompile Include="InGameScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObject">
@@ -32,8 +24,17 @@
     <Filter Include="Jin_\Map">
       <UniqueIdentifier>{c3ee2e6b-5c40-4364-bd25-138555fe56a9}</UniqueIdentifier>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="window.ini" />
+    <Filter Include="SH">
+      <UniqueIdentifier>{49d7baee-5afb-4474-ad9e-0edf74cb7a03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HC">
+      <UniqueIdentifier>{23af4c9d-b741-4c58-821e-dbfa596408e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SH\123">
+      <UniqueIdentifier>{dc400d3f-7b00-4ae6-b833-126b19b421c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HC\23">
+      <UniqueIdentifier>{558cfc3e-3b10-4bb2-8396-1f5c5bebc85c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
