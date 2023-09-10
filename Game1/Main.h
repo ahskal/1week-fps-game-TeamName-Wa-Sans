@@ -3,8 +3,6 @@
 class Main : public Scene
 {
 private:
-	class CityMap* map;
-
 
 public:
 	Main();
