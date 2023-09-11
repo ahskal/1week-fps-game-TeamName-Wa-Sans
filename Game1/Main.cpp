@@ -10,7 +10,7 @@ Main::Main()
     cam1->LoadFile("Cam.xml");
     cam_first = Camera::Create();
     cam_first->LoadFile("Cam.xml");
-    Camera::main = cam1;//kk
+    Camera::main = cam1;
 
     cam1->viewport.x = 0.0f;
     cam1->viewport.y = 0.0f;
