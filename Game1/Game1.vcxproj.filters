@@ -6,22 +6,25 @@
     <ClInclude Include="VillageMap.h">
       <Filter>Jin_\Map</Filter>
     </ClInclude>
+    <ClInclude Include="CityMap.h">
+      <Filter>Jin_\Map</Filter>
+    </ClInclude>
+    <ClCompile Include="VillageMap.cpp">
+      <Filter>Jin_\Map</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="VillageMap.cpp">
+    <ClCompile Include="Fruit.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="CityMap.cpp">
       <Filter>Jin_\Map</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Scene">
       <UniqueIdentifier>{e0c428c6-0d94-4784-bb3a-59d8180b610b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Jin_">
-      <UniqueIdentifier>{5ec82aca-6166-4e03-86b6-a8b1081fd33f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Jin_\Map">
-      <UniqueIdentifier>{c3ee2e6b-5c40-4364-bd25-138555fe56a9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
