@@ -50,6 +50,20 @@ void Player::Render()
 
 void Player::PlayerControl()
 {
+	if (playerType == PlayerType::Walk)
+	{
+		speed = 1.0f;
+		if (INPUT->KeyPress(VK_SHIFT))
+		{
+			playerType = PlayerType::Run;
+		}
+	}
+
+	else if (playerType == PlayerType::Run)
+	{
+		speed = 2.0f;
+	}
+
 	// 쉬프트로 이동속도 증가(달리기 구현)
 	if (INPUT->KeyPress(VK_SHIFT))
 	{
@@ -145,8 +159,8 @@ void Player::PlayerControl()
 			player->Find("LeftKneePoint")->rotation.x = 25.0f * ToRadian;
 
 			// 발 x각도를 -20 ~ 20도로 돌려서 걸을때 발이 움직이게 보이기
-			player->Find("RightLegPoint")->rotation.x += walkHandDir * ToRadian * DELTA;
-			player->Find("LeftLegPoint")->rotation.x -= walkHandDir * ToRadian * DELTA;
+			player->Find("RightLegPoint")->rotation.x += walkLegDir * ToRadian * DELTA;
+			player->Find("LeftLegPoint")->rotation.x -= walkLegDir * ToRadian * DELTA;
 			if (player->Find("RightLegPoint")->rotation.x < -20.0f * ToRadian or
 				player->Find("RightLegPoint")->rotation.x > 20.0f * ToRadian)
 			{

@@ -6,6 +6,13 @@ enum class GunType
 	ShotGun,
 };
 
+enum class PlayerType
+{
+	None,
+	Walk,
+	Run,
+};
+
 class Player
 {
 private:
@@ -13,8 +20,8 @@ private:
 
 	Gun* gun;
 
-
-	GunType gunType = GunType::None;
+	PlayerType playerType = PlayerType::None;
+	GunType gunType = GunType::Gun;
 	bool isJump = false;			// 점프 했는지 안했는지 판단하는 bool값
 
 
