@@ -4,7 +4,9 @@ enum class ObType
 {
 	GameObject,
 	Actor,
-	Camera
+	Camera,
+	Terrain,
+	UI,
 };
 
 class GameObject : public Transform
