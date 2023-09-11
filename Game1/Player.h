@@ -5,6 +5,11 @@ private:
 	Actor* player;
 
 
+
+	bool isJump = false;
+
+	float gravity;
+	float speed;
 public:
 	Player();
 	~Player();
@@ -14,7 +19,8 @@ public:
 	void Update();
 	void Render();
 
+	void PlayerControl();
 
-	Actor* GetPlayer() { return player; }
+	//Actor* GetPlayer() { return player; }
 };
 

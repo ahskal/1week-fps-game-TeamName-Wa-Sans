@@ -56,6 +56,9 @@ void Main::Update()
     //123
 
 
+    player->PlayerControl();
+
+
     Camera::main->Update();
     grid->Update();
     player->Update();

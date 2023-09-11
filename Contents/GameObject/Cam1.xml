@@ -1,0 +1,10 @@
+<Root Name="Camera" Visible="true" ObType="2">
+    <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
+    <Transform>
+        <Position X="-11.965759" Y="5.6013374" Z="-3.7958782"/>
+        <Scale X="1" Y="1" Z="1"/>
+        <Rotation X="0.35099858" Y="0.0010000813" Z="0"/>
+    </Transform>
+    <Camera Ortho="false" Fov="1.047192" Width="1280" Height="720" NearZ="0.1" FarZ="500" viewportX="0" viewportY="0" viewportW="1280" viewportH="720"/>
+    <Children Size="0"/>
+</Root>
