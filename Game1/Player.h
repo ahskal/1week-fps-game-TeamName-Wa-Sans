@@ -23,7 +23,7 @@ private:
 	PlayerType playerType = PlayerType::None;
 	GunType gunType = GunType::Gun;
 	bool isJump = false;			// 점프 했는지 안했는지 판단하는 bool값
-
+	bool isGridCollide = false;		// 그리드와 충돌했는지 판단하는 bool값
 
 	int jumpCount = 0;				// 점프 카운트 (한번만 점프하게 하기 위한 값)
 	float gravity;					// 플레이어의 중력값
@@ -43,7 +43,6 @@ public:
 	void Render();
 
 	void PlayerControl();
-	void PlayerCollide(class Grid* grid);
-	//Actor* GetPlayer() { return player; }
+	void CollidePlayerToFloor(class Grid* grid);
 };
 

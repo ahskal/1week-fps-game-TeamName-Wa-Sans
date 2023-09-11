@@ -8,24 +8,7 @@ Main::Main()
 
     cam1 = Camera::Create();
     cam1->LoadFile("Cam.xml");
-    cam_first = Camera::Create();
-    cam_first->LoadFile("Cam.xml");
     Camera::main = cam1;
-
-    cam1->viewport.x = 0.0f;
-    cam1->viewport.y = 0.0f;
-    cam1->viewport.width = App.GetWidth();
-    cam1->viewport.height = App.GetHeight();
-    cam1->width = App.GetWidth();
-    cam1->height = App.GetHeight();
-
-    cam_first->viewport.x = 0.0f;
-    cam_first->viewport.y = 0.0f;
-    cam_first->viewport.width = App.GetWidth();
-    cam_first->viewport.height = App.GetHeight();
-    cam_first->width = App.GetWidth();
-    cam_first->height = App.GetHeight();
-
 
     player = new Player();
 }
@@ -51,9 +34,7 @@ void Main::Update()
     grid->RenderHierarchy();
     player->RenderHierarchy();
     cam1->RenderHierarchy();
-    cam_first->RenderHierarchy();
     ImGui::End();
-    //123
 
 
     player->PlayerControl();
@@ -66,10 +47,7 @@ void Main::Update()
 
 void Main::LateUpdate()
 {
-    //player->PlayerCollide(grid);
-
-
-
+    player->CollidePlayerToFloor(grid);
 }
 void Main::PreRender()
 {
