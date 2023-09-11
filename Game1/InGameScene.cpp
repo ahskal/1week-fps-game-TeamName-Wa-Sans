@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "InGameScene.h"
 //각자 작업 영역 header 파일 추가해주시면됩니다!
-
+#include "UNIT.h"
 
 InGameScene::InGameScene()
 {

@@ -9,6 +9,12 @@
     <ClInclude Include="InGameScene.h">
       <Filter>Scene</Filter>
     </ClInclude>
+    <ClInclude Include="UNIT.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="InGameUI_Manager.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -17,6 +23,12 @@
     </ClCompile>
     <ClCompile Include="LobbyScene.cpp">
       <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="UNIT.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="InGameUI_Manager.cpp">
+      <Filter>GameObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

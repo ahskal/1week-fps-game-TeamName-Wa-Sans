@@ -86,6 +86,7 @@ extern Application App;//Extern Global
 #include "BinaryFile.h"
 
 #include "DepthState.h"
+#include "BlendState.h"
 
 #include "Random.h"
 #include "Texture.h"
@@ -104,6 +105,7 @@ extern Application App;//Extern Global
 #include "GameObject.h"
 #include "Grid.h"
 #include "Camara.h"
+#include "UI.h"
 #include "Utility.h"
 
 //Singleton Macro
@@ -120,4 +122,5 @@ extern Application App;//Extern Global
 #define DWRITE		Dwrite::GetInstance()
 #define SCENE       SceneManager::GetInstance()
 #define DEPTH		DepthState::GetInstance()
+#define BLEND		BlendState::GetInstance()
 #define RESOURCE	ResourceManager::GetInstance()
