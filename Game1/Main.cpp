@@ -37,7 +37,7 @@ Main::~Main()
 
 void Main::Init()
 {
-	
+    player->Init();
 }
 
 void Main::Release()
@@ -57,7 +57,7 @@ void Main::Update()
 
 
     player->PlayerControl();
-
+    
 
     Camera::main->Update();
     grid->Update();
@@ -66,7 +66,10 @@ void Main::Update()
 
 void Main::LateUpdate()
 {
-   
+    //player->PlayerCollide(grid);
+
+
+
 }
 void Main::PreRender()
 {
