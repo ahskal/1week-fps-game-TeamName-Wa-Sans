@@ -31,6 +31,7 @@ void Main::Update()
     ImGui::End();
 
     Map->Update();
+    Camera::main->Update();
 }
 
 void Main::LateUpdate()
@@ -43,6 +44,8 @@ void Main::PreRender()
 
 void Main::Render()
 {
+    Camera::main->Set();
+
     Map->Render();
 }
 
