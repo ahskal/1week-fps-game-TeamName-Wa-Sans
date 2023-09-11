@@ -396,8 +396,6 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
-/Game1/CityMap.h
-/Game1/CityMap.cpp
 /Game1/window.ini
 /Game1/imgui.ini
 /Build
