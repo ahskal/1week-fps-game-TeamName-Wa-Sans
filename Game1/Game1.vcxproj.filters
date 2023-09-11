@@ -6,7 +6,7 @@
     <ClInclude Include="VillageMap.h">
       <Filter>Jin_\Map</Filter>
     </ClInclude>
-    <ClInclude Include="house.h">
+    <ClInclude Include="House.h">
       <Filter>Jin_\Map</Filter>
     </ClInclude>
   </ItemGroup>
@@ -15,7 +15,7 @@
     <ClCompile Include="VillageMap.cpp">
       <Filter>Jin_\Map</Filter>
     </ClCompile>
-    <ClCompile Include="house.cpp">
+    <ClCompile Include="House.cpp">
       <Filter>Jin_\Map</Filter>
     </ClCompile>
   </ItemGroup>

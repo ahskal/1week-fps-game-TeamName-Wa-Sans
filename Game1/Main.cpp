@@ -6,6 +6,8 @@ Main::Main()
 {
     Map = VillageMap::Create();
     Camera::main = Map->GetCam();
+
+    Camera::main->mainCamSpeed = 100;
     //1234
 }
 
@@ -16,7 +18,7 @@ Main::~Main()
 
 void Main::Init()
 {
-	
+    Map->Init();
 }
 
 void Main::Release()
@@ -36,7 +38,7 @@ void Main::Update()
 
 void Main::LateUpdate()
 {
-   
+    Map->LateUpdate();
 }
 void Main::PreRender()
 {

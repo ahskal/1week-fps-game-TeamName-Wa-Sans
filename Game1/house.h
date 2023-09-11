@@ -1,16 +1,12 @@
 #pragma once
-class house : public Actor
+class House : public Actor
 {
 public:
-    static house* Create(string name = "house");
+    static House* Create(string name = "house");
 private:
-
+    House();
+    virtual ~House();
 public:
-
-private:
-    house();
-    virtual ~house();
-
-
+    void	Update() override;
 };
 

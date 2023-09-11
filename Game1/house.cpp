@@ -1,10 +1,24 @@
 #include "stdafx.h"
-#include "house.h"
+#include "House.h"
 
-house::house()
+House* House::Create(string name)
+{
+	House* temp = new House();
+	temp->LoadFile("VillageHouse.xml");
+	temp->type = ObType::Actor;
+
+	return temp;
+}
+
+House::House()
 {
 }
 
-house::~house()
+House::~House()
 {
+}
+
+void House::Update()
+{
+	Actor::Update();
 }
