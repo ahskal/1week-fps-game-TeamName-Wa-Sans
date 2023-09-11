@@ -19,15 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CityMap.h" />
-    <ClInclude Include="Fruit.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="VillageMap.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CityMap.cpp" />
-    <ClCompile Include="Fruit.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="VillageMap.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="window.ini" />
