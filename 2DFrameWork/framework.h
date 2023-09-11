@@ -104,6 +104,7 @@ extern Application App;//Extern Global
 #include "GameObject.h"
 #include "Grid.h"
 #include "Camara.h"
+#include "BlendState.h"
 #include "UI.h"
 #include "Utility.h"
 
