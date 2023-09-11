@@ -35,6 +35,11 @@ bool GameObject::RenderHierarchy()
 			{
 				AddChild(Camera::Create(childName));
 			}
+			ImGui::SameLine();
+			if (ImGui::Button("UI"))
+			{
+				AddChild(UI::Create(childName));
+			}
 			ImGui::EndPopup();
 		}
 
