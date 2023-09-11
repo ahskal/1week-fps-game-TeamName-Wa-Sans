@@ -3,15 +3,34 @@
   <ItemGroup>
     <ClInclude Include="Main.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="Player.h" />
+    <ClInclude Include="Player.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Gun.h">
+      <Filter>Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Player.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Gun.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Scene">
       <UniqueIdentifier>{e0c428c6-0d94-4784-bb3a-59d8180b610b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Player">
+      <UniqueIdentifier>{3e3b308d-92ea-4af1-a049-c76a413c4fc4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

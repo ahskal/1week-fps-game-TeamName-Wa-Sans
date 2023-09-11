@@ -6,7 +6,7 @@
         <Rotation X="0" Y="0" Z="0"/>
     </Collider>
     <Transform>
-        <Position X="-10" Y="-0.013894" Z="0"/>
+        <Position X="-10" Y="-0.0010689795" Z="9.3891125"/>
         <Scale X="1" Y="1" Z="1"/>
         <Rotation X="0" Y="0" Z="0"/>
     </Transform>
@@ -157,9 +157,9 @@
         <Child1 Name="LeftShoulderPoint" Visible="true" ObType="0">
             <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
             <Transform>
-                <Position X="-0.64999998" Y="2" Z="0"/>
+                <Position X="-0.64999998" Y="1.9" Z="0"/>
                 <Scale X="1" Y="1" Z="1"/>
-                <Rotation X="0" Y="0" Z="0"/>
+                <Rotation X="0" Y="0.43632999" Z="0"/>
             </Transform>
             <Children Size="2"/>
             <Child0 Name="LefhShoulderMesh" Visible="true" ObType="0">
@@ -239,9 +239,9 @@
         <Child3 Name="RightShoulderPoint" Visible="true" ObType="0">
             <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
             <Transform>
-                <Position X="0.64999998" Y="2" Z="0"/>
+                <Position X="0.64999998" Y="1.9" Z="0"/>
                 <Scale X="1" Y="1" Z="1"/>
-                <Rotation X="0" Y="0" Z="0"/>
+                <Rotation X="0" Y="-0.43632999" Z="0"/>
             </Transform>
             <Children Size="2"/>
             <Child0 Name="RightArmPoint" Visible="true" ObType="0">

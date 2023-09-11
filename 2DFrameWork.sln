@@ -40,16 +40,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{23927E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GameObject", "GameObject", "{2C99B77E-2775-4066-AC03-9062F4F4FC4F}"
 	ProjectSection(SolutionItems) = preProject
-		..\Users\user\Desktop\example\Contents\GameObject\beretta92.xml = ..\Users\user\Desktop\example\Contents\GameObject\beretta92.xml
-		Contents\GameObject\bullet.xml = Contents\GameObject\bullet.xml
-		Contents\GameObject\Cam.xml = Contents\GameObject\Cam.xml
-		..\Users\user\Desktop\example\Contents\GameObject\Camthefirst.xml = ..\Users\user\Desktop\example\Contents\GameObject\Camthefirst.xml
+		Contents\GameObject\beretta92.xml = Contents\GameObject\beretta92.xml
+		Contents\GameObject\Cam1.xml = Contents\GameObject\Cam1.xml
+		Contents\GameObject\Camthefirst.xml = Contents\GameObject\Camthefirst.xml
+		Contents\GameObject\CityCam.xml = Contents\GameObject\CityCam.xml
+		Contents\GameObject\CityMap.xml = Contents\GameObject\CityMap.xml
 		Contents\GameObject\Grid.xml = Contents\GameObject\Grid.xml
-		..\Users\user\Desktop\example\Contents\GameObject\Player.xml = ..\Users\user\Desktop\example\Contents\GameObject\Player.xml
-		..\Users\user\Desktop\example\Contents\GameObject\Remington.xml = ..\Users\user\Desktop\example\Contents\GameObject\Remington.xml
-		Contents\GameObject\Robot.xml = Contents\GameObject\Robot.xml
-		Contents\GameObject\Sun.xml = Contents\GameObject\Sun.xml
-		Contents\GameObject\Target.xml = Contents\GameObject\Target.xml
+		Contents\GameObject\Player.xml = Contents\GameObject\Player.xml
+		Contents\GameObject\Remington.xml = Contents\GameObject\Remington.xml
 	EndProjectSection
 EndProject
 Global
