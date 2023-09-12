@@ -5,6 +5,9 @@
 #include "UNIT.h"
 #include "VillageMap.h"
 #include "house.h"
+#include "Player.h"
+#include "Weapon.h"
+#include "Gun.h"
 
 InGameScene::InGameScene()
 {
@@ -12,9 +15,9 @@ InGameScene::InGameScene()
     //grid = Grid::Create();
     Map = VillageMap::Create();
 
-    MainCam->LoadFile("Cam.xml");
-   
+    player = new Player();
 
+    MainCam->LoadFile("Cam1.xml");
     Camera::main = MainCam;
     MainCam->mainCamSpeed = 30.0f;
 
@@ -28,13 +31,14 @@ InGameScene::InGameScene()
 
 InGameScene::~InGameScene()
 {
-    MainCam->SaveFile("Cam.xml");
+    MainCam->SaveFile("Cam1.xml");
     Map->Release();
 }
 
 void InGameScene::Init()
 {
     Map->Init();
+    player->Init();
 }
 
 void InGameScene::Release()
@@ -49,21 +53,23 @@ void InGameScene::Update()
 
     //gui 내부제작 위치 크기 등등
     ImGui::Begin("Hierarchy");
-    //grid->RenderHierarchy();
     MainCam->RenderHierarchy();
     Map->Hierarchy();
+    player->RenderHierarchy();
     ImGui::End();
 
     //배경 카메라 업데이트
-    //grid->Update();
+   
     Map->Update();
+    player->PlayerControl();
+    player->Update();
     MainCam->Update();
 }
 
 void InGameScene::LateUpdate()
 {
     Map->LateUpdate();
-
+    player->CollidePlayerToFloor(Map); 
 }
 
 void InGameScene::PreRender()
@@ -75,8 +81,8 @@ void InGameScene::Render()
 {
     //객체들 랜더 모아주세요 
     MainCam->Set();
-    //grid->Render();
     Map->Render();
+    player->Render();
 }
 
 void InGameScene::ResizeScreen()

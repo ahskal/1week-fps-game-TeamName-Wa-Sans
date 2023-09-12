@@ -20,6 +20,15 @@
     <ClCompile Include="UNIT.cpp">
       <Filter>Unit</Filter>
     </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>LeeSH</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>LeeSH</Filter>
+    </ClCompile>
+    <ClCompile Include="Gun.cpp">
+      <Filter>LeeSH</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h" />
@@ -42,9 +51,19 @@
     <ClInclude Include="UNIT.h">
       <Filter>Unit</Filter>
     </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>LeeSH</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>LeeSH</Filter>
+    </ClInclude>
+    <ClInclude Include="Gun.h">
+      <Filter>LeeSH</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="window.ini" />
+    <None Include="imgui.ini" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Jin_">
@@ -58,6 +77,9 @@
     </Filter>
     <Filter Include="Unit">
       <UniqueIdentifier>{62c17db8-5797-447b-8d08-f9f7668b1025}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LeeSH">
+      <UniqueIdentifier>{72f06f21-15b6-479d-987e-b03da61ef9f7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

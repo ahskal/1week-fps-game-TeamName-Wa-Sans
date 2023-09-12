@@ -6,14 +6,6 @@ private:
 	
 
 
-
-	Camera* cam1;
-	Camera* cam_first;
-	Grid* grid;
-
-
-	/** 플레이어 */
-	class Player* player;
 public:
 	Main();
 	~Main();

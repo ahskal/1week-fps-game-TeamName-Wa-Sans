@@ -5,10 +5,11 @@ class InGameScene : public Scene
 	//프라이빗 함수생성
 private:
 	Camera* MainCam;
-	//Grid* grid;
-	class VillageMap* Map;
+	
 
-	//ㅇㅇ
+	class VillageMap* Map;
+	class Player* player;
+	
 	//퍼블릭 함수생성
 public:
 	//기본기능함수들

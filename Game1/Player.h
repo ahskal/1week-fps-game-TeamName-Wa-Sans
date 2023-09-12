@@ -43,6 +43,7 @@ public:
 	void Render();
 
 	void PlayerControl();
-	void CollidePlayerToFloor(class Grid* grid);
+	void CollidePlayerToFloor(class VillageMap* map); 
+	
 };
 

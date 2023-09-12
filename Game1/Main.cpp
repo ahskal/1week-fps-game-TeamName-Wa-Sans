@@ -1,5 +1,4 @@
 #include "stdafx.h"
-#include "Player.h"
 #include "Main.h"
 #include "InGameScene.h"
 #include "LobbyScene.h"
@@ -7,16 +6,8 @@
 Main::Main()
 {
     
-    
-
-    
-    grid = Grid::Create();
-
-    cam1 = Camera::Create();
-    cam1->LoadFile("Cam.xml");
-    Camera::main = cam1;
-
-    player = new Player();
+   
+   
 }
 
 Main::~Main()
@@ -35,7 +26,7 @@ void Main::Init()
     //add 씬에서 정해둔 키값으로 변환해서 보여줄씬 정합니다
     SCENE->ChangeScene("InGame");
     
-    player->Init();
+ 
 }
 
 void Main::Release()
@@ -45,23 +36,8 @@ void Main::Release()
 void Main::Update()
 {
     SCENE->Update();
-    Camera::ControlMainCam();
-    ImGui::Begin("Hierarchy");
-    ImGui::End();
-    grid->RenderHierarchy();
-    player->RenderHierarchy();
-    cam1->RenderHierarchy();
-    ImGui::End();
 
-    
-    Camera::main->Update();
 
-    player->PlayerControl();
-    
-
-    Camera::main->Update();
-    grid->Update();
-    player->Update();
 }
 
 void Main::LateUpdate()
@@ -71,8 +47,8 @@ void Main::LateUpdate()
 
    
 
-    player->CollidePlayerToFloor(grid);
-}
+    
+
 void Main::PreRender()
 {
 
@@ -81,25 +57,14 @@ void Main::PreRender()
 void Main::Render()
 {
     SCENE->Render();
-    Camera::main->Set();
-
     
-    Camera::main->Set();
-    grid->Render();
-    player->Render();
 }
 
 void Main::ResizeScreen()
 {
     SCENE->ResizeScreen();
     
-    Camera::main->viewport.x = 0.0f;
-    Camera::main->viewport.y = 0.0f;
-    Camera::main->viewport.width = App.GetWidth();
-    Camera::main->viewport.height = App.GetHeight();
-
-    Camera::main->width = App.GetWidth();
-    Camera::main->height = App.GetHeight();
+    
 }
 
 int WINAPI wWinMain(HINSTANCE instance, HINSTANCE prevInstance, LPWSTR param, int command)
