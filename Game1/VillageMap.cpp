@@ -18,6 +18,7 @@ VillageMap::VillageMap()
 
 	// 그릴지 말지 정하는 변수
 	HouseRender = true;
+	if (not HouseRender) HouseLateUpdate = false;
 
 	// 참이라면 집을 생성해라
 	if (HouseRender) {
@@ -25,8 +26,8 @@ VillageMap::VillageMap()
 			house[i] = House::Create();
 		}
 	}
-
-
+	house2 = House::Create();
+	house2->LoadFile("Hospital.xml");
 }
 
 VillageMap::~VillageMap()
@@ -37,24 +38,34 @@ VillageMap::~VillageMap()
 void VillageMap::Release()
 {
 	cam->SaveFile("VillageCam.xml");
-	SaveFile("VillageMap.xml");
 }
 
 void VillageMap::Init()
 {
 	// 참이라면 집의 좌표를 정해줘라
-	if (HouseRender)
+	if (HouseRender) {
 		HouseLateUpdate = true;
-	for (int i = 0; i < HouseCount; i++) {
-		switch (RANDOM->Int(0, 3)) {
-		case 0: house[i]->LoadFile("VillageHouse.xml"); break;
-		case 1: house[i]->LoadFile("VillageHouse2.xml"); break;
-		case 2: house[i]->LoadFile("VillageHouse3.xml"); break;
-		case 3: house[i]->LoadFile("VillageHouse4.xml"); break;
+		for (int i = 0; i < HouseCount; i++) {
+			if (i < 1) {
+				house[i]->LoadFile("GunShop.xml");
+			}
+			else if (i < 2) {
+				house[i]->LoadFile("Hospital.xml");
+			}
+			else {
+				switch (RANDOM->Int(0, 5)) {
+				case 0: house[i]->LoadFile("VillageHouse.xml");  break;
+				case 1: house[i]->LoadFile("VillageHouse2.xml"); break;
+				case 2: house[i]->LoadFile("VillageHouse3.xml"); break;
+				case 3: house[i]->LoadFile("VillageHouse4.xml"); break;
+				case 4: house[i]->LoadFile("Hospital.xml");      break;
+				case 5: house[i]->LoadFile("GunShop.xml");		 break;
+				}
+				house[i]->SetWorldPosX(RANDOM->Int(-180, 180));
+				house[i]->SetWorldPosZ(RANDOM->Int(-180, 180));
+			}
+			house[i]->rotation.y = RANDOM->Float(-PI, PI);
 		}
-		house[i]->SetWorldPosX(RANDOM->Int(-100, 100));
-		house[i]->SetWorldPosZ(RANDOM->Int(-100, 100));
-		house[i]->rotation.y = RANDOM->Float(-PI, PI);
 	}
 
 }
@@ -66,18 +77,18 @@ void VillageMap::Update()
 	if (INPUT->KeyDown('P')) {
 		Init();
 	}
+	if (HouseRender)
+		for (int i = 0; i < HouseCount; i++) {
+			house[i]->Update();
+		}
+	house2->Update();
 
-	for (int i = 0; i < HouseCount; i++) {
-		house[i]->Update();
-	}
 }
 
 void VillageMap::LateUpdate()
 {
 	// 집 충돌처리 생성후 계산되어 코드가 비활성화.
 	{
-		// 만약 집의 충돌처리가 참이라면 연산 계산
-		bool disableHouseLateUpdate = true;
 		if (HouseLateUpdate) {
 			// 집과 집이 겹쳐있을경우 밀어내는 코드
 			for (int i = 0; i < HouseCount - 1; i++)
@@ -97,29 +108,25 @@ void VillageMap::LateUpdate()
 						OtherEnemyDir.Normalize();
 
 						// 집의 좌표에 따라 밀어주기
-						if (house[i]->GetWorldPos().x > -230 && house[i]->GetWorldPos().x < 230) {
-							house[i]->MoveWorldPos(enemyDir * 5000 * DELTA);
+						if (house[i]->GetWorldPos().x > -250 && house[i]->GetWorldPos().x < 250) {
+							house[i]->MoveWorldPos(enemyDir * 10000 * DELTA);
 						}
-						else if (house[j]->GetWorldPos().x > -230 && house[j]->GetWorldPos().x < 230) {
-							house[j]->MoveWorldPos(OtherEnemyDir * 5000 * DELTA);
+						else if (house[j]->GetWorldPos().x > -250 && house[j]->GetWorldPos().x < 250) {
+							house[j]->MoveWorldPos(OtherEnemyDir * 10000 * DELTA);
 						}
-						disableHouseLateUpdate = false;
 					}
 				}
 			}
 			// 집이 만약 범위내에 나갔을경우 위치 재정의		
 			for (int i = 0; i < HouseCount; i++)
 			{
-				if (house[i]->GetWorldPos().x > 200 or house[i]->GetWorldPos().x < -200) {
-					house[i]->SetWorldPosX(RANDOM->Int(-100, 100));
+				if (house[i]->GetWorldPos().x > 250 or house[i]->GetWorldPos().x < -250) {
+					house[i]->SetWorldPosX(RANDOM->Int(-150, 150));
 				}
-				else if (house[i]->GetWorldPos().z > 200 or house[i]->GetWorldPos().z < -200) {
-					house[i]->SetWorldPosZ(RANDOM->Int(-100, 100));
+				else if (house[i]->GetWorldPos().z > 250 or house[i]->GetWorldPos().z < -250) {
+					house[i]->SetWorldPosZ(RANDOM->Int(-150, 150));
 				}
 			}
-		}
-		if (disableHouseLateUpdate) {
-			HouseLateUpdate = false;
 		}
 	}
 }
@@ -132,6 +139,8 @@ void VillageMap::Render()
 		for (int i = 0; i < HouseCount; i++) {
 			house[i]->Render();
 		}
+	//house2->Render();
+
 }
 
 

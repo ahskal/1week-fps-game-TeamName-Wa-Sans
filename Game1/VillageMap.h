@@ -1,6 +1,7 @@
 #pragma once
+#pragma once
 
-#define HouseCount 30
+#define HouseCount 20
 class VillageMap : public Actor
 {
 public:
@@ -10,10 +11,11 @@ private:
     //class House* house[4];
 
     class House* house[HouseCount];
-    
-    
     bool HouseRender;
     bool HouseLateUpdate;
+    
+    class House* house2;
+
     
 
 
