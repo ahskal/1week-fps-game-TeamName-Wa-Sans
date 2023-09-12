@@ -61,10 +61,11 @@ void VillageMap::Init()
 				case 4: house[i]->LoadFile("Hospital.xml");      break;
 				case 5: house[i]->LoadFile("GunShop.xml");		 break;
 				}
-				house[i]->SetWorldPosX(RANDOM->Int(-180, 180));
-				house[i]->SetWorldPosZ(RANDOM->Int(-180, 180));
+				house[i]->SetWorldPosX(RANDOM->Int(-Range, Range));
+				house[i]->SetWorldPosZ(RANDOM->Int(-Range, Range));
 			}
 			house[i]->rotation.y = RANDOM->Float(-PI, PI);
+			house[i]->scale *= 0.5f;
 		}
 	}
 
@@ -108,10 +109,10 @@ void VillageMap::LateUpdate()
 						OtherEnemyDir.Normalize();
 
 						// 집의 좌표에 따라 밀어주기
-						if (house[i]->GetWorldPos().x > -250 && house[i]->GetWorldPos().x < 250) {
+						if (house[i]->GetWorldPos().x > -RangeLimit && house[i]->GetWorldPos().x < RangeLimit) {
 							house[i]->MoveWorldPos(enemyDir * 10000 * DELTA);
 						}
-						else if (house[j]->GetWorldPos().x > -250 && house[j]->GetWorldPos().x < 250) {
+						else if (house[j]->GetWorldPos().x > -RangeLimit && house[j]->GetWorldPos().x < RangeLimit) {
 							house[j]->MoveWorldPos(OtherEnemyDir * 10000 * DELTA);
 						}
 					}
@@ -120,11 +121,11 @@ void VillageMap::LateUpdate()
 			// 집이 만약 범위내에 나갔을경우 위치 재정의		
 			for (int i = 0; i < HouseCount; i++)
 			{
-				if (house[i]->GetWorldPos().x > 250 or house[i]->GetWorldPos().x < -250) {
-					house[i]->SetWorldPosX(RANDOM->Int(-150, 150));
+				if (house[i]->GetWorldPos().x > RangeLimit or house[i]->GetWorldPos().x < -RangeLimit) {
+					house[i]->SetWorldPosX(RANDOM->Int(-Range, Range));
 				}
-				else if (house[i]->GetWorldPos().z > 250 or house[i]->GetWorldPos().z < -250) {
-					house[i]->SetWorldPosZ(RANDOM->Int(-150, 150));
+				else if (house[i]->GetWorldPos().z > RangeLimit or house[i]->GetWorldPos().z < -RangeLimit) {
+					house[i]->SetWorldPosZ(RANDOM->Int(-Range, Range));
 				}
 			}
 		}

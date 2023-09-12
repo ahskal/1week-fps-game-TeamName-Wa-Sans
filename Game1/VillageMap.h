@@ -1,27 +1,21 @@
 #pragma once
-#pragma once
+#define HouseCount 50
+#define Range 180
+#define RangeLimit 250 
 
-#define HouseCount 20
+
 class VillageMap : public Actor
 {
 public:
     static VillageMap* Create(string name = "VillageMap");
 private:
-    class Camera* cam;
-    //class House* house[4];
-
     class House* house[HouseCount];
     bool HouseRender;
     bool HouseLateUpdate;
     
     class House* house2;
 
-    
-
-
-
-
-
+    class Camera* cam;
 
 public:
 
