@@ -1,62 +1,63 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClInclude Include="Main.h" />
-    <ClInclude Include="stdafx.h" />
-    <ClInclude Include="LobbyScene.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="InGameScene.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="UNIT.h">
-      <Filter>GameObject</Filter>
-    <ClInclude Include="VillageMap.h">
-      <Filter>Jin_\Map</Filter>
-    </ClInclude>
-    <ClInclude Include="InGameUI_Manager.h">
-      <Filter>GameObject</Filter>
-    <ClInclude Include="House.h">
-      <Filter>Jin_\Map</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="House.cpp">
+      <Filter>Jin_</Filter>
+    </ClCompile>
+    <ClCompile Include="VillageMap.cpp">
+      <Filter>Jin_</Filter>
+    </ClCompile>
     <ClCompile Include="InGameScene.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
     <ClCompile Include="LobbyScene.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
-    <ClCompile Include="UNIT.cpp">
-      <Filter>GameObject</Filter>
-    <ClCompile Include="VillageMap.cpp">
-      <Filter>Jin_\Map</Filter>
-    </ClCompile>
     <ClCompile Include="InGameUI_Manager.cpp">
-      <Filter>GameObject</Filter>
-    <ClCompile Include="House.cpp">
-      <Filter>Jin_\Map</Filter>
+      <Filter>UI_Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="UNIT.cpp">
+      <Filter>Unit</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Main.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="House.h">
+      <Filter>Jin_</Filter>
+    </ClInclude>
+    <ClInclude Include="VillageMap.h">
+      <Filter>Jin_</Filter>
+    </ClInclude>
+    <ClInclude Include="InGameScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="LobbyScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="InGameUI_Manager.h">
+      <Filter>UI_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="UNIT.h">
+      <Filter>Unit</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="window.ini" />
+  </ItemGroup>
+  <ItemGroup>
     <Filter Include="Jin_">
-      <UniqueIdentifier>{e0c428c6-0d94-4784-bb3a-59d8180b610b}</UniqueIdentifier>
+      <UniqueIdentifier>{4e2b3aad-7fc9-426b-b44f-f5a625eb3e73}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Jin_\Map">
-      <UniqueIdentifier>{fe4dd607-8330-4165-8769-94e2829d7e96}</UniqueIdentifier>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{9dd676be-487c-4c29-b0b1-ab03eade1aad}</UniqueIdentifier>
     </Filter>
-    <Filter Include="SH">
-      <UniqueIdentifier>{49d7baee-5afb-4474-ad9e-0edf74cb7a03}</UniqueIdentifier>
+    <Filter Include="UI_Manager">
+      <UniqueIdentifier>{c8dcdd71-c4c3-4018-a0e5-b13bb0cf5447}</UniqueIdentifier>
     </Filter>
-    <Filter Include="HC">
-      <UniqueIdentifier>{23af4c9d-b741-4c58-821e-dbfa596408e2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="SH\123">
-      <UniqueIdentifier>{dc400d3f-7b00-4ae6-b833-126b19b421c1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="HC\23">
-      <UniqueIdentifier>{558cfc3e-3b10-4bb2-8396-1f5c5bebc85c}</UniqueIdentifier>
+    <Filter Include="Unit">
+      <UniqueIdentifier>{62c17db8-5797-447b-8d08-f9f7668b1025}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

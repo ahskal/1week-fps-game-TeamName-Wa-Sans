@@ -5,8 +5,8 @@ class InGameScene : public Scene
 	//프라이빗 함수생성
 private:
 	Camera* MainCam;
-	Grid* grid;
-	Actor* PlayerAimUI;
+	//Grid* grid;
+	class VillageMap* Map;
 
 	//ㅇㅇ
 	//퍼블릭 함수생성
