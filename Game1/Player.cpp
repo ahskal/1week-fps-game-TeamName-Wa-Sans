@@ -312,7 +312,7 @@ void Player::PlayerControl()
 	
 
 	// 점프 구현
-	if (not isGridCollide)
+	/*if (not isGridCollide)
 	{
 		player->MoveWorldPos(player->GetUp() * gravity * DELTA);
 	}
@@ -332,7 +332,27 @@ void Player::PlayerControl()
 	else
 	{
 		gravity -= 20.0f * DELTA;
+	}*/
+	if (isGridCollide)
+	{
+		gravity = 0.0f;
+		jumpCount = 0;
 	}
+	else
+	{
+		player->MoveWorldPos(player->GetUp() * gravity * DELTA);
+		gravity -= 20.0f * DELTA;
+	}
+
+	if (INPUT->KeyDown(VK_SPACE) and jumpCount == 0)
+	{
+		isJump = true;
+		gravity = 10.0f;
+		player->MoveWorldPos(player->GetUp() * gravity * DELTA);
+		player->Update();
+		jumpCount++;
+	}
+
 }
 
 void Player::CollidePlayerToFloor(VillageMap* map)

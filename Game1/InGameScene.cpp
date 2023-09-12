@@ -59,9 +59,10 @@ void InGameScene::Update()
     ImGui::End();
 
     //배경 카메라 업데이트
-   
-    Map->Update();
     player->PlayerControl();
+   
+
+    Map->Update();
     player->Update();
     MainCam->Update();
 }
