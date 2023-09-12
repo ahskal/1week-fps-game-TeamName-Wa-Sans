@@ -54,7 +54,7 @@
                 <Scale X="1" Y="1" Z="1"/>
                 <Rotation X="0" Y="0" Z="0"/>
             </Collider>
-			<Texture File="Map/a7894975.png"/>
+			<Texture File="Map/BrickTile.png"/>
             <Transform>
                 <Position X="14.5" Y="8" Z="14.5"/>
                 <Scale X="2" Y="8" Z="2"/>
@@ -71,7 +71,7 @@
                 <Scale X="1" Y="1" Z="1"/>
                 <Rotation X="0" Y="0" Z="0"/>
             </Collider>
-			<Texture File="Map/a7894975.png"/>
+			<Texture File="Map/BrickTile.png"/>
             <Transform>
                 <Position X="-14.5" Y="8" Z="14.5"/>
                 <Scale X="2" Y="8" Z="2"/>
@@ -88,7 +88,7 @@
                 <Scale X="1" Y="1" Z="1"/>
                 <Rotation X="0" Y="0" Z="0"/>
             </Collider>
-			<Texture File="Map/a7894975.png"/>
+			<Texture File="Map/BrickTile.png"/>
             <Transform>
                 <Position X="14.5" Y="8" Z="-14.5"/>
                 <Scale X="2" Y="8" Z="2"/>
@@ -105,7 +105,7 @@
                 <Scale X="1" Y="1" Z="1"/>
                 <Rotation X="0" Y="0" Z="0"/>
             </Collider>
-			<Texture File="Map/a7894975.png"/>
+			<Texture File="Map/BrickTile.png"/>
             <Transform>
                 <Position X="-14.5" Y="8" Z="-14.5"/>
                 <Scale X="2" Y="8" Z="2"/>
@@ -125,7 +125,7 @@
         <Child0 Name="Roof_Mesh_1" Visible="true" ObType="0">
             <Mesh File="6.Cube.mesh"/>
             <Shader File="6.Cube.hlsl"/>
-            <Shader_Color R="0.45166093" G="0.36599281" B="0.29917425" A="0.5"/>
+			<Shader_Color R="0.39593542" G="0.36130625" B="0.34221679" A="0.50196081"/>
             <Collider ColliderType="2" Visible="false">
                 <Position X="0" Y="0" Z="0"/>
                 <Scale X="1" Y="1" Z="1"/>
@@ -165,7 +165,7 @@
                     <Scale X="1" Y="1" Z="1"/>
                     <Rotation X="0" Y="0" Z="0"/>
                 </Collider>
-                <Texture File="Map/a7894975.png"/>
+                <Texture File="Map/BrickTile.png"/>
                 <Transform>
                     <Position X="9" Y="8" Z="16"/>
                     <Scale X="5" Y="8" Z="1"/>
@@ -182,7 +182,7 @@
                     <Scale X="1" Y="1" Z="1"/>
                     <Rotation X="0" Y="0" Z="0"/>
                 </Collider>
-                <Texture File="Map/a7894975.png"/>
+                <Texture File="Map/BrickTile.png"/>
                 <Transform>
                     <Position X="-9" Y="8" Z="16"/>
                     <Scale X="5" Y="8" Z="1"/>
@@ -199,7 +199,7 @@
                     <Scale X="1" Y="1" Z="1"/>
                     <Rotation X="0" Y="0" Z="0"/>
                 </Collider>
-                <Texture File="Map/a7894975.png"/>
+                <Texture File="Map/BrickTile_sixteenth.png"/>
                 <Transform>
                     <Position X="0" Y="0" Z="16"/>
                     <Scale X="4" Y="1" Z="1"/>
@@ -216,7 +216,7 @@
                     <Scale X="1" Y="1" Z="1"/>
                     <Rotation X="0" Y="0" Z="0"/>
                 </Collider>
-                <Texture File="Map/a7894975.png"/>
+                <Texture File="Map/BrickTile_sixteenth.png"/>
                 <Transform>
                     <Position X="0" Y="14" Z="16"/>
                     <Scale X="4" Y="2" Z="1"/>
@@ -242,7 +242,7 @@
                     <Scale X="1" Y="1" Z="1"/>
                     <Rotation X="0" Y="0" Z="0"/>
                 </Collider>
-                <Texture File="Map/a7894975.png"/>
+                <Texture File="Map/BrickTile.png"/>
                 <Transform>
                     <Position X="0" Y="8" Z="-16"/>
                     <Scale X="14" Y="8" Z="1"/>
@@ -268,7 +268,7 @@
                     <Scale X="1" Y="1" Z="1"/>
                     <Rotation X="0" Y="0" Z="0"/>
                 </Collider>
-                <Texture File="Map/a7894975.png"/>
+                <Texture File="Map/BrickTile.png"/>
                 <Transform>
                     <Position X="16" Y="8" Z="0"/>
                     <Scale X="1" Y="8" Z="14"/>
@@ -294,7 +294,7 @@
                     <Scale X="1" Y="1" Z="1"/>
                     <Rotation X="0" Y="0" Z="0"/>
                 </Collider>
-                <Texture File="Map/a7894975.png"/>
+                <Texture File="Map/BrickTile.png"/>
                 <Transform>
                     <Position X="-16" Y="8" Z="0"/>
                     <Scale X="1" Y="8" Z="14"/>

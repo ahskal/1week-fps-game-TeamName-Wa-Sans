@@ -16,9 +16,16 @@ VillageMap::VillageMap()
 	cam = Camera::Create();
 	cam->LoadFile("VillageCam.xml");
 
-	//for (int i = 0; i < 4; i++) {
-	//	house[i] = House::Create();
-	//}
+	// 그릴지 말지 정하는 변수
+	HouseRender = true;
+
+	// 참이라면 집을 생성해라
+	if (HouseRender) {
+		for (int i = 0; i < HouseCount; i++) {
+			house[i] = House::Create();
+		}
+	}
+
 
 }
 
@@ -35,23 +42,20 @@ void VillageMap::Release()
 
 void VillageMap::Init()
 {
+	// 참이라면 집의 좌표를 정해줘라
+	if (HouseRender)
+		HouseLateUpdate = true;
 	for (int i = 0; i < HouseCount; i++) {
-		house[i] = House::Create();
-		house[i]->LoadFile("VillageHouse.xml");
-		
-		//switch (RANDOM->Int(0, 3)) {
-		//case 0:  break;
-		//case 1: house[i]->LoadFile("VillageHouse2.xml"); break;
-		//case 2: house[i]->LoadFile("VillageHouse3.xml"); break;
-		//case 3: house[i]->LoadFile("VillageHouse4.xml"); break;
-		//}
+		switch (RANDOM->Int(0, 3)) {
+		case 0: house[i]->LoadFile("VillageHouse.xml"); break;
+		case 1: house[i]->LoadFile("VillageHouse2.xml"); break;
+		case 2: house[i]->LoadFile("VillageHouse3.xml"); break;
+		case 3: house[i]->LoadFile("VillageHouse4.xml"); break;
+		}
 		house[i]->SetWorldPosX(RANDOM->Int(-100, 100));
 		house[i]->SetWorldPosZ(RANDOM->Int(-100, 100));
 		house[i]->rotation.y = RANDOM->Float(-PI, PI);
 	}
-	//for (int i = 0; i < HouseCount; i++) {
-	//	house[i]->collider->visible = false;
-	//}
 
 }
 
@@ -70,53 +74,64 @@ void VillageMap::Update()
 
 void VillageMap::LateUpdate()
 {
-	for (int i = 0; i < HouseCount - 1; i++)
+	// 집 충돌처리 생성후 계산되어 코드가 비활성화.
 	{
-		for (int j = i + 1; j < HouseCount; j++)
-		{
-			// 몬스터가 다른 몬스터와 충돌하면 밀어냄
-			if (house[i]->Intersect(house[j]))
+		// 만약 집의 충돌처리가 참이라면 연산 계산
+		bool disableHouseLateUpdate = true;
+		if (HouseLateUpdate) {
+			// 집과 집이 겹쳐있을경우 밀어내는 코드
+			for (int i = 0; i < HouseCount - 1; i++)
 			{
-				Vector3 enemyDir = house[i]->GetWorldPos() - house[j]->GetWorldPos();
-				Vector3 OtherEnemyDir = house[j]->GetWorldPos() - house[i]->GetWorldPos();
+				for (int j = 0; j < HouseCount; j++)
+				{
+					if (house[i] == house[j]) continue;
+					// 집과 집이 충돌했을경우 밀어낸다.
+					if (house[i]->Intersect(house[j]))
+					{
+						// 충돌한 집끼리의 방향백터 구하기
+						Vector3 enemyDir = house[i]->GetWorldPos() - house[j]->GetWorldPos();
+						Vector3 OtherEnemyDir = house[j]->GetWorldPos() - house[i]->GetWorldPos();
 
-				enemyDir.Normalize();
-				OtherEnemyDir.Normalize();
-				cout << " 충돌 " << endl;
+						// 방향백터 스칼라값 빼기
+						enemyDir.Normalize();
+						OtherEnemyDir.Normalize();
 
-				if (house[i]->GetWorldPos().x > -230 && house[i]->GetWorldPos().x < 230) {
-					house[i]->MoveWorldPos(enemyDir * 5000 * DELTA);
+						// 집의 좌표에 따라 밀어주기
+						if (house[i]->GetWorldPos().x > -230 && house[i]->GetWorldPos().x < 230) {
+							house[i]->MoveWorldPos(enemyDir * 5000 * DELTA);
+						}
+						else if (house[j]->GetWorldPos().x > -230 && house[j]->GetWorldPos().x < 230) {
+							house[j]->MoveWorldPos(OtherEnemyDir * 5000 * DELTA);
+						}
+						disableHouseLateUpdate = false;
+					}
 				}
-				
-				if (house[j]->GetWorldPos().x > -230 && house[j]->GetWorldPos().x < 230) {
-					house[j]->MoveWorldPos(OtherEnemyDir * 5000 * DELTA);
+			}
+			// 집이 만약 범위내에 나갔을경우 위치 재정의		
+			for (int i = 0; i < HouseCount; i++)
+			{
+				if (house[i]->GetWorldPos().x > 200 or house[i]->GetWorldPos().x < -200) {
+					house[i]->SetWorldPosX(RANDOM->Int(-100, 100));
+				}
+				else if (house[i]->GetWorldPos().z > 200 or house[i]->GetWorldPos().z < -200) {
+					house[i]->SetWorldPosZ(RANDOM->Int(-100, 100));
 				}
 			}
 		}
-	}
-
-	for (int i = 0; i < HouseCount; i++)
-	{
-		if (house[i]->GetWorldPos().x > 200 or house[i]->GetWorldPos().x < -200) {
-			house[i]->SetWorldPosX(RANDOM->Int(-100, 100));
-		}
-		if (house[i]->GetWorldPos().z > 200 or house[i]->GetWorldPos().z < -200) {
-			house[i]->SetWorldPosZ(RANDOM->Int(-100,100));
+		if (disableHouseLateUpdate) {
+			HouseLateUpdate = false;
 		}
 	}
-
 }
 
 void VillageMap::Render()
 {
 	Actor::Render();
-	for (int i = 0; i < HouseCount; i++) {
-		house[i]->Render();
-	}
-
-
-	if (!HouseCreateChack) { collisionDetected = true; }
-
+	// 집을 그릴때
+	if (HouseRender)
+		for (int i = 0; i < HouseCount; i++) {
+			house[i]->Render();
+		}
 }
 
 

@@ -10,10 +10,16 @@ private:
     //class House* house[4];
 
     class House* house[HouseCount];
-    bool HouseCreateChack = false;
-    bool collisionDetected = false;
     
     
+    bool HouseRender;
+    bool HouseLateUpdate;
+    
+
+
+
+
+
 
 public:
 
