@@ -1,10 +1,27 @@
 <Root Name="Grid" Visible="true" ObType="1">
     <Mesh File="grid.mesh"/>
     <Shader File="0.Cube.hlsl"/>
+    <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
     <Transform>
-        <Position X="1" Y="0" Z="-12"/>
+        <Position X="-8" Y="0" Z="-1"/>
         <Scale X="1" Y="1" Z="1"/>
         <Rotation X="0" Y="0" Z="0"/>
     </Transform>
-    <Children Size="0"/>
+    <Children Size="1"/>
+    <Child0 Name="floor" Visible="true" ObType="0">
+        <Mesh File="1.Cube.mesh"/>
+        <Shader File="6.Cube.hlsl"/>
+        <Shader_Color R="0.93222469" G="0.99999994" B="0.92361575" A="0.5"/>
+        <Collider ColliderType="2" Visible="true">
+            <Position X="0" Y="0" Z="0"/>
+            <Scale X="1" Y="1" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Collider>
+        <Transform>
+            <Position X="0" Y="-0.1" Z="0"/>
+            <Scale X="100" Y="0.1" Z="100"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <Children Size="0"/>
+    </Child0>
 </Root>

@@ -1,0 +1,136 @@
+<Root Name="Remington" Visible="true" ObType="1">
+    <Transform>
+        <Position X="0" Y="0" Z="0"/>
+        <Scale X="1" Y="1" Z="1"/>
+        <Rotation X="0" Y="0" Z="0"/>
+    </Transform>
+    <Children Size="1"/>
+    <Child0 Name="BodyPoint" Visible="true" ObType="0">
+        <Transform>
+            <Position X="0" Y="0" Z="0"/>
+            <Scale X="1" Y="1" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <Children Size="12"/>
+        <Child0 Name="BodyMesh" Visible="true" ObType="0">
+            <Mesh File="1.Cube.mesh"/>
+            <Shader File="1.beretta92Black.hlsl"/>
+            <Transform>
+                <Position X="-0.07" Y="0" Z="-0.44999999"/>
+                <Scale X="0.029999999" Y="0.2" Z="0.75"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <Children Size="0"/>
+        </Child0>
+        <Child1 Name="BodyMesh1" Visible="true" ObType="0">
+            <Mesh File="1.Cube.mesh"/>
+            <Shader File="1.beretta92Black.hlsl"/>
+            <Transform>
+                <Position X="0" Y="-0.15000001" Z="-1.617"/>
+                <Scale X="0.1" Y="0.2" Z="0.5"/>
+                <Rotation X="-0.33161256" Y="0" Z="0"/>
+            </Transform>
+            <Children Size="0"/>
+        </Child1>
+        <Child2 Name="BodyMesh2" Visible="true" ObType="0">
+            <Mesh File="1.Cube.mesh"/>
+            <Shader File="1.beretta92Black.hlsl"/>
+            <Transform>
+                <Position X="0" Y="-0.30000001" Z="-2.6170001"/>
+                <Scale X="0.1" Y="0.2" Z="0.60000002"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <Children Size="0"/>
+        </Child2>
+        <Child3 Name="BodyMesh3" Visible="true" ObType="0">
+            <Mesh File="1.Cube.mesh"/>
+            <Shader File="1.beretta92Black.hlsl"/>
+            <Transform>
+                <Position X="0" Y="0.17" Z="-0.44999999"/>
+                <Scale X="0.1" Y="0.029999999" Z="0.75"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <Children Size="0"/>
+        </Child3>
+        <Child4 Name="BodyMesh4" Visible="true" ObType="0">
+            <Mesh File="1.Cube.mesh"/>
+            <Shader File="1.beretta92Black.hlsl"/>
+            <Transform>
+                <Position X="0.07" Y="0" Z="0.15000001"/>
+                <Scale X="0.029999999" Y="0.2" Z="0.15000001"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <Children Size="0"/>
+        </Child4>
+        <Child5 Name="BodyMesh5" Visible="true" ObType="0">
+            <Mesh File="1.Cube.mesh"/>
+            <Shader File="1.beretta92Black.hlsl"/>
+            <Transform>
+                <Position X="0.07" Y="0" Z="-0.80000001"/>
+                <Scale X="0.029999999" Y="0.2" Z="0.40000001"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <Children Size="0"/>
+        </Child5>
+        <Child6 Name="BodyMesh6" Visible="true" ObType="0">
+            <Mesh File="1.Cube.mesh"/>
+            <Shader File="1.beretta92Black.hlsl"/>
+            <Transform>
+                <Position X="0.07" Y="-0.1" Z="-0.2"/>
+                <Scale X="0.029999999" Y="0.1" Z="0.25"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <Children Size="0"/>
+        </Child6>
+        <Child7 Name="BodyMesh7" Visible="true" ObType="0">
+            <Mesh File="1.Cube.mesh"/>
+            <Shader File="1.beretta92Black.hlsl"/>
+            <Transform>
+                <Position X="0" Y="-0.17" Z="-0.80000001"/>
+                <Scale X="0.1" Y="0.029999999" Z="0.40000001"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <Children Size="0"/>
+        </Child7>
+        <Child8 Name="BodyMesh8" Visible="true" ObType="0">
+            <Mesh File="1.Cube.mesh"/>
+            <Shader File="1.beretta92Black.hlsl"/>
+            <Transform>
+                <Position X="0" Y="-0.17" Z="0.15000001"/>
+                <Scale X="0.1" Y="0.029999999" Z="0.15000001"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <Children Size="0"/>
+        </Child8>
+        <Child9 Name="GunbarrelDown" Visible="true" ObType="0">
+            <Mesh File="1.Cube.mesh"/>
+            <Shader File="1.beretta92.hlsl"/>
+            <Transform>
+                <Position X="0" Y="-0.050000001" Z="1.65"/>
+                <Scale X="0.050000001" Y="0.050000001" Z="1.5"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <Children Size="0"/>
+        </Child9>
+        <Child10 Name="GunbarrelUp" Visible="true" ObType="0">
+            <Mesh File="1.Cube.mesh"/>
+            <Shader File="1.beretta92.hlsl"/>
+            <Transform>
+                <Position X="0" Y="0.1" Z="1.7"/>
+                <Scale X="0.050000001" Y="0.050000001" Z="1.55"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <Children Size="0"/>
+        </Child10>
+        <Child11 Name="Trigger" Visible="true" ObType="0">
+            <Mesh File="1.Cube.mesh"/>
+            <Shader File="1.beretta9201.hlsl"/>
+            <Transform>
+                <Position X="0" Y="-0.050000001" Z="1.45"/>
+                <Scale X="0.1" Y="0.085000001" Z="0.55000001"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <Children Size="0"/>
+        </Child11>
+    </Child0>
+</Root>

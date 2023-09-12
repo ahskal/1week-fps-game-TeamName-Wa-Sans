@@ -13,8 +13,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shaders", "Shaders", "{E3F02C0D-0DAD-4181-A968-85F48C12D251}"
 	ProjectSection(SolutionItems) = preProject
 		Shaders\0.Cube.hlsl = Shaders\0.Cube.hlsl
+		..\Users\user\Desktop\example\Shaders\1.beretta92.hlsl = ..\Users\user\Desktop\example\Shaders\1.beretta92.hlsl
+		..\Users\user\Desktop\example\Shaders\1.beretta9201.hlsl = ..\Users\user\Desktop\example\Shaders\1.beretta9201.hlsl
+		..\Users\user\Desktop\example\Shaders\1.beretta92Black.hlsl = ..\Users\user\Desktop\example\Shaders\1.beretta92Black.hlsl
 		Shaders\1.Collider.hlsl = Shaders\1.Collider.hlsl
 		Shaders\1.Cube.hlsl = Shaders\1.Cube.hlsl
+		..\Users\user\Desktop\example\Shaders\1.muzzel.hlsl = ..\Users\user\Desktop\example\Shaders\1.muzzel.hlsl
 		Shaders\6.Cube.hlsl = Shaders\6.Cube.hlsl
 		Shaders\6.UI.hlsl = Shaders\6.UI.hlsl
 		Shaders\Common.hlsl = Shaders\Common.hlsl
@@ -33,9 +37,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{23927E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GameObject", "GameObject", "{2C99B77E-2775-4066-AC03-9062F4F4FC4F}"
 	ProjectSection(SolutionItems) = preProject
+		Contents\GameObject\beretta92.xml = Contents\GameObject\beretta92.xml
+		Contents\GameObject\Cam1.xml = Contents\GameObject\Cam1.xml
+		Contents\GameObject\Camthefirst.xml = Contents\GameObject\Camthefirst.xml
+		Contents\GameObject\CityCam.xml = Contents\GameObject\CityCam.xml
+		Contents\GameObject\CityMap.xml = Contents\GameObject\CityMap.xml
 		Contents\GameObject\Cam.xml = Contents\GameObject\Cam.xml
 		Contents\GameObject\Grid.xml = Contents\GameObject\Grid.xml
 		Contents\GameObject\PlayerAimUI.xml = Contents\GameObject\PlayerAimUI.xml
+		Contents\GameObject\Player.xml = Contents\GameObject\Player.xml
+		Contents\GameObject\Remington.xml = Contents\GameObject\Remington.xml
 	EndProjectSection
 EndProject
 Global

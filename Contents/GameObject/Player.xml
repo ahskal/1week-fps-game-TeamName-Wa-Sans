@@ -1,0 +1,302 @@
+<Root Name="Player" Visible="true" ObType="1">
+    <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
+    <Collider ColliderType="2" Visible="true">
+        <Position X="0" Y="0.050000001" Z="0"/>
+        <Scale X="1" Y="0.050000001" Z="0.34999999"/>
+        <Rotation X="0" Y="0" Z="0"/>
+    </Collider>
+    <Transform>
+        <Position X="-10" Y="-0.0010689795" Z="9.3891125"/>
+        <Scale X="1" Y="1" Z="1"/>
+        <Rotation X="0" Y="0" Z="0"/>
+    </Transform>
+    <Children Size="3"/>
+    <Child0 Name="3Cam" Visible="true" ObType="2">
+        <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
+        <Transform>
+            <Position X="-0.10123762" Y="5.4677062" Z="-4.447082"/>
+            <Scale X="1" Y="1" Z="1"/>
+            <Rotation X="0.2720001" Y="0.014000004" Z="0"/>
+        </Transform>
+        <Camera Ortho="false" Fov="1.047192" Width="1280" Height="720" NearZ="0.1" FarZ="500" viewportX="0" viewportY="0" viewportW="1280" viewportH="720"/>
+        <Children Size="0"/>
+    </Child0>
+    <Child1 Name="DownPoint" Visible="true" ObType="0">
+        <Mesh File="1.Point.mesh"/>
+        <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
+        <Transform>
+            <Position X="0" Y="2" Z="0"/>
+            <Scale X="1" Y="1" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <Children Size="2"/>
+        <Child0 Name="LeftLegPoint" Visible="true" ObType="0">
+            <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
+            <Transform>
+                <Position X="-0.30000001" Y="0" Z="0"/>
+                <Scale X="1" Y="1" Z="1"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <Children Size="2"/>
+            <Child0 Name="LeftKneePoint" Visible="true" ObType="0">
+                <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
+                <Transform>
+                    <Position X="0" Y="-0.89999998" Z="0"/>
+                    <Scale X="1" Y="1" Z="1"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <Children Size="2"/>
+                <Child0 Name="LeftFootMesh" Visible="true" ObType="0">
+                    <Mesh File="1.Cube.mesh"/>
+                    <Shader File="1.beretta92Black.hlsl"/>
+                    <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
+                    <Transform>
+                        <Position X="0" Y="-1" Z="0.15000001"/>
+                        <Scale X="0.25" Y="0.1" Z="0.30000001"/>
+                        <Rotation X="0" Y="0" Z="0"/>
+                    </Transform>
+                    <Children Size="0"/>
+                </Child0>
+                <Child1 Name="LeftKneeMesh" Visible="true" ObType="0">
+                    <Mesh File="1.Cube.mesh"/>
+                    <Shader File="1.beretta92Black.hlsl"/>
+                    <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
+                    <Transform>
+                        <Position X="0" Y="-0.44999999" Z="0"/>
+                        <Scale X="0.2" Y="0.44999999" Z="0.15000001"/>
+                        <Rotation X="0" Y="0" Z="0"/>
+                    </Transform>
+                    <Children Size="0"/>
+                </Child1>
+            </Child0>
+            <Child1 Name="LeftLegMesh" Visible="true" ObType="0">
+                <Mesh File="1.Cube.mesh"/>
+                <Shader File="1.beretta92Black.hlsl"/>
+                <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
+                <Transform>
+                    <Position X="0" Y="-0.44999999" Z="0"/>
+                    <Scale X="0.2" Y="0.44999999" Z="0.15000001"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <Children Size="0"/>
+            </Child1>
+        </Child0>
+        <Child1 Name="RightLegPoint" Visible="true" ObType="0">
+            <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
+            <Transform>
+                <Position X="0.30000001" Y="0" Z="0"/>
+                <Scale X="1" Y="1" Z="1"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <Children Size="2"/>
+            <Child0 Name="RightKneePoint" Visible="true" ObType="0">
+                <Mesh File="1.Point.mesh"/>
+                <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
+                <Transform>
+                    <Position X="0" Y="-0.89999998" Z="0"/>
+                    <Scale X="1" Y="1" Z="1"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <Children Size="2"/>
+                <Child0 Name="RightFootMesh" Visible="true" ObType="0">
+                    <Mesh File="1.Cube.mesh"/>
+                    <Shader File="1.beretta92Black.hlsl"/>
+                    <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
+                    <Transform>
+                        <Position X="0" Y="-1" Z="0.15000001"/>
+                        <Scale X="0.25" Y="0.1" Z="0.30000001"/>
+                        <Rotation X="0" Y="0" Z="0"/>
+                    </Transform>
+                    <Children Size="0"/>
+                </Child0>
+                <Child1 Name="RightKneeMesh" Visible="true" ObType="0">
+                    <Mesh File="1.Cube.mesh"/>
+                    <Shader File="1.beretta92Black.hlsl"/>
+                    <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
+                    <Transform>
+                        <Position X="0" Y="-0.44999999" Z="0"/>
+                        <Scale X="0.2" Y="0.44999999" Z="0.15000001"/>
+                        <Rotation X="0" Y="0" Z="0"/>
+                    </Transform>
+                    <Children Size="0"/>
+                </Child1>
+            </Child0>
+            <Child1 Name="RightLegMesh" Visible="true" ObType="0">
+                <Mesh File="1.Cube.mesh"/>
+                <Shader File="1.beretta92Black.hlsl"/>
+                <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
+                <Transform>
+                    <Position X="0" Y="-0.44999999" Z="0"/>
+                    <Scale X="0.2" Y="0.44999999" Z="0.15000001"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <Children Size="0"/>
+            </Child1>
+        </Child1>
+    </Child1>
+    <Child2 Name="UpPoint" Visible="true" ObType="0">
+        <Mesh File="1.Point.mesh"/>
+        <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
+        <Transform>
+            <Position X="0" Y="2" Z="0"/>
+            <Scale X="1" Y="1" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <Children Size="4"/>
+        <Child0 Name="BodyMesh" Visible="true" ObType="0">
+            <Mesh File="1.Cube.mesh"/>
+            <Shader File="1.Cube.hlsl"/>
+            <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
+            <Transform>
+                <Position X="0" Y="1" Z="0"/>
+                <Scale X="0.60000002" Y="1" Z="0.30000001"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <Children Size="0"/>
+        </Child0>
+        <Child1 Name="LeftShoulderPoint" Visible="true" ObType="0">
+            <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
+            <Transform>
+                <Position X="-0.64999998" Y="1.9" Z="0"/>
+                <Scale X="1" Y="1" Z="1"/>
+                <Rotation X="0" Y="0.43632999" Z="0"/>
+            </Transform>
+            <Children Size="2"/>
+            <Child0 Name="LefhShoulderMesh" Visible="true" ObType="0">
+                <Mesh File="1.Cube.mesh"/>
+                <Shader File="1.beretta92Black.hlsl"/>
+                <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
+                <Transform>
+                    <Position X="-0.050000001" Y="-0.40000001" Z="0"/>
+                    <Scale X="0.1" Y="0.40000001" Z="0.15000001"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <Children Size="0"/>
+            </Child0>
+            <Child1 Name="LeftArmPoint" Visible="true" ObType="0">
+                <Mesh File="1.Point.mesh"/>
+                <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
+                <Transform>
+                    <Position X="0" Y="-0.80000001" Z="0"/>
+                    <Scale X="1" Y="1" Z="1"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <Children Size="2"/>
+                <Child0 Name="LeftArmMesh" Visible="true" ObType="0">
+                    <Mesh File="1.Cube.mesh"/>
+                    <Shader File="1.beretta92Black.hlsl"/>
+                    <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
+                    <Transform>
+                        <Position X="0" Y="-0.34999999" Z="0"/>
+                        <Scale X="0.15000001" Y="0.34999999" Z="0.15000001"/>
+                        <Rotation X="0" Y="0" Z="0"/>
+                    </Transform>
+                    <Children Size="0"/>
+                </Child0>
+                <Child1 Name="LeftHandPoint" Visible="true" ObType="0">
+                    <Mesh File="1.Point.mesh"/>
+                    <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
+                    <Transform>
+                        <Position X="0" Y="-0.69999999" Z="0"/>
+                        <Scale X="1" Y="1" Z="1"/>
+                        <Rotation X="0" Y="0" Z="0"/>
+                    </Transform>
+                    <Children Size="1"/>
+                    <Child0 Name="LeftHandMesh" Visible="true" ObType="0">
+                        <Mesh File="1.Sphere.mesh"/>
+                        <Shader File="1.beretta9201.hlsl"/>
+                        <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
+                        <Transform>
+                            <Position X="0" Y="-0.15000001" Z="0"/>
+                            <Scale X="0.2" Y="0.2" Z="0.2"/>
+                            <Rotation X="0" Y="0" Z="0"/>
+                        </Transform>
+                        <Children Size="0"/>
+                    </Child0>
+                </Child1>
+            </Child1>
+        </Child1>
+        <Child2 Name="Neck" Visible="true" ObType="0">
+            <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
+            <Transform>
+                <Position X="0" Y="2" Z="0"/>
+                <Scale X="1" Y="1" Z="1"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <Children Size="1"/>
+            <Child0 Name="HeadMesh" Visible="true" ObType="0">
+                <Mesh File="1.Sphere.mesh"/>
+                <Shader File="1.beretta9201.hlsl"/>
+                <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
+                <Transform>
+                    <Position X="0" Y="0.30000001" Z="0"/>
+                    <Scale X="0.30000001" Y="0.30000001" Z="0.30000001"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <Children Size="0"/>
+            </Child0>
+        </Child2>
+        <Child3 Name="RightShoulderPoint" Visible="true" ObType="0">
+            <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
+            <Transform>
+                <Position X="0.64999998" Y="1.9" Z="0"/>
+                <Scale X="1" Y="1" Z="1"/>
+                <Rotation X="0" Y="-0.43632999" Z="0"/>
+            </Transform>
+            <Children Size="2"/>
+            <Child0 Name="RightArmPoint" Visible="true" ObType="0">
+                <Mesh File="1.Point.mesh"/>
+                <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
+                <Transform>
+                    <Position X="0" Y="-0.80000001" Z="0"/>
+                    <Scale X="1" Y="1" Z="1"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <Children Size="2"/>
+                <Child0 Name="RightArmMesh" Visible="true" ObType="0">
+                    <Mesh File="1.Cube.mesh"/>
+                    <Shader File="1.beretta92Black.hlsl"/>
+                    <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
+                    <Transform>
+                        <Position X="0" Y="-0.34999999" Z="0"/>
+                        <Scale X="0.15000001" Y="0.34999999" Z="0.15000001"/>
+                        <Rotation X="0" Y="0" Z="0"/>
+                    </Transform>
+                    <Children Size="0"/>
+                </Child0>
+                <Child1 Name="RightHandPoint" Visible="true" ObType="0">
+                    <Mesh File="1.Point.mesh"/>
+                    <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
+                    <Transform>
+                        <Position X="0" Y="-0.69999999" Z="0"/>
+                        <Scale X="1" Y="1" Z="1"/>
+                        <Rotation X="0" Y="0" Z="0"/>
+                    </Transform>
+                    <Children Size="1"/>
+                    <Child0 Name="RightHandMesh" Visible="true" ObType="0">
+                        <Mesh File="1.Sphere.mesh"/>
+                        <Shader File="1.beretta9201.hlsl"/>
+                        <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
+                        <Transform>
+                            <Position X="0" Y="-0.15000001" Z="0"/>
+                            <Scale X="0.2" Y="0.2" Z="0.2"/>
+                            <Rotation X="0" Y="0" Z="0"/>
+                        </Transform>
+                        <Children Size="0"/>
+                    </Child0>
+                </Child1>
+            </Child0>
+            <Child1 Name="RightShoulderMesh" Visible="true" ObType="0">
+                <Mesh File="1.Cube.mesh"/>
+                <Shader File="1.beretta92Black.hlsl"/>
+                <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
+                <Transform>
+                    <Position X="0.050000001" Y="-0.40000001" Z="0"/>
+                    <Scale X="0.1" Y="0.40000001" Z="0.15000001"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <Children Size="0"/>
+            </Child1>
+        </Child3>
+    </Child2>
+</Root>
