@@ -11,9 +11,13 @@
     </ClInclude>
     <ClInclude Include="UNIT.h">
       <Filter>GameObject</Filter>
+    <ClInclude Include="VillageMap.h">
+      <Filter>Jin_\Map</Filter>
     </ClInclude>
     <ClInclude Include="InGameUI_Manager.h">
       <Filter>GameObject</Filter>
+    <ClInclude Include="House.h">
+      <Filter>Jin_\Map</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -26,23 +30,21 @@
     </ClCompile>
     <ClCompile Include="UNIT.cpp">
       <Filter>GameObject</Filter>
+    <ClCompile Include="VillageMap.cpp">
+      <Filter>Jin_\Map</Filter>
     </ClCompile>
     <ClCompile Include="InGameUI_Manager.cpp">
       <Filter>GameObject</Filter>
+    <ClCompile Include="House.cpp">
+      <Filter>Jin_\Map</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="GameObject">
-      <UniqueIdentifier>{355ff697-d03c-4bdd-bdae-32eee4c60bf3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scene">
+    <Filter Include="Jin_">
       <UniqueIdentifier>{e0c428c6-0d94-4784-bb3a-59d8180b610b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Jin_">
-      <UniqueIdentifier>{5ec82aca-6166-4e03-86b6-a8b1081fd33f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Jin_\Map">
-      <UniqueIdentifier>{c3ee2e6b-5c40-4364-bd25-138555fe56a9}</UniqueIdentifier>
+      <UniqueIdentifier>{fe4dd607-8330-4165-8769-94e2829d7e96}</UniqueIdentifier>
     </Filter>
     <Filter Include="SH">
       <UniqueIdentifier>{49d7baee-5afb-4474-ad9e-0edf74cb7a03}</UniqueIdentifier>

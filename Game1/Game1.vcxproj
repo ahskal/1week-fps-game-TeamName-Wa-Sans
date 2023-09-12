@@ -22,16 +22,23 @@
     <ClInclude Include="InGameScene.h" />
     <ClInclude Include="InGameUI_Manager.h" />
     <ClInclude Include="LobbyScene.h" />
+    <ClInclude Include="House.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="UNIT.h" />
+    <ClInclude Include="VillageMap.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="InGameScene.cpp" />
     <ClCompile Include="InGameUI_Manager.cpp" />
     <ClCompile Include="LobbyScene.cpp" />
+    <ClCompile Include="House.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="UNIT.cpp" />
+    <ClCompile Include="VillageMap.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="window.ini" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
