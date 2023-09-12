@@ -8,6 +8,7 @@ private:
 	Grid* grid;
 	Actor* PlayerAimUI;
 
+	//ㅇㅇ
 	//퍼블릭 함수생성
 public:
 	//기본기능함수들
