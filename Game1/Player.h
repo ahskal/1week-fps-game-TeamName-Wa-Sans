@@ -22,7 +22,7 @@ private:
 	ShotGun* shotGun;
 
 	PlayerType playerType = PlayerType::None;
-	GunType gunType = GunType::ShotGun;
+	GunType gunType = GunType::None;
 	bool isJump = false;			// 점프 했는지 안했는지 판단하는 bool값
 	bool isGridCollide = false;		// 그리드와 충돌했는지 판단하는 bool값
 
@@ -32,6 +32,7 @@ private:
 
 
 
+	float waitHandDir;				// 걸을때의 손 각도값
 	float walkHandDir;				// 걸을때의 손 각도값
 	float walkLegDir;				// 걸을때의 다리 각도값
 public:

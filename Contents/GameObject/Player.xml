@@ -6,7 +6,7 @@
         <Rotation X="0" Y="0" Z="0"/>
     </Collider>
     <Transform>
-        <Position X="-10" Y="-0.0010689795" Z="9.3891125"/>
+        <Position X="-10.079829" Y="-0.00051234057" Z="9.3891125"/>
         <Scale X="1" Y="1" Z="1"/>
         <Rotation X="0" Y="0" Z="0"/>
     </Transform>
@@ -177,7 +177,7 @@
                 <Mesh File="1.Point.mesh"/>
                 <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
                 <Transform>
-                    <Position X="0" Y="-0.80000001" Z="0"/>
+                    <Position X="-0.050000001" Y="-0.80000001" Z="0"/>
                     <Scale X="1" Y="1" Z="1"/>
                     <Rotation X="0" Y="0" Z="0"/>
                 </Transform>
@@ -188,7 +188,7 @@
                     <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
                     <Transform>
                         <Position X="0" Y="-0.34999999" Z="0"/>
-                        <Scale X="0.15000001" Y="0.34999999" Z="0.15000001"/>
+                        <Scale X="0.1" Y="0.34999999" Z="0.15000001"/>
                         <Rotation X="0" Y="0" Z="0"/>
                     </Transform>
                     <Children Size="0"/>
@@ -248,7 +248,7 @@
                 <Mesh File="1.Point.mesh"/>
                 <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
                 <Transform>
-                    <Position X="0" Y="-0.80000001" Z="0"/>
+                    <Position X="0.050000001" Y="-0.80000001" Z="0"/>
                     <Scale X="1" Y="1" Z="1"/>
                     <Rotation X="0" Y="0" Z="0"/>
                 </Transform>
@@ -259,7 +259,7 @@
                     <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
                     <Transform>
                         <Position X="0" Y="-0.34999999" Z="0"/>
-                        <Scale X="0.15000001" Y="0.34999999" Z="0.15000001"/>
+                        <Scale X="0.1" Y="0.34999999" Z="0.15000001"/>
                         <Rotation X="0" Y="0" Z="0"/>
                     </Transform>
                     <Children Size="0"/>
