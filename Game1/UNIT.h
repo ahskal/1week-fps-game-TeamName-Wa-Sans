@@ -25,7 +25,7 @@ public:
 
 	void Init(float initialSpeed, float initialHP, float initialDamage, Vector3& initialSpawnPos);
 	
-	virtual void TakeDamage(float amount) { hp -= amount; }
+	virtual void TakeDamage(float enemyDamage) { hp -= enemyDamage; }
 	virtual void GethealHp(float heal) { hp += heal; }
 
 	//몬스터나 플레이어 죽었을때
