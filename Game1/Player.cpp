@@ -8,7 +8,7 @@ Player::Player()
 	player->LoadFile("Player.xml");
 
 	player->SetWorldPosY(1);
-
+	
 	gun = new Gun();
 	gun->GetGun()->rotation.x = 90.0f * ToRadian;
 }
