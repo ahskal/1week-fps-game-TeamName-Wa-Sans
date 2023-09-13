@@ -21,7 +21,6 @@
   <ItemGroup>
     <ClInclude Include="Gun.h" />
     <ClInclude Include="InGameScene.h" />
-    <ClInclude Include="InGameUI_Manager.h" />
     <ClInclude Include="LobbyScene.h" />
     <ClInclude Include="House.h" />
     <ClInclude Include="Main.h" />
@@ -34,7 +33,6 @@
   <ItemGroup>
     <ClCompile Include="Gun.cpp" />
     <ClCompile Include="InGameScene.cpp" />
-    <ClCompile Include="InGameUI_Manager.cpp" />
     <ClCompile Include="LobbyScene.cpp" />
     <ClCompile Include="House.cpp" />
     <ClCompile Include="Main.cpp" />

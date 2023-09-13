@@ -4,13 +4,18 @@ class InGameScene : public Scene
 {
 	//프라이빗 함수생성
 private:
+	//인게임 객체들 
 	Camera* MainCam;
 	
-
 	class VillageMap* Map;
 	class Player* player;
+private:
+	//인게임 UI
+	UI* playerAim;
+	UI* optionUI;
+
+
 	
-	//퍼블릭 함수생성
 public:
 	//기본기능함수들
 	InGameScene();

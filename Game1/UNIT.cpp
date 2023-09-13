@@ -4,7 +4,7 @@
 UNIT::UNIT()
 {
 	speed = 0.0f;
-	hp = 0.0f;
+	hp = 100.0f;
 	damage = 0.0f;
 
 	spawnPos = Vector3();

@@ -4,6 +4,15 @@ class LobbyScene : public Scene
 {
 	//프라이빗 함수생성공간
 private:
+	Camera* lobbycam;
+
+	UI* lobbythema;
+	UI* gamestart;
+	UI* exit;
+
+	Actor* themacolor;
+	Actor* startcolor;
+	Actor* exitcolor;
 
 	//퍼블릭 함수생성공간
 public:
