@@ -30,13 +30,14 @@ void Main::Release()
 void Main::Update()
 {
     Camera::ControlMainCam();
+
     ImGui::Begin("Hierarchy");
     grid->RenderHierarchy();
     player->RenderHierarchy();
     cam1->RenderHierarchy();
     ImGui::End();
 
-
+    //플레이어 컨트롤 함수
     player->PlayerControl();
     
 
@@ -47,6 +48,7 @@ void Main::Update()
 
 void Main::LateUpdate()
 {
+    // 플레이어 - 바닥 충돌판정 함수
     player->CollidePlayerToFloor(grid);
 }
 void Main::PreRender()

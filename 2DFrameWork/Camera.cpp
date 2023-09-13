@@ -29,28 +29,28 @@ void Camera::ControlMainCam()
 {
 	if (not main) return;
 
-	if (INPUT->KeyPress(VK_UP))
+	if (INPUT->KeyPress(VK_NUMPAD8))
 	{
 		//                                  초당100움직임 xyz/s
 		main->MoveWorldPos(main->GetForward() * DELTA * mainCamSpeed);
 	}
-	if (INPUT->KeyPress(VK_DOWN))
+	if (INPUT->KeyPress(VK_NUMPAD5))
 	{
 		main->MoveWorldPos(-main->GetForward() * DELTA * mainCamSpeed);
 	}
-	if (INPUT->KeyPress(VK_LEFT))
+	if (INPUT->KeyPress(VK_NUMPAD4))
 	{
 		main->MoveWorldPos(-main->GetRight() * DELTA * mainCamSpeed);
 	}
-	if (INPUT->KeyPress(VK_RIGHT))
+	if (INPUT->KeyPress(VK_NUMPAD6))
 	{
 		main->MoveWorldPos(main->GetRight() * DELTA * mainCamSpeed);
 	}
-	if (INPUT->KeyPress('Q'))
+	if (INPUT->KeyPress(VK_NUMPAD7))
 	{
 		main->MoveWorldPos(-main->GetUp() * DELTA * mainCamSpeed);
 	}
-	if (INPUT->KeyPress('E'))
+	if (INPUT->KeyPress(VK_NUMPAD9))
 	{
 		main->MoveWorldPos(main->GetUp() * DELTA * mainCamSpeed);
 	}

@@ -9,6 +9,9 @@ Player::Player()
 
 	gun = new Gun();
 	gun->GetGun()->rotation.x = 90.0f * ToRadian;
+
+
+	shotGun = new ShotGun();
 }
 
 Player::~Player()
@@ -28,6 +31,7 @@ void Player::RenderHierarchy()
 {
 	player->RenderHierarchy();
 	gun->RenderHierarchy();
+	shotGun->RenderHierarchy();
 }
 
 void Player::Update()
@@ -42,17 +46,19 @@ void Player::Update()
 
 	player->Update();
 	gun->Update();
+	shotGun->Update();
 }
 
 void Player::Render()
 {
 	player->Render();
 	gun->Render();
+	shotGun->Render();
 }
 
 void Player::PlayerControl()
 {
-
+	// 가만히 있을때 
 	if (playerType == PlayerType::None)
 	{
 		//팔의 각도를 원상복구하기
@@ -84,9 +90,11 @@ void Player::PlayerControl()
 			playerType = PlayerType::Walk;
 		}
 	}
+	// 걸어다닐때 (무기x / 권총 / 샷건 / ... )
 	else if (playerType == PlayerType::Walk)
 	{
 		speed = 1.0f;
+		// 걷기 -> 뛰기(쉬프트 누르면서 S를 누르지 않았을 때)
 		if (INPUT->KeyPress(VK_SHIFT) and not INPUT->KeyPress('S'))
 		{
 			playerType = PlayerType::Run;
@@ -134,6 +142,10 @@ void Player::PlayerControl()
 						walkHandDir = -walkHandDir;
 					}
 				}
+				else if (gunType == GunType::ShotGun)
+				{
+
+				}
 
 				// 무릎 각도를 25도 해서 팔이 접힌 상태로 만들기
 				player->Find("RightKneePoint")->rotation.x = 25.0f * ToRadian;
@@ -177,6 +189,11 @@ void Player::PlayerControl()
 						walkHandDir = -walkHandDir;
 					}
 				}
+				else if (gunType == GunType::ShotGun)
+				{
+
+				}
+
 
 				// 무릎 각도를 25도 해서 팔이 접힌 상태로 만들기
 				player->Find("RightKneePoint")->rotation.x = 25.0f * ToRadian;
@@ -200,14 +217,18 @@ void Player::PlayerControl()
 				player->MoveWorldPos(player->GetRight() * speed * DELTA);
 			}
 		}
-		if (INPUT->KeyUp('W') or INPUT->KeyUp('S') or INPUT->KeyUp('A') or INPUT->KeyUp('D'))
+		// 걷기 -> 서있기 (방향키를 누르지 않았을때)
+		if (INPUT->KeyUp('W') or INPUT->KeyUp('S') or 
+			INPUT->KeyUp('A') or INPUT->KeyUp('D'))
 		{
 			playerType = PlayerType::None;
 		}
 	}
+	// 뛰어다닐때 (무기x / 권총 / 샷건 / ... )
 	else if (playerType == PlayerType::Run)
 	{
 		speed = 2.0f;
+		// 뛰기 -> 걷기 (쉬프트를 뗐을 때)
 		if (INPUT->KeyUp(VK_SHIFT))
 		{
 			player->Find("RightArmPoint")->rotation.x = 0.0f;
@@ -274,6 +295,11 @@ void Player::PlayerControl()
 						walkHandDir = -walkHandDir;
 					}
 				}
+				else if (gunType == GunType::ShotGun)
+				{
+
+				}
+
 
 
 
@@ -290,6 +316,7 @@ void Player::PlayerControl()
 					walkLegDir = -walkLegDir;
 				}
 			}
+			// 뛰기 -> 걷기 (쉬프르틀 누르고 있는 상태일때 S를 눌렀을 때)
 			if (INPUT->KeyPress(VK_SHIFT) and INPUT->KeyPress('S'))
 			{
 				player->Find("RightArmPoint")->rotation.x = 0.0f;
@@ -318,23 +345,29 @@ void Player::PlayerControl()
 				player->MoveWorldPos(player->GetRight() * speed * DELTA);
 			}
 		}
+		// 뛰기 -> 가만히 있기 (방향키를 누르지 않았을때)
 		if (INPUT->KeyUp('W') or INPUT->KeyUp('S') or INPUT->KeyUp('A') or INPUT->KeyUp('D'))
 		{
 			playerType = PlayerType::None;
 		}
 	}
 
+	/** 무기 상태값*/
 	if (gunType == GunType::Gun)
 	{
-		gun->GunControl();
+		//gun->GunControl();
 	}
-	
+	else if (gunType == GunType::ShotGun)
+	{
+		shotGun->ShotGunControl();
+	}
+	/** 무기 상태값*/
 
-	// 점프 구현
+	/** 점프*/
 	if (isGridCollide)
 	{
 		gravity = 0.0f;
-		jumpCount = 0;
+		jumpCount = 0; // 한번의 점프만 가능하게 하기위한
 	}
 	else
 	{
@@ -349,6 +382,7 @@ void Player::PlayerControl()
 		player->Update();
 		jumpCount++;
 	}
+	/** 점프*/
 }
 
 void Player::CollidePlayerToFloor(Grid* grid)

@@ -5,5 +5,6 @@
 
 
 #include "Gun.h"
+#include "ShotGun.h"
 #include "Weapon.h"
 #include "Player.h"

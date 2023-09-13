@@ -36,7 +36,7 @@ void Gun::Render()
 
 void Gun::GunControl()
 {
-    if (bulletCount == 8)
+    if (bulletCount == 15)
     {
         gun->Find("BarrelPoint")->SetLocalPosZ(-0.35f);
         if (INPUT->KeyUp('R'))

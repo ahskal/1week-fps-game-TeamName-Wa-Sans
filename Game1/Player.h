@@ -19,9 +19,10 @@ private:
 	Actor* player;
 
 	Gun* gun;
+	ShotGun* shotGun;
 
 	PlayerType playerType = PlayerType::None;
-	GunType gunType = GunType::Gun;
+	GunType gunType = GunType::ShotGun;
 	bool isJump = false;			// 점프 했는지 안했는지 판단하는 bool값
 	bool isGridCollide = false;		// 그리드와 충돌했는지 판단하는 bool값
 
