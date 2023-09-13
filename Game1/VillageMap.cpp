@@ -66,6 +66,8 @@ void VillageMap::Init()
 			}
 			house[i]->rotation.y = RANDOM->Float(-PI, PI);
 			house[i]->scale *= 0.5f;
+			house[i]->SetWorldPosY(-1);
+
 		}
 	}
 
@@ -150,6 +152,9 @@ void VillageMap::Hierarchy()
 {
 	cam->RenderHierarchy();
 	RenderHierarchy();
+	for (int i = 0; i < HouseCount; i++) {
+		house[i]->RenderHierarchy();
+	}
 }
 
 void VillageMap::ResizeScreen()
@@ -161,3 +166,38 @@ void VillageMap::ResizeScreen()
 	cam->viewport.width = App.GetWidth();
 	cam->viewport.height = App.GetHeight();
 }
+
+bool VillageMap::WallCollision(Actor* player)
+{
+	for (int i = 0; i < HouseCount; i++) {
+
+
+		for (int i = 0; i < house[i]->Find("Pillar")->children.size(); i++) {
+			string str = "Pillar_Mesh_" + to_string(i + 1);
+			if (player->Intersect(house[i]->Find(str)))
+			{
+				cout << str << "충돌" << endl;
+			}
+		}
+
+		for (int i = 0; i < house[i]->Find("Wall")->children.size(); i++) {
+			string str = "Wall_" + to_string(i + 1);
+			for (int i = 0; i < house[i]->Find(str)->children.size(); i++) {
+				string str2 = str + "_Mesh_" + to_string(i + 1);
+				if (player->Intersect(house[i]->Find(str2)))
+				{
+					cout << str2 << "충돌" << endl;
+				}
+			}
+		}
+	}
+
+
+
+
+
+
+
+	return false;
+}
+
