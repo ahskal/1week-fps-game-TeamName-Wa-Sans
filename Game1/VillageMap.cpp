@@ -167,37 +167,31 @@ void VillageMap::ResizeScreen()
 	cam->viewport.height = App.GetHeight();
 }
 
-bool VillageMap::WallCollision(Actor* player)
+void VillageMap::WallCollision(Actor* player)
 {
 	for (int i = 0; i < HouseCount; i++) {
+		for (int j = 0; j < house[i]->Find("Pillar")->children.size(); j++) {
+			string str = "Pillar_Mesh_" + to_string(j + 1);
+			//cout << str << " " << "面倒" << endl;
 
-
-		for (int i = 0; i < house[i]->Find("Pillar")->children.size(); i++) {
-			string str = "Pillar_Mesh_" + to_string(i + 1);
-			if (player->Intersect(house[i]->Find(str)))
+			if (house[i]->Find(str)->Intersect(player))
 			{
-				cout << str << "面倒" << endl;
+				cout << str << " " << "面倒" << endl;
 			}
 		}
 
-		for (int i = 0; i < house[i]->Find("Wall")->children.size(); i++) {
-			string str = "Wall_" + to_string(i + 1);
-			for (int i = 0; i < house[i]->Find(str)->children.size(); i++) {
-				string str2 = str + "_Mesh_" + to_string(i + 1);
-				if (player->Intersect(house[i]->Find(str2)))
+		for (int j = 0; j < house[i]->Find("Wall")->children.size(); j++) {
+			string str = "Wall_" + to_string(j + 1);
+			for (int k = 0; k < house[i]->Find(str)->children.size(); k++) {
+				string str2 = str + "_Mesh_" + to_string(k + 1);
+
+				if (house[i]->Find(str2)->Intersect(player))
 				{
-					cout << str2 << "面倒" << endl;
+					cout << str2 << " " << "面倒" << endl;
 				}
 			}
 		}
 	}
-
-
-
-
-
-
-
-	return false;
 }
+
 
