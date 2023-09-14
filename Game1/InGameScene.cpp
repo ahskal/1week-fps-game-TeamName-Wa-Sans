@@ -35,6 +35,9 @@ InGameScene::InGameScene()
     MainCam->viewport.height = App.GetHeight();
     MainCam->width = App.GetWidth();
     MainCam->height = App.GetHeight();
+
+    //»ç¿îµå
+    
 }
 
 InGameScene::~InGameScene()

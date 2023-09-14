@@ -8,14 +8,13 @@ private:
 
 	UI* mouse;
 
-
 	UI* lobbythema;
 	UI* gamestart;
 	UI* exit;
-
 	UI* themaback;
 	
-
+	float volume;
+	Sound* bg;
 	//퍼블릭 함수생성공간
 public:
 	LobbyScene();

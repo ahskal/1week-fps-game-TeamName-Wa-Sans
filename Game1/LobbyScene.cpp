@@ -34,6 +34,12 @@ LobbyScene::LobbyScene()
 	lobbycam->viewport.height = App.GetHeight();
 	lobbycam->width = App.GetWidth();
 	lobbycam->height = App.GetHeight();
+
+
+	bg = new Sound();
+	bg->AddSound("LobbyBGM.mp3","Lobby",true);
+	bg->Play("Lobby");
+
 }
 
 LobbyScene::~LobbyScene()
@@ -85,6 +91,7 @@ void LobbyScene::LateUpdate()
 	if (gamestart->MouseOver() and INPUT->KeyDown(VK_LBUTTON))
 	{
 		SCENE->ChangeScene("InGame");
+		bg->Stop("Lobby");
 	}
 	if (exit->MouseOver() and INPUT->KeyDown(VK_LBUTTON))
 	{
