@@ -12,15 +12,23 @@
 InGameScene::InGameScene()
 {
     MainCam = Camera::Create();
-    //grid = Grid::Create();
+    MainCam->LoadFile("Cam1.xml");
+    
     Map = VillageMap::Create();
 
     player = new Player();
 
-    MainCam->LoadFile("Cam1.xml");
+    //playerAim = UI::Create();
+    optionUI = UI::Create();
+
+    //아직 xml 추가안했음 이미지 작업후 xml 유아이 저장예정
+    //playerAim->LoadFile("playerAim.xml");
+    //optionUI->LoadFile("optionUI.xml");
+    optionUI->visible = false;
+
+
     Camera::main = MainCam;
     MainCam->mainCamSpeed = 30.0f;
-
     MainCam->viewport.x = 0.0f;
     MainCam->viewport.y = 0.0f;
     MainCam->viewport.width = App.GetWidth();
@@ -56,6 +64,7 @@ void InGameScene::Update()
     MainCam->RenderHierarchy();
     Map->Hierarchy();
     player->RenderHierarchy();
+    optionUI->RenderHierarchy();
     ImGui::End();
 
     //배경 카메라 업데이트
@@ -65,6 +74,7 @@ void InGameScene::Update()
     Map->Update();
     player->Update();
     MainCam->Update();
+    optionUI->Update();
 }
 
 void InGameScene::LateUpdate()
@@ -84,6 +94,7 @@ void InGameScene::Render()
     MainCam->Set();
     Map->Render();
     player->Render();
+    optionUI->Render();
 }
 
 void InGameScene::ResizeScreen()

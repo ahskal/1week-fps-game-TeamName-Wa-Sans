@@ -13,7 +13,7 @@ enum class PlayerType
 	Run,
 };
 
-class Player
+class Player : public UNIT
 {
 private:
 	Actor* player;
