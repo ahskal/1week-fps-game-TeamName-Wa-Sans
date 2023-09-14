@@ -3,21 +3,25 @@
 
 LobbyScene::LobbyScene()
 {
+	
+
 
 	lobbycam = Camera::Create();
 	//lobbycam->LoadFile("lobbycam.xml");
 	Camera::main = lobbycam;
 
+	mouse = UI::Create("mouse");
+	mouse->LoadFile("mouse.xml");
 
 	lobbythema = UI::Create("lobbythema");
 	lobbythema->LoadFile("lobbythema.xml");
 	gamestart = UI::Create("gamestart");
-	//gamestart->LoadFile("gamestart.xml");
+	gamestart->LoadFile("gamestart.xml");
 	exit = UI::Create("exit");
-	//exit->LoadFile("exit.xml");
+	exit->LoadFile("exit.xml");
 
-	
-
+	themaback = UI::Create("themaback");
+	themaback->LoadFile("themaback.xml");
 
 
 
@@ -34,12 +38,15 @@ LobbyScene::LobbyScene()
 
 LobbyScene::~LobbyScene()
 {
-
+	
 }
 
 void LobbyScene::Init()
 {
+	
 
+	gamestart->visible = false;
+	exit->visible = false;
 }
 
 void LobbyScene::Release()
@@ -49,15 +56,22 @@ void LobbyScene::Release()
 
 void LobbyScene::Update()
 {
+	
+
 	ImGui::Begin("Hierarchy");
+	mouse->RenderHierarchy();
 	lobbythema->RenderHierarchy();
 	gamestart->RenderHierarchy();
 	exit->RenderHierarchy();
+	themaback->RenderHierarchy();
 	lobbycam->RenderHierarchy();
 	ImGui::End();
 
+
+	mouse->Update();
 	lobbycam->Update();
 	lobbythema->Update();
+	themaback->Update();
 	gamestart->Update();
 	exit->Update();
 
@@ -65,6 +79,17 @@ void LobbyScene::Update()
 
 void LobbyScene::LateUpdate()
 {
+	themaback->rotation.z += 1.0f * DELTA;
+
+	//시작버튼 클릭 메인의 업데이트에 씬변경로직있습니다
+	if (gamestart->MouseOver() and INPUT->KeyDown(VK_LBUTTON))
+	{
+		SCENE->ChangeScene("InGame");
+	}
+	if (exit->MouseOver() and INPUT->KeyDown(VK_LBUTTON))
+	{
+		PostQuitMessage(0);
+	}
 
 }
 
@@ -75,10 +100,17 @@ void LobbyScene::PreRender()
 
 void LobbyScene::Render()
 {
+	//ShowCursor(false);
+
 	lobbycam->Set();
+
+
+	themaback->Render();
 	lobbythema->Render();
 	gamestart->Render();
 	exit->Render();
+	mouse->SetWorldPos(Utility::MouseToNDC());
+	mouse->Render();
 
 }
 

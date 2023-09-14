@@ -6,13 +6,15 @@ class LobbyScene : public Scene
 private:
 	Camera* lobbycam;
 
+	UI* mouse;
+
+
 	UI* lobbythema;
 	UI* gamestart;
 	UI* exit;
 
-	Actor* themacolor;
-	Actor* startcolor;
-	Actor* exitcolor;
+	UI* themaback;
+	
 
 	//퍼블릭 함수생성공간
 public:
@@ -35,6 +37,6 @@ private:
 
 	//퍼블릭 변수생성
 public:
-
+	
 };
 

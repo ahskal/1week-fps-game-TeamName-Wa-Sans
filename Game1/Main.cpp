@@ -34,19 +34,8 @@ void Main::Release()
 
 void Main::Update()
 {
-
-
-
-
-
-    if (INPUT->KeyDown(VK_F1))
-    {
-        
-        SCENE->ChangeScene("InGame");
-    }
+    
     SCENE->Update();
-
-
 }
 
 void Main::LateUpdate()
