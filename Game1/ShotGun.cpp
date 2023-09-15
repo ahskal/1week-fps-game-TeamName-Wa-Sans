@@ -139,7 +139,7 @@ void ShotGun::ShotGunControl()
                 shotGun->Find("Trigger")->SetLocalPosZ(0.7251f);
             }
             else
-                shotGun->Find("Trigger")->MoveLocalPos(-shotGun->Find("Trigger")->GetForward() * TriggerSpeed * DELTA);
+                shotGun->Find("Trigger")->MoveWorldPos(-shotGun->Find("Trigger")->GetForward() * TriggerSpeed * DELTA);
         }
         else if (fireTime >= 1.5f)
         {

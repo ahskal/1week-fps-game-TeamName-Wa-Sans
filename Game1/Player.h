@@ -50,8 +50,11 @@ public:
 
 	/** 모션 함수*/
 	// 가만히있을때
+	void MotionPlayerWait(GunType type);
 	// 걸을때
+	void MotionPlayerWalk(GunType type);
 	// 뛸때
+	void MotionPlayerRun(GunType type);
 	// 
 	/** 모션 함수*/
 };
