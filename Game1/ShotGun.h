@@ -6,6 +6,9 @@ private:
 
 
 	int		bulletCount;	// 총알 갯수
+	int		maxBullet;		// 최대 총알 갯수
+	int		magazineCount;	// 탄창 수(대탄이나 이런거 만들거를 대비해서)
+
 
 	bool	isfire = false;	// 발사속도가 되면 true, 아니면 false (false동안에는 발사 못함)
 	bool	isLoad = false;		// 장전중인지

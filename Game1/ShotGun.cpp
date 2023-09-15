@@ -14,6 +14,10 @@ ShotGun::ShotGun()
 
     SOUND->SetVolume("ShotgunFire", 0.7f);
     SOUND->SetVolume("ShotgunReload", 0.7f);
+
+    bulletCount = 8;
+    magazineCount = 8;
+    maxBullet = 40;
 }
 
 ShotGun::~ShotGun()
@@ -31,8 +35,12 @@ void ShotGun::RenderHierarchy()
 
 void ShotGun::Update()
 {
-    ImGui::Text("bulletCount : %d", bulletCount);
-    ImGui::Text("isLoad : %d", (int)isLoad);
+    ImGui::Text("\n\nShotGun Bullet");
+    ImGui::Text("bullet : %d", bulletCount);
+    ImGui::SameLine();
+    ImGui::Text("  /  Max : %d", maxBullet);
+
+
 	shotGun->Update();
 }
 
@@ -43,12 +51,21 @@ void ShotGun::Render()
 
 void ShotGun::ShotGunControl()
 {
-    if (bulletCount == 8) //8발 발사 모두 다 사용했을때
+    if (bulletCount == 0) //8발 발사 모두 다 사용했을때
     {
         shotGun->Find("Trigger")->SetLocalPosZ(0.725f);
         if (INPUT->KeyUp('R'))
         {
-            bulletCount = 0;
+            if (maxBullet < magazineCount)
+            {
+                bulletCount = maxBullet;
+                maxBullet = 0;
+            }
+            else
+            {
+                bulletCount = magazineCount;
+                maxBullet -= bulletCount;
+            }
             fireTime = 0.4f;
             shotGun->Find("TriggerPoint")->rotation.x = -2 * ToRadian;
         }
@@ -61,6 +78,29 @@ void ShotGun::ShotGunControl()
     }
     else
     {
+        // 총알을 다 쓰지 않았을때 재장전
+        if (INPUT->KeyUp('R'))
+        {// bulletCount = 5라고 가정
+            //          += (8 - 5  = 3)
+            if (maxBullet < (magazineCount - bulletCount))
+            {
+                bulletCount += maxBullet;
+                maxBullet = 0;
+            }
+            else
+            {
+                maxBullet -= (magazineCount - bulletCount);
+                bulletCount += (magazineCount - bulletCount);
+            }
+            
+
+
+
+            fireTime = 0.4f;
+            shotGun->Find("TriggerPoint")->rotation.x = -2 * ToRadian;
+        }
+
+
         fireTime += DELTA;
         /**
         1.5초되면 발사
@@ -111,7 +151,7 @@ void ShotGun::ShotGunControl()
                 isLoad = false;
                 isrecoil = true;
                 fireTime = 0.0f;
-                bulletCount++;
+                bulletCount--;
                 SOUND->Stop("ShotgunFire");
                 SOUND->Play("ShotgunFire");
             }

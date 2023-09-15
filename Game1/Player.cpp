@@ -44,6 +44,9 @@ void Player::Update()
 	gun->GetGun()->SetWorldPos(player->Find("RightHandMesh")->GetWorldPos());
 	shotGun->GetShotGun()->SetWorldPos(player->Find("RightHandMesh")->GetWorldPos());
 
+	/**
+	1번 권총, 2번 샷건, 3번 근접무기, 4번 투척무기, 
+	5번 붕대, 6번 에너지드링크, 7번 진통제*/
 	if (INPUT->KeyDown('1'))
 	{
 		gunType = GunType::None;

@@ -32,7 +32,7 @@ private:
 
 
 
-	float waitHandDir;				// 걸을때의 손 각도값
+	float waitHandDir;				// 서있을때 손 각도값
 	float walkHandDir;				// 걸을때의 손 각도값
 	float walkLegDir;				// 걸을때의 다리 각도값
 public:
@@ -46,5 +46,13 @@ public:
 
 	void PlayerControl();
 	void CollidePlayerToFloor(class Grid* grid);
+
+
+	/** 모션 함수*/
+	// 가만히있을때
+	// 걸을때
+	// 뛸때
+	// 
+	/** 모션 함수*/
 };
 
