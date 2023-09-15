@@ -8,9 +8,6 @@ Main::Main()
     root->LoadFile("Monster.xml");
     grid = Grid::Create();
 
-    cam1 = Camera::Create();
-    cam1->LoadFile("Cam.xml");
-
     monster = new Monster();
 
     Camera::main = (Camera*)root->Find("BodyCam");
@@ -20,7 +17,7 @@ Main::Main()
 
 Main::~Main()
 {
-    cam1->SaveFile("Cam.xml");
+    Camera::main->SaveFile("Cam.xml");
     root->Release();
 }
 
@@ -39,7 +36,6 @@ void Main::Update()
     ImGui::Begin("Hierarchy");
     grid->RenderHierarchy();
     monster->RenderHierarchy();
-    cam1->RenderHierarchy();
     //root->RenderHierarchy();
     ImGui::End();
 
@@ -62,7 +58,6 @@ void Main::Render()
 {
     Camera::main->Set();
     grid->Render();
-    //root->Render();
     monster->Render();
 }
 

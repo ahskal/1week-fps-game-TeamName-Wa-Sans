@@ -1,21 +1,21 @@
 <Root Name="Actor" Visible="true" ObType="1">
     <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
     <Collider ColliderType="2" Visible="true">
-        <Position X="0" Y="2.95" Z="0.44999999"/>
-        <Scale X="1" Y="2.6500001" Z="1"/>
+        <Position X="0" Y="2.75" Z="0.44999999"/>
+        <Scale X="1" Y="2.8199999" Z="1"/>
         <Rotation X="0" Y="0" Z="0"/>
     </Collider>
     <Transform>
-        <Position X="0.4316324" Y="0" Z="1.8120819"/>
+        <Position X="17.51716" Y="0" Z="27.354713"/>
         <Scale X="1" Y="1" Z="1"/>
-        <Rotation X="0" Y="-9.0900717" Z="0"/>
+        <Rotation X="0" Y="-6.2678685" Z="0"/>
     </Transform>
     <Children Size="2"/>
     <Child0 Name="Body" Visible="true" ObType="0">
         <Shader File="1.Cube.hlsl"/>
         <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
         <Transform>
-            <Position X="0" Y="2.95" Z="0"/>
+            <Position X="0" Y="2.9200001" Z="0"/>
             <Scale X="1" Y="1" Z="1"/>
             <Rotation X="0" Y="0" Z="0"/>
         </Transform>
@@ -157,7 +157,7 @@
     <Child1 Name="BodyCam" Visible="true" ObType="2">
         <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
         <Transform>
-            <Position X="0" Y="8" Z="-8"/>
+            <Position X="0" Y="4.75" Z="-5.5500002"/>
             <Scale X="1" Y="1" Z="1"/>
             <Rotation X="0.2617994" Y="0" Z="0"/>
         </Transform>

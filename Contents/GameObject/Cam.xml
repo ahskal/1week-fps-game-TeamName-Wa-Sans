@@ -1,10 +1,10 @@
-<Root Name="Camera" Visible="true" ObType="2">
+<Root Name="BodyCam" Visible="true" ObType="2">
     <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
     <Transform>
-        <Position X="-3.0036452" Y="0.20799072" Z="-0.02923131"/>
-        <Scale X="17.1" Y="1" Z="9.4499998"/>
-        <Rotation X="-0.13962634" Y="6.2831855" Z="-0.06981317"/>
+        <Position X="0" Y="4.75" Z="-5.5500002"/>
+        <Scale X="1" Y="1" Z="1"/>
+        <Rotation X="0.2617994" Y="0" Z="0"/>
     </Transform>
-    <Camera Ortho="false" Fov="1.3962635" Width="1309.5" Height="839.40002" NearZ="0.25" FarZ="500" viewportX="4.1999998" viewportY="500" viewportW="1366.8" viewportH="1000"/>
+    <Camera Ortho="false" Fov="1.047192" Width="1196" Height="835" NearZ="0.1" FarZ="500" viewportX="0" viewportY="0" viewportW="1196" viewportH="835"/>
     <Children Size="0"/>
 </Root>
