@@ -17,22 +17,5 @@ UNIT::~UNIT()
 }
 
 
-void UNIT::Init(float initialSpeed, float initialHP, float initialDamage, Vector3& initialSpawnPos)
-{
-
-	speed = initialSpeed;
-	hp = initialHP;
-	damage = initialDamage;
-	spawnPos = initialSpawnPos;
-	if (unitType == UnitType::PLAYER)
-	{
-		//나중에 플레이어 스폰시 능력치조절
-	}
-	else if (unitType == UnitType::PLAYER)
-	{
-		//나중에 몬스터 스폰시 능력치조절
-	}
-
-}
 
 

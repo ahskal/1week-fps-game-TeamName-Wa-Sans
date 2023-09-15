@@ -23,10 +23,11 @@ public:
 	UNIT();
 	virtual ~UNIT();
 
-	void Init(float initialSpeed, float initialHP, float initialDamage, Vector3& initialSpawnPos);
+	
 	
 	virtual void TakeDamage(float enemyDamage) { hp -= enemyDamage; }
 	virtual void GethealHp(float heal) { hp += heal; }
+	//void CollidePlayerToFloor(class VillageMap* map);
 
 	//몬스터나 플레이어 죽었을때
 

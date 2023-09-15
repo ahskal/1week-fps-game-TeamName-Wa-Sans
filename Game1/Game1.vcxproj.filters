@@ -26,6 +26,9 @@
     <ClCompile Include="Gun.cpp">
       <Filter>LeeSH</Filter>
     </ClCompile>
+    <ClCompile Include="Zombie.cpp">
+      <Filter>zombie</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h" />
@@ -54,6 +57,9 @@
     <ClInclude Include="Gun.h">
       <Filter>LeeSH</Filter>
     </ClInclude>
+    <ClInclude Include="Zombie.h">
+      <Filter>zombie</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="window.ini" />
@@ -71,6 +77,9 @@
     </Filter>
     <Filter Include="LeeSH">
       <UniqueIdentifier>{72f06f21-15b6-479d-987e-b03da61ef9f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="zombie">
+      <UniqueIdentifier>{bef06469-1efb-4ca1-a0b7-1cfc8ddce82e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

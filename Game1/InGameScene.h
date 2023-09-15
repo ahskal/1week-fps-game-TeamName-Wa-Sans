@@ -9,6 +9,11 @@ private:
 	
 	class VillageMap* Map;
 	class Player* player;
+	vector<class Zombie*> zombies;
+
+	//인게임 스폰시간변수
+	float CurrentTime;
+	float zombieSpwanTime;
 private:
 	//인게임 UI
 	UI* playerAim;

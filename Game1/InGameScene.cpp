@@ -8,11 +8,12 @@
 #include "Player.h"
 #include "Weapon.h"
 #include "Gun.h"
+#include "Zombie.h"
 
 InGameScene::InGameScene()
 {
     MainCam = Camera::Create();
-    MainCam->LoadFile("Cam1.xml");
+    MainCam->LoadFile("MainCam.xml");
     
     Map = VillageMap::Create();
 
@@ -27,7 +28,16 @@ InGameScene::InGameScene()
     optionUI->visible = false;
 
 
-    Camera::main = MainCam;
+    CurrentTime = 0.0f;
+    zombieSpwanTime = 10.0f;
+
+    Zombie* zombie = new Zombie();
+    Vector3 randomSpwan = Vector3(RANDOM->Float(-100, 100), 0, RANDOM->Float(-100, 100));
+    zombie->Init(randomSpwan);
+    zombies.push_back(zombie);
+
+
+
     MainCam->mainCamSpeed = 30.0f;
     MainCam->viewport.x = 0.0f;
     MainCam->viewport.y = 0.0f;
@@ -35,6 +45,7 @@ InGameScene::InGameScene()
     MainCam->viewport.height = App.GetHeight();
     MainCam->width = App.GetWidth();
     MainCam->height = App.GetHeight();
+    Camera::main = MainCam;
 
     //사운드
     
@@ -42,7 +53,7 @@ InGameScene::InGameScene()
 
 InGameScene::~InGameScene()
 {
-    MainCam->SaveFile("Cam1.xml");
+    MainCam->SaveFile("MainCam.xml");
     Map->Release();
 }
 
@@ -50,6 +61,7 @@ void InGameScene::Init()
 {
     Map->Init();
     player->Init();
+    
 }
 
 void InGameScene::Release()
@@ -67,8 +79,25 @@ void InGameScene::Update()
     MainCam->RenderHierarchy();
     Map->Hierarchy();
     player->RenderHierarchy();
+    for (auto zombiePtr : zombies)
+    {
+        zombiePtr->RenderHierarchy();
+    }
     optionUI->RenderHierarchy();
     ImGui::End();
+
+    //시간으로 좀비생성
+    /*if (TIMER->GetTick(CurrentTime, zombieSpwanTime))
+    {
+        for (int i = 0; i < 10; i++)
+        {
+        Zombie* zombie = new Zombie();
+        Vector3 randomSpwan = Vector3(RANDOM->Float(-100, 100), 0, RANDOM->Float(-100, 100));
+        zombie->Init(randomSpwan);
+        zombies.push_back(zombie);
+        }
+    }*/
+
 
     //배경 카메라 업데이트
     player->PlayerControl();
@@ -76,7 +105,11 @@ void InGameScene::Update()
 
     Map->Update();
     player->Update();
-    MainCam->Update();
+    for (auto zombiePtr : zombies)
+    {
+        zombiePtr->Update();
+    }
+    Camera::main->Update();
     optionUI->Update();
 }
 
@@ -94,9 +127,14 @@ void InGameScene::PreRender()
 void InGameScene::Render()
 {
     //객체들 랜더 모아주세요 
-    MainCam->Set();
+    Camera::main->Set();
+    //MainCam->Set();
     Map->Render();
     player->Render();
+    for (auto zombiePtr : zombies)
+    {
+        zombiePtr->Render();
+    }
     optionUI->Render();
 }
 
