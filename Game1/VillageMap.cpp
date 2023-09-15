@@ -28,6 +28,7 @@ VillageMap::VillageMap()
 	}
 	house2 = House::Create();
 	house2->LoadFile("Hospital.xml");
+
 }
 
 VillageMap::~VillageMap()
@@ -86,48 +87,73 @@ void VillageMap::Update()
 		}
 	house2->Update();
 
+	if (TIMER->GetTick(timer, 1.0f)) {
+
+		Actor* temp = Actor::Create();
+		temp->name = "Item" + to_string(nameIdx); nameIdx++;
+		temp->mesh = RESOURCE->meshes.Load("6.Cube.mesh");
+		temp->shader = RESOURCE->shaders.Load("6.Cube.hlsl");
+		temp->texture = RESOURCE->textures.Load("/Map/white.png");
+		temp->color = Color(1, 1, 0);
+		temp->scale *= 2;
+		temp->SetWorldPosX(RANDOM->Int(-Range, Range));
+		temp->SetWorldPosZ(RANDOM->Int(-Range, Range));
+
+		Item.push_back(temp);
+	}
+
+
+	for (auto ptr : Item) {
+		ptr->Update();
+	}
+
+
+
 }
 
 void VillageMap::LateUpdate()
 {
 	// 집 충돌처리 생성후 계산되어 코드가 비활성화.
+	HouseCollision();
+}
+
+void VillageMap::HouseCollision()
+{
+	if (!HouseLateUpdate) return;
+
+	// 집이 만약 범위내에 나갔을경우 위치 재정의		
+	for (int i = 0; i < HouseCount; i++)
 	{
-		if (HouseLateUpdate) {
-			// 집과 집이 겹쳐있을경우 밀어내는 코드
-			for (int i = 0; i < HouseCount - 1; i++)
+		if (house[i]->GetWorldPos().x > RangeLimit or house[i]->GetWorldPos().x < -RangeLimit) {
+			house[i]->SetWorldPosX(RANDOM->Int(-Range, Range));
+		}
+		else if (house[i]->GetWorldPos().z > RangeLimit or house[i]->GetWorldPos().z < -RangeLimit) {
+			house[i]->SetWorldPosZ(RANDOM->Int(-Range, Range));
+		}
+	}
+	// 집과 집이 겹쳐있을경우 밀어내는 코드
+	for (int i = 0; i < HouseCount - 1; i++)
+	{
+		for (int j = 0; j < HouseCount; j++)
+		{
+			if (house[i] == house[j]) continue;
+			// 집과 집이 충돌했을경우 밀어낸다.
+			if (house[i]->Intersect(house[j]))
 			{
-				for (int j = 0; j < HouseCount; j++)
-				{
-					if (house[i] == house[j]) continue;
-					// 집과 집이 충돌했을경우 밀어낸다.
-					if (house[i]->Intersect(house[j]))
-					{
-						// 충돌한 집끼리의 방향백터 구하기
-						Vector3 enemyDir = house[i]->GetWorldPos() - house[j]->GetWorldPos();
-						Vector3 OtherEnemyDir = house[j]->GetWorldPos() - house[i]->GetWorldPos();
+				// 충돌한 집끼리의 방향백터 구하기
+				Vector3 enemyDir = house[i]->GetWorldPos() - house[j]->GetWorldPos();
+				Vector3 OtherEnemyDir = house[j]->GetWorldPos() - house[i]->GetWorldPos();
 
-						// 방향백터 스칼라값 빼기
-						enemyDir.Normalize();
-						OtherEnemyDir.Normalize();
+				// 방향백터 스칼라값 빼기
+				enemyDir.Normalize();
+				OtherEnemyDir.Normalize();
 
-						// 집의 좌표에 따라 밀어주기
-						if (house[i]->GetWorldPos().x > -RangeLimit && house[i]->GetWorldPos().x < RangeLimit) {
-							house[i]->MoveWorldPos(enemyDir * 10000 * DELTA);
-						}
-						else if (house[j]->GetWorldPos().x > -RangeLimit && house[j]->GetWorldPos().x < RangeLimit) {
-							house[j]->MoveWorldPos(OtherEnemyDir * 10000 * DELTA);
-						}
-					}
+				// 집의 좌표에 따라 밀어주기
+				if (house[i]->GetWorldPos().x > -RangeLimit && house[i]->GetWorldPos().x < RangeLimit) {
+					house[i]->MoveWorldPos(enemyDir * 10000 * DELTA);
 				}
-			}
-			// 집이 만약 범위내에 나갔을경우 위치 재정의		
-			for (int i = 0; i < HouseCount; i++)
-			{
-				if (house[i]->GetWorldPos().x > RangeLimit or house[i]->GetWorldPos().x < -RangeLimit) {
-					house[i]->SetWorldPosX(RANDOM->Int(-Range, Range));
-				}
-				else if (house[i]->GetWorldPos().z > RangeLimit or house[i]->GetWorldPos().z < -RangeLimit) {
-					house[i]->SetWorldPosZ(RANDOM->Int(-Range, Range));
+				else if (house[j]->GetWorldPos().x > -RangeLimit && house[j]->GetWorldPos().x < RangeLimit) {
+					house[j]->MoveWorldPos(OtherEnemyDir * 10000 * DELTA);
 				}
 			}
 		}
@@ -142,6 +168,9 @@ void VillageMap::Render()
 		for (int i = 0; i < HouseCount; i++) {
 			house[i]->Render();
 		}
+	for (auto ptr : Item) {
+		ptr->Render();
+	}
 	//house2->Render();
 
 }

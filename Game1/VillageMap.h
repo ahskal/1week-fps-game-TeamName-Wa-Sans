@@ -12,16 +12,25 @@ private:
     class House* house[HouseCount];
     bool HouseRender;
     bool HouseLateUpdate;
-    
+    float Timer = 0.0f;
+
     class House* house2;
 
     class Camera* cam;
+
+    vector<Actor*> Item;
+
+    float timer = 0.0f;
+    float nameIdx = 0;
 
 public:
 
 private:
     VillageMap();
     virtual ~VillageMap();
+
+    void HouseCollision();
+
 public:
     //기존 Actor 변수를 오버라이드 하는코드
     void    Release()override;
