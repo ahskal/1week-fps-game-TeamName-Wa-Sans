@@ -5,6 +5,8 @@ class Main : public Scene
 private:
 	class VillageMap* Map;
 
+	Actor* root;
+	Vector3 LastPos;
 public:
 	Main();
 	~Main();

@@ -8,6 +8,9 @@ Main::Main()
     Camera::main = Map->GetCam();
 
     Camera::main->mainCamSpeed = 100;
+    
+    root = Actor::Create();
+    root->LoadFile("Robot.xml");
     //1234
 }
 
@@ -29,9 +32,31 @@ void Main::Update()
 {
     Camera::ControlMainCam();
     ImGui::Begin("Hierarchy");
+
+    root->RenderHierarchy();
     Map->Hierarchy();
     ImGui::End();
 
+    LastPos = root->GetWorldPos();
+    if (INPUT->KeyPress(VK_LEFT) ) {
+        root->MoveWorldPos(-root->GetRight() * DELTA* 10);
+    }
+    if (INPUT->KeyPress(VK_RIGHT)) {
+        root->MoveWorldPos(root->GetRight() * DELTA * 10);
+    }
+    if (INPUT->KeyPress(VK_UP)) {
+        root->MoveWorldPos(root->GetForward() * DELTA * 10);
+    }
+    if (INPUT->KeyPress(VK_DOWN)) {
+        root->MoveWorldPos(-root->GetForward() * DELTA * 10);
+    }
+
+
+
+
+
+
+    root->Update();
     Map->Update();
     Camera::main->Update();
 }
@@ -39,6 +64,17 @@ void Main::Update()
 void Main::LateUpdate()
 {
     Map->LateUpdate();
+
+
+    if (Map->WallCollision(root)) {
+        root->SetWorldPos(LastPos);
+        root->Update();
+    }
+    if (Map->ItemCollision(root)) {
+
+    }
+
+
 }
 void Main::PreRender()
 {
@@ -48,6 +84,7 @@ void Main::Render()
 {
     Camera::main->Set();
 
+    root->Render();
     Map->Render();
 }
 

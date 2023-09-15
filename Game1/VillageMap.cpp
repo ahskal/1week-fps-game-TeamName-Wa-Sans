@@ -90,17 +90,34 @@ void VillageMap::Update()
 	if (TIMER->GetTick(timer, 1.0f)) {
 
 		Actor* temp = Actor::Create();
-		temp->name = "Item" + to_string(nameIdx); nameIdx++;
-		temp->mesh = RESOURCE->meshes.Load("6.Cube.mesh");
-		temp->shader = RESOURCE->shaders.Load("6.Cube.hlsl");
-		temp->texture = RESOURCE->textures.Load("/Map/white.png");
-		temp->color = Color(1, 1, 0);
-		temp->scale *= 2;
+		temp->LoadFile("Item.xml");
+		
 		temp->SetWorldPosX(RANDOM->Int(-Range, Range));
 		temp->SetWorldPosZ(RANDOM->Int(-Range, Range));
 
 		Item.push_back(temp);
 	}
+	
+	Item.erase(
+		std::remove_if(
+			Item.begin(),
+			Item.end(),
+			[&](Actor* item) {
+				// 현재 체력이 0 이하인 경우 해당 몬스터를 제거하려면 true를 반환
+				// 그렇지 않은 경우 유지하려면 false를 반환
+
+				bool shouldRemove = !item->visible;
+				if (shouldRemove) {
+					item->Release();
+				}
+				return shouldRemove;
+			}
+		),
+		Item.end() // remove_if를 통해 뒤로 옮겨진 원소들의 시작 지점
+				);
+
+
+
 
 
 	for (auto ptr : Item) {
@@ -181,8 +198,11 @@ void VillageMap::Hierarchy()
 {
 	cam->RenderHierarchy();
 	RenderHierarchy();
-	for (int i = 0; i < HouseCount; i++) {
-		house[i]->RenderHierarchy();
+	//for (int i = 0; i < HouseCount; i++) {
+	//	house[i]->RenderHierarchy();
+	//}
+	for (auto ptr : Item) {
+		ptr->RenderHierarchy();
 	}
 }
 
@@ -196,7 +216,7 @@ void VillageMap::ResizeScreen()
 	cam->viewport.height = App.GetHeight();
 }
 
-void VillageMap::WallCollision(Actor* player)
+bool VillageMap::WallCollision(Actor* player)
 {
 	for (int i = 0; i < HouseCount; i++) {
 		for (int j = 0; j < house[i]->Find("Pillar")->children.size(); j++) {
@@ -205,7 +225,7 @@ void VillageMap::WallCollision(Actor* player)
 
 			if (house[i]->Find(str)->Intersect(player))
 			{
-				cout << str << " " << "충돌" << endl;
+				return true;
 			}
 		}
 
@@ -216,11 +236,20 @@ void VillageMap::WallCollision(Actor* player)
 
 				if (house[i]->Find(str2)->Intersect(player))
 				{
-					cout << str2 << " " << "충돌" << endl;
+					return true;
 				}
 			}
 		}
 	}
+	return false;
 }
 
-
+bool VillageMap::ItemCollision(Actor* player) {
+	for (auto ptr : Item) {
+		if (ptr->Intersect(player)) {
+			ptr->visible = false;
+			return true;
+		}
+	}
+	return false;
+}
