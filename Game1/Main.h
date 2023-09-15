@@ -10,6 +10,10 @@ private:
 
 	/** 플레이어 */
 	class Player* player;
+
+
+	/** 임시 벽*/
+	Actor* wall;
 public:
 	Main();
 	~Main();

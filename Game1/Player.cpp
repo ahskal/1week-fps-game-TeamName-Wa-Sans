@@ -44,6 +44,9 @@ void Player::Update()
 	gun->GetGun()->SetWorldPos(player->Find("RightHandMesh")->GetWorldPos());
 	shotGun->GetShotGun()->SetWorldPos(player->Find("RightHandMesh")->GetWorldPos());
 
+
+	lastPos = player->GetWorldPos();
+
 	/**
 	1번 권총, 2번 샷건, 3번 근접무기, 4번 투척무기, 
 	5번 붕대, 6번 에너지드링크, 7번 진통제*/
@@ -102,15 +105,6 @@ void Player::PlayerControl()
 	if (playerType == PlayerType::None)
 	{
 		MotionPlayerWait(gunType);
-		//if (gunType == GunType::None or gunType == GunType::Gun)
-		//{
-		//	MotionPlayerWait(gunType);
-		//}
-		//else if (gunType == GunType::ShotGun)
-		//{
-		//	MotionPlayerWait(gunType);
-		//}
-
 
 		if (INPUT->KeyPress('W') or INPUT->KeyPress('S') or INPUT->KeyPress('A') or INPUT->KeyPress('D'))
 		{
@@ -137,7 +131,7 @@ void Player::PlayerControl()
 	// 걸어다닐때 (무기x / 권총 / 샷건 / ... )
 	else if (playerType == PlayerType::Walk)
 	{
-		speed = 1.0f;
+		speed = 3.0f;
 
 		MotionPlayerWalk(gunType);
 
@@ -295,7 +289,7 @@ void Player::PlayerControl()
 	// 뛰어다닐때 (무기x / 권총 / 샷건 / ... )
 	else if (playerType == PlayerType::Run)
 	{
-		speed = 2.0f;
+		speed = 6.0f;
 
 		MotionPlayerRun(gunType);
 
@@ -478,6 +472,36 @@ void Player::CollidePlayerToFloor(Grid* grid)
 		isGridCollide = true;
 	else
 		isGridCollide = false;
+}
+
+void Player::CollidePlayerToWall(Actor* wall)
+{
+	if (player->Intersect(wall))
+	{
+		player->SetWorldPos(lastPos);
+		player->Update();
+		//if (INPUT->KeyPress('W') or INPUT->KeyPress('S'))
+		//{
+		//	if (INPUT->KeyPress('A') or INPUT->KeyPress('D'))
+		//	{
+		//		player->SetWorldPosZ(lastPos.z);
+		//	}
+		//	else
+		//	{
+		//		player->SetWorldPos(lastPos);
+		//	}
+		//	player->SetWorldPos(lastPos);
+		//	player->Update();
+		//
+		//	cout << "플레이어 앞쪽으로 벽과 충돌중" << endl;
+		//}
+		//if (INPUT->KeyPress('A') or INPUT->KeyPress('D'))
+		//{
+		//	player->SetWorldPosX(lastPos.x);
+		//	player->Update();
+		//	cout << "플레이어 왼쪽으로 벽과 충돌중" << endl;
+		//}
+	}
 }
 
 void Player::MotionPlayerWait(GunType type)

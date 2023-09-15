@@ -23,6 +23,10 @@ private:
 
 	PlayerType playerType = PlayerType::None;
 	GunType gunType = GunType::None;
+
+	Vector3 lastPos;				// 충돌전의 플레이어의 좌표값
+
+
 	bool isJump = false;			// 점프 했는지 안했는지 판단하는 bool값
 	bool isGridCollide = false;		// 그리드와 충돌했는지 판단하는 bool값
 
@@ -46,7 +50,7 @@ public:
 
 	void PlayerControl();
 	void CollidePlayerToFloor(class Grid* grid);
-
+	void CollidePlayerToWall(class Actor* wall);
 
 	/** 모션 함수*/
 	// 가만히있을때

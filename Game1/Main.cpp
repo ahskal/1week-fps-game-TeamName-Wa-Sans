@@ -11,6 +11,9 @@ Main::Main()
     Camera::main = cam1;
 
     player = new Player();
+
+    wall = Actor::Create();
+    wall->LoadFile("Wall.xml");
 }
 
 Main::~Main()
@@ -33,6 +36,7 @@ void Main::Update()
 
     ImGui::Begin("Hierarchy");
     grid->RenderHierarchy();
+    wall->RenderHierarchy();
     player->RenderHierarchy();
     cam1->RenderHierarchy();
     ImGui::End();
@@ -43,6 +47,7 @@ void Main::Update()
 
     Camera::main->Update();
     grid->Update();
+    wall->Update();
     player->Update();
 }
 
@@ -50,6 +55,9 @@ void Main::LateUpdate()
 {
     // 플레이어 - 바닥 충돌판정 함수
     player->CollidePlayerToFloor(grid);
+
+    // 플레이어 - 벽 충돌함수
+    player->CollidePlayerToWall(wall);
 }
 void Main::PreRender()
 {
@@ -59,6 +67,7 @@ void Main::Render()
 {
     Camera::main->Set();
     grid->Render();
+    wall->Render();
     player->Render();
 }
 
