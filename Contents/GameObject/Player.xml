@@ -1,12 +1,12 @@
 <Root Name="Player" Visible="true" ObType="1">
     <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
     <Collider ColliderType="2" Visible="true">
-        <Position X="0" Y="0.050000001" Z="0"/>
-        <Scale X="1" Y="0.050000001" Z="0.34999999"/>
+        <Position X="0" Y="2.2" Z="0"/>
+        <Scale X="1" Y="2.3499999" Z="0.34999999"/>
         <Rotation X="0" Y="0" Z="0"/>
     </Collider>
     <Transform>
-        <Position X="-10" Y="-0.0010689795" Z="9.3891125"/>
+        <Position X="-8.2039995" Y="0.11819212" Z="13.772086"/>
         <Scale X="1" Y="1" Z="1"/>
         <Rotation X="0" Y="0" Z="0"/>
     </Transform>

@@ -77,7 +77,7 @@ void InGameScene::Update()
     //gui 내부제작 위치 크기 등등
     ImGui::Begin("Hierarchy");
     MainCam->RenderHierarchy();
-    Map->Hierarchy();
+    //Map->Hierarchy();
     player->RenderHierarchy();
     for (auto zombiePtr : zombies)
     {
@@ -117,6 +117,7 @@ void InGameScene::LateUpdate()
 {
     Map->LateUpdate();
     player->CollidePlayerToFloor(Map); 
+    Map->WallCollision(player->GetActor());
 }
 
 void InGameScene::PreRender()

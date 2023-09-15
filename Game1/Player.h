@@ -44,6 +44,6 @@ public:
 
 	void PlayerControl();
 	void CollidePlayerToFloor(class VillageMap* map); 
-	
+		Actor* GetActor() const { return player; }
 };
 

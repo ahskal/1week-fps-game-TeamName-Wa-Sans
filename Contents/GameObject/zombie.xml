@@ -6,7 +6,7 @@
         <Rotation X="0" Y="0" Z="0"/>
     </Collider>
     <Transform>
-        <Position X="-10" Y="-0.0074618887" Z="9.3891125"/>
+        <Position X="-99.573997" Y="0" Z="64.213882"/>
         <Scale X="1" Y="1" Z="1"/>
         <Rotation X="0" Y="0" Z="0"/>
     </Transform>
@@ -159,7 +159,7 @@
             <Transform>
                 <Position X="-0.64999998" Y="1.9" Z="0"/>
                 <Scale X="1" Y="1" Z="1"/>
-                <Rotation X="0" Y="0.43632999" Z="0"/>
+                <Rotation X="-1.2391838" Y="-0.017453292" Z="0"/>
             </Transform>
             <Children Size="2"/>
             <Child0 Name="LefhShoulderMesh" Visible="true" ObType="0">
@@ -179,7 +179,7 @@
                 <Transform>
                     <Position X="0" Y="-0.80000001" Z="0"/>
                     <Scale X="1" Y="1" Z="1"/>
-                    <Rotation X="0" Y="0" Z="0"/>
+                    <Rotation X="-0.57595867" Y="0" Z="0"/>
                 </Transform>
                 <Children Size="2"/>
                 <Child0 Name="LeftArmMesh" Visible="true" ObType="0">
@@ -241,7 +241,7 @@
             <Transform>
                 <Position X="0.64999998" Y="1.9" Z="0"/>
                 <Scale X="1" Y="1" Z="1"/>
-                <Rotation X="0" Y="-0.43632999" Z="0"/>
+                <Rotation X="-1.1519173" Y="0.017453292" Z="0"/>
             </Transform>
             <Children Size="2"/>
             <Child0 Name="RightArmPoint" Visible="true" ObType="0">
@@ -250,7 +250,7 @@
                 <Transform>
                     <Position X="0" Y="-0.80000001" Z="0"/>
                     <Scale X="1" Y="1" Z="1"/>
-                    <Rotation X="0" Y="0" Z="0"/>
+                    <Rotation X="-0.61086529" Y="0" Z="0"/>
                 </Transform>
                 <Children Size="2"/>
                 <Child0 Name="RightArmMesh" Visible="true" ObType="0">
