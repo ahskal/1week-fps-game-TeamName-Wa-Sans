@@ -4,7 +4,6 @@ class Main : public Scene
 {
 private:
 	Camera* cam1;
-	Camera* cam2;
 	Grid* grid;
 	Actor* root;
 
