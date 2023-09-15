@@ -1,14 +1,27 @@
 #include "stdafx.h"
+#include "Monster.h"        //몬스터의 내용을 사용하기 위해 헤더 파일 추가
 #include "Main.h"
 
 Main::Main()
 {
+    root = Actor::Create();
+    root->LoadFile("Monster.xml");
+    grid = Grid::Create();
 
+    cam1 = Camera::Create();
+    cam1->LoadFile("Cam.xml");
+
+    monster = new Monster();
+
+    Camera::main = (Camera*)root->Find("BodyCam");
+
+    
 }
 
 Main::~Main()
 {
-
+    cam1->SaveFile("Cam.xml");
+    root->Release();
 }
 
 void Main::Init()
@@ -22,11 +35,19 @@ void Main::Release()
 
 void Main::Update()
 {
-    Camera::ControlMainCam();
+    //Camera::ControlMainCam();
     ImGui::Begin("Hierarchy");
-
+    grid->RenderHierarchy();
+    monster->RenderHierarchy();
+    cam1->RenderHierarchy();
+    //root->RenderHierarchy();
     ImGui::End();
 
+
+    Camera::main->Update();
+    grid->Update();
+    //root->Update();
+    monster->Update();
 }
 
 void Main::LateUpdate()
@@ -39,7 +60,10 @@ void Main::PreRender()
 
 void Main::Render()
 {
-
+    Camera::main->Set();
+    grid->Render();
+    //root->Render();
+    monster->Render();
 }
 
 void Main::ResizeScreen()
