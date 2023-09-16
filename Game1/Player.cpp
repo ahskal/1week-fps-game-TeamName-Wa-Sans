@@ -12,6 +12,12 @@ Player::Player()
 
 
 	shotGun = new ShotGun();
+
+	unitType = UnitType::PLAYER;
+
+	hp = 100.0f;
+	damage = 10.0f;
+	speed = 5.0f;
 }
 
 Player::~Player()
@@ -20,7 +26,6 @@ Player::~Player()
 
 void Player::Init()
 {
-	speed = 5.0f;
 	player->root->SetWorldPosY(0.1f);
 
 	waitHandDir = 150.0f;
@@ -38,6 +43,8 @@ void Player::RenderHierarchy()
 void Player::Update()
 {
 	ImGui::Text("Player HP : %d", (int)hp);
+	ImGui::SameLine();
+	ImGui::Text("\tPlayer Damage : %d", (int)damage);
 
 
 	gun->GetGun()->SetWorldPos(player->Find("RightHandMesh")->GetWorldPos());
@@ -52,19 +59,16 @@ void Player::Update()
 	{
 		gunType = GunType::None;
 		playerType = PlayerType::None;
-		//MotionPlayerWait(gunType);
 	}
 	if (INPUT->KeyDown('2'))
 	{
 		gunType = GunType::Gun;
 		playerType = PlayerType::None;
-		//MotionPlayerWait(gunType);
 	}
 	if (INPUT->KeyDown('3'))
 	{
 		gunType = GunType::ShotGun;
 		playerType = PlayerType::None;
-		//MotionPlayerWait(gunType);
 	}
 
 	switch (gunType)
@@ -99,19 +103,6 @@ void Player::Render()
 
 void Player::ResizeScreen()
 {
-	((Camera*)player->Find("3Cam"))->viewport.x = 0.0f;
-	((Camera*)player->Find("3Cam"))->viewport.y = 0.0f;
-	((Camera*)player->Find("3Cam"))->viewport.width = App.GetWidth();
-	((Camera*)player->Find("3Cam"))->viewport.height = App.GetHeight();
-	((Camera*)player->Find("3Cam"))->width = App.GetWidth();
-	((Camera*)player->Find("3Cam"))->height = App.GetHeight();
-
-	((Camera*)player->Find("1Cam"))->viewport.x = 0.0f;
-	((Camera*)player->Find("1Cam"))->viewport.y = 0.0f;
-	((Camera*)player->Find("1Cam"))->viewport.width = App.GetWidth();
-	((Camera*)player->Find("1Cam"))->viewport.height = App.GetHeight();
-	((Camera*)player->Find("1Cam"))->width = App.GetWidth();
-	((Camera*)player->Find("1Cam"))->height = App.GetHeight();
 }
 
 void Player::PlayerControl()
@@ -277,8 +268,19 @@ void Player::CollidePlayerToWall(bool isCollide)
 	}
 }
 
-void Player::CollidePlayerToZombie(bool isCollide)
+void Player::CollidePlayerToZombie(Monster* monster)
 {
+	Ray Up;
+	Up = Utility::MouseToRay();
+	Vector3 Hit;
+	if (monster->GetMonsterActor()->Intersect(Up, Hit))
+	{
+		if (INPUT->KeyDown(VK_LBUTTON))
+		{ 
+			Attack(monster);
+			cout << "적에게 총알 발사" << endl;
+		}
+	}
 }
 
 void Player::MotionPlayerWait(GunType type)

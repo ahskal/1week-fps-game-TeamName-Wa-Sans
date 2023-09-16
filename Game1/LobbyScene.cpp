@@ -90,6 +90,7 @@ void LobbyScene::LateUpdate()
 	//시작버튼 클릭 메인의 업데이트에 씬변경로직있습니다
 	if (gamestart->MouseOver() and INPUT->KeyDown(VK_LBUTTON))
 	{
+		SCENE->AddScene("InGame", new InGameScene);
 		SCENE->ChangeScene("InGame");
 		bg->Stop("Lobby");
 	}

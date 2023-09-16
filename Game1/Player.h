@@ -32,7 +32,7 @@ private:
 
 	int jumpCount = 0;				// 점프 카운트 (한번만 점프하게 하기 위한 값)
 	float gravity;					// 플레이어의 중력값
-	float speed;					// 플레이어의 이동속도
+	//float speed;					// 플레이어의 이동속도
 
 
 
@@ -54,7 +54,7 @@ public:
 	void PlayerRotationY(Vector3 Rot);
 	void CollidePlayerToFloor(class VillageMap* map); 
 	void CollidePlayerToWall(bool isCollide);
-	void CollidePlayerToZombie(bool isCollide);
+	void CollidePlayerToZombie(class Monster* monster);
 
 	/** 모션 함수*/
 	// 가만히있을때

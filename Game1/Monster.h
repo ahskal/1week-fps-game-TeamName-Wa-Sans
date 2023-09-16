@@ -11,5 +11,7 @@ public:
 	void RenderHierarchy();
 	void Update();
 	void Render();
+
+	Actor* GetMonsterActor() { return monster; }
 };
 

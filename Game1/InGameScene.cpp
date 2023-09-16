@@ -74,8 +74,6 @@ InGameScene::InGameScene()
 
 InGameScene::~InGameScene()
 {
-	
-	
 	Map->Release();
 }
 
@@ -200,7 +198,11 @@ void InGameScene::LateUpdate()
 	Map->LateUpdate();
 	player->CollidePlayerToFloor(Map);											// 플레이어 - 바닥 충돌함수
 	player->CollidePlayerToWall(Map->WallCollision(player->GetPlayerActor()));	// 플레이어 - 벽 충돌함수
-	player->CollidePlayerToZombie(false);										// 플레이어 - 좀비 충돌함수
+	for (auto iter = monster.begin(); iter != monster.end(); iter++)
+	{
+		player->CollidePlayerToZombie((*iter));										// 플레이어 - 좀비 충돌함수
+	}
+	
 
 	
 	
