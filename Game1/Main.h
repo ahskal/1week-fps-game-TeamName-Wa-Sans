@@ -3,9 +3,9 @@
 class Main : public Scene
 {
 private:
-	Camera* cam1;
 	Grid* grid;
 	Actor* root;
+	//Actor* testCol;	//플레이어 추적 실험
 
 	class Monster* monster;
 public:

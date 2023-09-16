@@ -1,9 +1,9 @@
 <Root Name="BodyCam" Visible="true" ObType="2">
     <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
     <Transform>
-        <Position X="0" Y="4.75" Z="-5.5500002"/>
+        <Position X="0" Y="2.5" Z="-10.2"/>
         <Scale X="1" Y="1" Z="1"/>
-        <Rotation X="0.2617994" Y="0" Z="0"/>
+        <Rotation X="0.052359879" Y="0.052359879" Z="0"/>
     </Transform>
     <Camera Ortho="false" Fov="1.047192" Width="1196" Height="835" NearZ="0.1" FarZ="500" viewportX="0" viewportY="0" viewportW="1196" viewportH="835"/>
     <Children Size="0"/>

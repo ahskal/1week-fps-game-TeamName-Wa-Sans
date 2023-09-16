@@ -6,11 +6,11 @@
         <Rotation X="0" Y="0" Z="0"/>
     </Collider>
     <Transform>
-        <Position X="-0.19206321" Y="0" Z="3.3749681"/>
+        <Position X="5.3337607" Y="0" Z="2.0828431"/>
         <Scale X="1" Y="1" Z="1"/>
-        <Rotation X="0" Y="-15.319396" Z="0"/>
+        <Rotation X="0" Y="0.06981317" Z="0"/>
     </Transform>
-    <Children Size="2"/>
+    <Children Size="3"/>
     <Child0 Name="Body" Visible="true" ObType="0">
         <Shader File="1.Cube.hlsl"/>
         <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
@@ -58,7 +58,7 @@
             <Transform>
                 <Position X="0.40000001" Y="-1.25" Z="0"/>
                 <Scale X="0.30000001" Y="0.60000002" Z="0.30000001"/>
-                <Rotation X="0.097302318" Y="0" Z="0"/>
+                <Rotation X="0" Y="0" Z="0"/>
             </Transform>
             <Children Size="1"/>
             <Child0 Name="LeftLegJoint" Visible="true" ObType="0">
@@ -129,7 +129,7 @@
             <Transform>
                 <Position X="-0.40000001" Y="-1.25" Z="0"/>
                 <Scale X="0.30000001" Y="0.60000002" Z="0.30000001"/>
-                <Rotation X="-0.097302318" Y="0" Z="0"/>
+                <Rotation X="0" Y="0" Z="0"/>
             </Transform>
             <Children Size="1"/>
             <Child0 Name="RightLegJoint" Visible="true" ObType="0">
@@ -157,11 +157,39 @@
     <Child1 Name="BodyCam" Visible="true" ObType="2">
         <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
         <Transform>
-            <Position X="0" Y="4.75" Z="-5.5500002"/>
+            <Position X="0" Y="2.5" Z="-10.2"/>
             <Scale X="1" Y="1" Z="1"/>
-            <Rotation X="0.2617994" Y="0" Z="0"/>
+            <Rotation X="0.052359879" Y="0.052359879" Z="0"/>
         </Transform>
         <Camera Ortho="false" Fov="1.047192" Width="1196" Height="835" NearZ="0.1" FarZ="500" viewportX="0" viewportY="0" viewportW="1196" viewportH="835"/>
         <Children Size="0"/>
     </Child1>
+    <Child2 Name="MonSight" Visible="true" ObType="0">
+        <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
+        <Collider ColliderType="2" Visible="true">
+            <Position X="0" Y="0" Z="0"/>
+            <Scale X="3" Y="1.95" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Collider>
+        <Transform>
+            <Position X="0" Y="4.1500001" Z="8.9499998"/>
+            <Scale X="1.5" Y="1.9" Z="8"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <Children Size="1"/>
+        <Child0 Name="MonBackHead" Visible="true" ObType="0">
+            <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
+            <Collider ColliderType="0" Visible="true">
+                <Position X="0" Y="0" Z="-1.2"/>
+                <Scale X="4.0999999" Y="4.0999999" Z="4.0999999"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Collider>
+            <Transform>
+                <Position X="0" Y="0" Z="0"/>
+                <Scale X="1" Y="1" Z="1"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <Children Size="0"/>
+        </Child0>
+    </Child2>
 </Root>

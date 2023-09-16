@@ -19,10 +19,12 @@ void Monster::Init()
 void Monster::RenderHierarchy()
 {
     monster->RenderHierarchy();
+    //col->RenderHierarchy();
 }
 
 void Monster::Update()
 {
+    cout << monster->rotation.y << endl;
     //몬스터 가만히 있는 상태
     if (monType == MonType::IDLE)
     {
@@ -88,4 +90,29 @@ void Monster::Collide(GameObject* ob)
         isCollide = true;
     else
         isCollide = false;
+}
+
+//플레이어 추적 함수
+void Monster::Chase(GameObject* player, Vector3 playerPos)
+{
+    if (monster->Find("MonSight")->Intersect(player) or monster->Find("MonBackHead")->Intersect(player))
+        isChase = true;
+    else
+        isChase = false;
+
+    if (isChase)
+    {
+        if (!isCollide)
+        {
+            
+            monType = MonType::WALK;
+            Vector3 moveToPlayer = playerPos - monster->GetWorldPos();
+            cout << moveToPlayer.x << " " << moveToPlayer.Length() << " " << acos(moveToPlayer.x / moveToPlayer.Length())/ ToRadian << endl;
+            monster->MoveWorldPos(moveToPlayer * DELTA * 0.4f);
+            /*monster->rotation.y = 앞에서 인식하든 뒤에서 인식하든 캐릭터 방향을 바라봐야 하는데 너무 어렵습니다.현재 앞에서 오는 건 따라오니까
+                                    덜 부자연스러운데 뒤에 있음을 인식하고서는 뒷걸음으로 다가오니 추후에 변경해야 하는 부분으로 생각합니다.*/
+            monster->Find("LeftThigh")->rotation.x += LegDir * DELTA;
+            monster->Find("RightThigh")->rotation.x -= LegDir * DELTA;
+        }
+    }
 }

@@ -7,6 +7,9 @@ Main::Main()
     root = Actor::Create();
     root->LoadFile("Monster.xml"); 
 
+    /*testCol = Actor::Create();
+    testCol->LoadFile("testCol.xml");*/ //플레이어 추적 실험
+
     grid = Grid::Create();
 
     monster = new Monster();
@@ -35,6 +38,7 @@ void Main::Update()
     ImGui::Begin("Hierarchy");
     grid->RenderHierarchy();
     monster->RenderHierarchy();
+    //testCol->RenderHierarchy();
     //root->RenderHierarchy();
     ImGui::End();
 
@@ -43,11 +47,13 @@ void Main::Update()
     grid->Update();
     //root->Update();
     monster->Update();
+    //testCol->Update();
 }
 
 void Main::LateUpdate()
 {
-    //monster->Collide(게임 오브젝트); 몬스터 충돌 함수
+    //monster->Collide(testCol); //몬스터 충돌 함수
+    //monster->Chase(testCol, testCol->GetWorldPos());    //플레이어 추적 함수
 }
 void Main::PreRender()
 {
@@ -58,6 +64,7 @@ void Main::Render()
     Camera::main->Set();
     grid->Render();
     monster->Render();
+    //testCol->Render();
 }
 
 void Main::ResizeScreen()
