@@ -19,9 +19,14 @@ private:
 	Actor* player;
 
 	Gun* gun;
+	ShotGun* shotGun;
 
 	PlayerType playerType = PlayerType::None;
-	GunType gunType = GunType::Gun;
+	GunType gunType = GunType::None;
+
+	Vector3 lastPos;				// 충돌전의 플레이어의 좌표값
+
+
 	bool isJump = false;			// 점프 했는지 안했는지 판단하는 bool값
 	bool isGridCollide = false;		// 그리드와 충돌했는지 판단하는 bool값
 
@@ -31,6 +36,7 @@ private:
 
 
 
+	float waitHandDir;				// 서있을때 손 각도값
 	float walkHandDir;				// 걸을때의 손 각도값
 	float walkLegDir;				// 걸을때의 다리 각도값
 public:
@@ -45,5 +51,17 @@ public:
 	void PlayerControl();
 	void CollidePlayerToFloor(class VillageMap* map); 
 		Actor* GetActor() const { return player; }
+	void CollidePlayerToFloor(class Grid* grid);
+	void CollidePlayerToWall(class Actor* wall);
+
+	/** 모션 함수*/
+	// 가만히있을때
+	void MotionPlayerWait(GunType type);
+	// 걸을때
+	void MotionPlayerWalk(GunType type);
+	// 뛸때
+	void MotionPlayerRun(GunType type);
+	// 
+	/** 모션 함수*/
 };
 

@@ -26,6 +26,7 @@
     <ClInclude Include="Main.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="ShotGun.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="UNIT.h" />
     <ClInclude Include="VillageMap.h" />
@@ -41,6 +42,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="UNIT.cpp" />
     <ClCompile Include="VillageMap.cpp" />
+    <ClCompile Include="ShotGun.cpp" />
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>

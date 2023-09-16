@@ -46,11 +46,11 @@ void Camera::ControlMainCam()
 	{
 		main->MoveWorldPos(main->GetRight() * DELTA * mainCamSpeed);
 	}
-	if (INPUT->KeyPress('Q'))
+	if (INPUT->KeyPress(VK_NUMPAD7))
 	{
 		main->MoveWorldPos(-main->GetUp() * DELTA * mainCamSpeed);
 	}
-	if (INPUT->KeyPress('E'))
+	if (INPUT->KeyPress(VK_NUMPAD9))
 	{
 		main->MoveWorldPos(main->GetUp() * DELTA * mainCamSpeed);
 	}

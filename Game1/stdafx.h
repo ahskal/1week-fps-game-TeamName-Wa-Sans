@@ -6,6 +6,7 @@
 #include "LobbyScene.h"
 #include "UNIT.h"
 #include "Gun.h"
+#include "ShotGun.h"
 #include "Weapon.h"
 #include "Player.h"
 #include "Monster.h"
