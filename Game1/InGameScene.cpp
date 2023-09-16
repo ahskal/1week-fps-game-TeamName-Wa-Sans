@@ -8,7 +8,7 @@
 #include "Player.h"
 #include "Weapon.h"
 #include "Gun.h"
-#include "Zombie.h"
+
 
 InGameScene::InGameScene()
 {
