@@ -24,6 +24,7 @@
     <ClInclude Include="LobbyScene.h" />
     <ClInclude Include="House.h" />
     <ClInclude Include="Main.h" />
+    <ClInclude Include="Monster.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="UNIT.h" />
@@ -36,6 +37,7 @@
     <ClCompile Include="LobbyScene.cpp" />
     <ClCompile Include="House.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="UNIT.cpp" />
     <ClCompile Include="VillageMap.cpp" />

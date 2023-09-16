@@ -9,7 +9,7 @@ private:
 	
 	class VillageMap* Map;
 	class Player* player;
-	vector<class Zombie*> zombies;
+	vector<class Monster*> monster;
 
 	//인게임 스폰시간변수
 	float CurrentTime;

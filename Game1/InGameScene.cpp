@@ -31,10 +31,10 @@ InGameScene::InGameScene()
     CurrentTime = 0.0f;
     zombieSpwanTime = 10.0f;
 
-    /*Zombie* zombie = new Zombie();
+    Monster* mob = new Monster();
     Vector3 randomSpwan = Vector3(RANDOM->Float(-100, 100), 0, RANDOM->Float(-100, 100));
-    zombie->Init(randomSpwan);
-    zombies.push_back(zombie);*/
+    mob->Init(randomSpwan);
+    monster.push_back(mob);
 
 
 
@@ -79,10 +79,10 @@ void InGameScene::Update()
     MainCam->RenderHierarchy();
     //Map->Hierarchy();
     player->RenderHierarchy();
-    /*for (auto zombiePtr : zombies)
+    for (auto monsterPtr : monster)
     {
-        zombiePtr->RenderHierarchy();
-    }*/
+        monsterPtr->RenderHierarchy();
+    }
     optionUI->RenderHierarchy();
     ImGui::End();
 
@@ -105,10 +105,10 @@ void InGameScene::Update()
 
     Map->Update();
     player->Update();
-    /*for (auto zombiePtr : zombies)
+    for (auto monsterPtr : monster)
     {
-        zombiePtr->Update();
-    }*/
+        monsterPtr->Update();
+    }
     Camera::main->Update();
     optionUI->Update();
 }
@@ -132,10 +132,10 @@ void InGameScene::Render()
     //MainCam->Set();
     Map->Render();
     player->Render();
-    /*for (auto zombiePtr : zombies)
+    for (auto monsterPtr : monster)
     {
-        zombiePtr->Render();
-    }*/
+        monsterPtr->Render();
+    }
     optionUI->Render();
 }
 

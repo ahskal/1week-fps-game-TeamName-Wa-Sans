@@ -12,9 +12,9 @@ Monster::~Monster()
 
 }
 
-void Monster::Init()
+void Monster::Init(Vector3 spwan)
 {
-
+    
 }
 
 void Monster::RenderHierarchy()
