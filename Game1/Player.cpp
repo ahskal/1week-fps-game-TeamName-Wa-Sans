@@ -46,6 +46,12 @@ void Player::Update()
 	ImGui::SameLine();
 	ImGui::Text("\tPlayer Damage : %d", (int)damage);
 
+	// 피격시 무적시간
+	if (TIMER->GetTick(attackedCoolTime, 1.0f))
+	{
+		isAttacked = false;
+	}
+
 
 	gun->GetGun()->SetWorldPos(player->Find("RightHandMesh")->GetWorldPos());
 	shotGun->GetShotGun()->SetWorldPos(player->Find("RightHandMesh")->GetWorldPos());
@@ -166,6 +172,10 @@ void Player::PlayerControl()
 			INPUT->KeyUp('A') or INPUT->KeyUp('D'))
 		{
 			playerType = PlayerType::None;
+			gun->GetGun()->rotation.x = 0.0;
+			gun->GetGun()->rotation.y = 0.0;
+			shotGun->GetShotGun()->rotation.x = 0.0;
+			shotGun->GetShotGun()->rotation.y = 0.0;
 		}
 	}
 	// 뛰어다닐때 (무기x / 권총 / 샷건 / ... )
@@ -206,6 +216,10 @@ void Player::PlayerControl()
 		if (INPUT->KeyUp('W') or INPUT->KeyUp('S') or INPUT->KeyUp('A') or INPUT->KeyUp('D'))
 		{
 			playerType = PlayerType::None;
+			gun->GetGun()->rotation.x = 0.0;
+			gun->GetGun()->rotation.y = 0.0;
+			shotGun->GetShotGun()->rotation.x = 0.0;
+			shotGun->GetShotGun()->rotation.y = 0.0;
 		}
 	}
 
@@ -246,8 +260,21 @@ void Player::PlayerControl()
 
 void Player::PlayerRotationY(Vector3 Rot)
 {
+	// 좌우 회전
 	player->rotation.y = Rot.y;
+
+	// 상하 회전
 	player->Find("UpPoint")->rotation.x = Rot.x;
+
+
+	if (playerType == PlayerType::None)
+	{
+		gun->GetGun()->rotation.y = player->rotation.y;
+		shotGun->GetShotGun()->rotation.y = player->rotation.y;
+
+		gun->GetGun()->rotation.x = player->Find("UpPoint")->rotation.x;
+		shotGun->GetShotGun()->rotation.x = player->Find("UpPoint")->rotation.x;
+	}
 }
 
 void Player::CollidePlayerToFloor(VillageMap* map)
@@ -281,6 +308,16 @@ void Player::CollidePlayerToZombie(Monster* monster)
 			cout << "적에게 총알 발사" << endl;
 		}
 	}
+
+	if (monster->GetMonsterActor()->Intersect(player))
+	{
+		if (not isAttacked)
+		{
+			monster->Attack(this);
+			isAttacked = true;
+		}
+	}
+	
 }
 
 void Player::MotionPlayerWait(GunType type)
@@ -315,7 +352,7 @@ void Player::MotionPlayerWait(GunType type)
 	}
 	else if (type == GunType::ShotGun)
 	{
-		shotGun->GetShotGun()->rotation.y = 0.0f * ToRadian;
+		//shotGun->GetShotGun()->rotation.y = 0.0f * ToRadian;
 
 		player->Find("UpPoint")->rotation.y = 36.0f * ToRadian;
 
@@ -355,6 +392,16 @@ void Player::MotionPlayerWait(GunType type)
 		player->Find("LeftShoulderPoint")->rotation.y = 0.0f * ToRadian;
 
 		player->Find("LeftArmPoint")->rotation.x = 0.0f * ToRadian;
+
+		// 발 모션
+		{
+			player->Find("RightKneePoint")->rotation.x = 0;
+			player->Find("LeftKneePoint")->rotation.x = 0;
+
+			// 
+			player->Find("RightLegPoint")->rotation.x = 0;
+			player->Find("LeftLegPoint")->rotation.x = 0;
+		}
 	}
 }
 
@@ -369,8 +416,8 @@ void Player::MotionPlayerWalk(GunType type)
 		// 팔 모션
 		if (gunType == GunType::Gun)
 		{
-			player->Find("RightArmPoint")->rotation.x = -45.0f;
-			player->Find("LeftArmPoint")->rotation.x = 0.0f;
+			player->Find("RightArmPoint")->rotation.x = -45.0f * ToRadian;
+			player->Find("LeftArmPoint")->rotation.x = 0.0f * ToRadian;
 
 			player->Find("LeftShoulderPoint")->rotation.x = -45.0f * ToRadian;
 			player->Find("RightShoulderPoint")->rotation.x = -14.0f * ToRadian;
@@ -397,6 +444,9 @@ void Player::MotionPlayerWalk(GunType type)
 		}
 		else if (gunType == GunType::ShotGun)
 		{
+			//shotGun->GetShotGun()->rotation.x = 0.0f;
+			shotGun->GetShotGun()->rotation.y = -90.0f * ToRadian;
+
 			player->Find("LeftShoulderPoint")->rotation.y += walkHandDir * 0.3f * ToRadian * DELTA;
 			player->Find("RightShoulderPoint")->rotation.z += walkHandDir * 0.3f * ToRadian * DELTA;
 			if (player->Find("RightShoulderPoint")->rotation.z < 0.0f * ToRadian or

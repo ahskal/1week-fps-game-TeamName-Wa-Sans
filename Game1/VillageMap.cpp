@@ -146,8 +146,6 @@ void VillageMap::Render()
 
 }
 
-
-
 void VillageMap::Hierarchy()
 {
 	cam->RenderHierarchy();
@@ -195,5 +193,3 @@ bool VillageMap::WallCollision(Actor* player)
 
 	return false;
 }
-
-
