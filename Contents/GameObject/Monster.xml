@@ -6,9 +6,9 @@
         <Rotation X="0" Y="0" Z="0"/>
     </Collider>
     <Transform>
-        <Position X="17.51716" Y="0" Z="27.354713"/>
+        <Position X="-0.19206321" Y="0" Z="3.3749681"/>
         <Scale X="1" Y="1" Z="1"/>
-        <Rotation X="0" Y="-6.2678685" Z="0"/>
+        <Rotation X="0" Y="-15.319396" Z="0"/>
     </Transform>
     <Children Size="2"/>
     <Child0 Name="Body" Visible="true" ObType="0">
@@ -26,7 +26,7 @@
             <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
             <Transform>
                 <Position X="0" Y="0.5" Z="0"/>
-                <Scale X="0.75" Y="1.2" Z="0.5"/>
+                <Scale X="0.75" Y="1.2" Z="0.40000001"/>
                 <Rotation X="0.052359879" Y="0" Z="0"/>
             </Transform>
             <Children Size="0"/>
@@ -35,7 +35,7 @@
             <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
             <Transform>
                 <Position X="0.64999998" Y="1.5" Z="0"/>
-                <Scale X="0.69999999" Y="1" Z="1"/>
+                <Scale X="1" Y="1" Z="1"/>
                 <Rotation X="-1.5707964" Y="0" Z="0"/>
             </Transform>
             <Children Size="1"/>
@@ -56,9 +56,9 @@
             <Shader File="6.Cube.hlsl"/>
             <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
             <Transform>
-                <Position X="0.40000001" Y="-1.3" Z="0"/>
+                <Position X="0.40000001" Y="-1.25" Z="0"/>
                 <Scale X="0.30000001" Y="0.60000002" Z="0.30000001"/>
-                <Rotation X="0" Y="0" Z="0"/>
+                <Rotation X="0.097302318" Y="0" Z="0"/>
             </Transform>
             <Children Size="1"/>
             <Child0 Name="LeftLegJoint" Visible="true" ObType="0">
@@ -127,9 +127,9 @@
             <Shader File="6.Cube.hlsl"/>
             <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
             <Transform>
-                <Position X="-0.40000001" Y="-1.3" Z="0"/>
+                <Position X="-0.40000001" Y="-1.25" Z="0"/>
                 <Scale X="0.30000001" Y="0.60000002" Z="0.30000001"/>
-                <Rotation X="0" Y="0" Z="0"/>
+                <Rotation X="-0.097302318" Y="0" Z="0"/>
             </Transform>
             <Children Size="1"/>
             <Child0 Name="RightLegJoint" Visible="true" ObType="0">

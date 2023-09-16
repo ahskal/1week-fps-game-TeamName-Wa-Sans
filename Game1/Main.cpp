@@ -5,14 +5,13 @@
 Main::Main()
 {
     root = Actor::Create();
-    root->LoadFile("Monster.xml");
+    root->LoadFile("Monster.xml"); 
+
     grid = Grid::Create();
 
     monster = new Monster();
 
     Camera::main = (Camera*)root->Find("BodyCam");
-
-    
 }
 
 Main::~Main()
@@ -48,7 +47,7 @@ void Main::Update()
 
 void Main::LateUpdate()
 {
-   
+    //monster->Collide(게임 오브젝트); 몬스터 충돌 함수
 }
 void Main::PreRender()
 {
