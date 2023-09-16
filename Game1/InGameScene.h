@@ -6,6 +6,7 @@ class InGameScene : public Scene
 private:
 	//인게임 객체들 
 	Camera* MainCam;
+	Camera* PlayerCam;
 	
 	class VillageMap* Map;
 	class Player*  player;

@@ -47,12 +47,14 @@ public:
 	void RenderHierarchy();
 	void Update();
 	void Render();
+	void ResizeScreen();
+
 
 	void PlayerControl();
+	void PlayerRotationY(Vector3 Rot);
 	void CollidePlayerToFloor(class VillageMap* map); 
-		Actor* GetActor() const { return player; }
-	//void CollidePlayerToFloor(class Grid* grid);
-	void CollidePlayerToWall(class Actor* wall);
+	void CollidePlayerToWall(bool isCollide);
+	void CollidePlayerToZombie(bool isCollide);
 
 	/** 모션 함수*/
 	// 가만히있을때
@@ -63,5 +65,9 @@ public:
 	void MotionPlayerRun(GunType type);
 	// 
 	/** 모션 함수*/
+
+
+	/** Get함수*/
+	Actor* GetPlayerActor() const { return player; }
 };
 

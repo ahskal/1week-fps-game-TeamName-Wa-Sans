@@ -167,7 +167,7 @@ void VillageMap::ResizeScreen()
 	cam->viewport.height = App.GetHeight();
 }
 
-void VillageMap::WallCollision(Actor* player)
+bool VillageMap::WallCollision(Actor* player)
 {
 	for (int i = 0; i < HouseCount; i++) {
 		for (int j = 0; j < house[i]->Find("Pillar")->children.size(); j++) {
@@ -176,7 +176,7 @@ void VillageMap::WallCollision(Actor* player)
 
 			if (house[i]->Find(str)->Intersect(player))
 			{
-				cout << str << " " << "충돌" << endl;
+				return true;
 			}
 		}
 
@@ -187,11 +187,13 @@ void VillageMap::WallCollision(Actor* player)
 
 				if (house[i]->Find(str2)->Intersect(player))
 				{
-					cout << str2 << " " << "충돌" << endl;
+					return true;
 				}
 			}
 		}
 	}
+
+	return false;
 }
 
 

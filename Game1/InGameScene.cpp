@@ -7,6 +7,9 @@
 
 InGameScene::InGameScene()
 {
+	PlayerCam = Camera::Create();
+
+
 	MainCam = Camera::Create();
 	MainCam->LoadFile("MainCam.xml");
 	Map = VillageMap::Create();
@@ -47,7 +50,7 @@ InGameScene::InGameScene()
 	monster.push_back(mob);
 
 
-
+	/** 카메라 초기 세팅*/
 	MainCam->mainCamSpeed = 30.0f;
 	MainCam->viewport.x = 0.0f;
 	MainCam->viewport.y = 0.0f;
@@ -55,10 +58,18 @@ InGameScene::InGameScene()
 	MainCam->viewport.height = App.GetHeight();
 	MainCam->width = App.GetWidth();
 	MainCam->height = App.GetHeight();
+
+	PlayerCam->mainCamSpeed = 30.0f;
+	PlayerCam->viewport.x = 0.0f;
+	PlayerCam->viewport.y = 0.0f;
+	PlayerCam->viewport.width = App.GetWidth();
+	PlayerCam->viewport.height = App.GetHeight();
+	PlayerCam->width = App.GetWidth();
+	PlayerCam->height = App.GetHeight();
 	Camera::main = MainCam;
+	/** 카메라 초기 세팅*/
 
 	//사운드
-
 }
 
 InGameScene::~InGameScene()
@@ -84,21 +95,17 @@ void InGameScene::Release()
 void InGameScene::Update()
 {
 	//작업용 카메라 플레이어 3인칭캠 변환
+	PlayerCam->SetWorldPos(player->GetPlayerActor()->Find("HeadMesh")->GetWorldPos()); // 플레이어 캠이 플레이어의 머리좌표를 계속 받아오게하기
 	{
 		//작업용
 		if (INPUT->KeyDown(VK_F5))
 		{
 			Camera::main = MainCam;
 		}
-		//플레이어 3인칭시점
+		//플레이어 1인칭시점
 		if (INPUT->KeyDown(VK_F6))
 		{
-			Camera::main = (Camera*)player->GetActor()->Find("3Cam");
-		}
-		//플레이어 1인칭시점
-		if (INPUT->KeyDown(VK_F7))
-		{
-			Camera::main = (Camera*)player->GetActor()->Find("1Cam");
+			Camera::main = PlayerCam;
 		}
 	}
 
@@ -142,6 +149,7 @@ void InGameScene::Update()
 				Rot.x = (INPUT->position.y - ptMouse.y) * mouseSpeed;
 				Rot.y = (INPUT->position.x - ptMouse.x) * mouseSpeed;
 				Camera::main->rotation += Rot;
+				player->PlayerRotationY(Camera::main->rotation);
 				ClientToScreen(App.GetHandle(), &ptMouse);
 				SetCursorPos(ptMouse.x, ptMouse.y);
 			}
@@ -152,6 +160,7 @@ void InGameScene::Update()
 	{
 		ImGui::Begin("Hierarchy");
 		MainCam->RenderHierarchy();
+		PlayerCam->RenderHierarchy();
 		//Map->Hierarchy();
 		player->RenderHierarchy();
 		for (auto monsterPtr : monster)
@@ -189,8 +198,9 @@ void InGameScene::Update()
 void InGameScene::LateUpdate()
 {
 	Map->LateUpdate();
-	player->CollidePlayerToFloor(Map);
-	Map->WallCollision(player->GetActor());
+	player->CollidePlayerToFloor(Map);											// 플레이어 - 바닥 충돌함수
+	player->CollidePlayerToWall(Map->WallCollision(player->GetPlayerActor()));	// 플레이어 - 벽 충돌함수
+	player->CollidePlayerToZombie(false);										// 플레이어 - 좀비 충돌함수
 
 	
 	
@@ -264,12 +274,13 @@ void InGameScene::Render()
 void InGameScene::ResizeScreen()
 {
 	//카메라 화면비 조정 
-	MainCam->viewport.x = 0.0f;
-	MainCam->viewport.y = 0.0f;
-	MainCam->viewport.width = App.GetWidth();
-	MainCam->viewport.height = App.GetHeight();
-	MainCam->width = App.GetWidth();
-	MainCam->height = App.GetHeight();
+	Camera::main->viewport.x = 0.0f;
+	Camera::main->viewport.y = 0.0f;
+	Camera::main->viewport.width = App.GetWidth();
+	Camera::main->viewport.height = App.GetHeight();
+	Camera::main->width = App.GetWidth();
+	Camera::main->height = App.GetHeight();
 
+	player->ResizeScreen();
 	Map->ResizeScreen();
 }

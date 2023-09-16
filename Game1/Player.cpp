@@ -20,7 +20,7 @@ Player::~Player()
 
 void Player::Init()
 {
-	speed = 3.0f;
+	speed = 5.0f;
 	player->root->SetWorldPosY(0.1f);
 
 	waitHandDir = 150.0f;
@@ -37,13 +37,11 @@ void Player::RenderHierarchy()
 
 void Player::Update()
 {
-	ImGui::Text("gravity : %.2f", gravity);
-	ImGui::Text("playerType : %d", (int)playerType);
-	ImGui::Text("isGridCollide : %d", (int)isGridCollide);
-	//ImGui::Text("walkDir : %.2f", walkDir);
+	ImGui::Text("Player HP : %d", (int)hp);
+
+
 	gun->GetGun()->SetWorldPos(player->Find("RightHandMesh")->GetWorldPos());
 	shotGun->GetShotGun()->SetWorldPos(player->Find("RightHandMesh")->GetWorldPos());
-
 
 	lastPos = player->GetWorldPos();
 
@@ -99,6 +97,23 @@ void Player::Render()
 	shotGun->Render();
 }
 
+void Player::ResizeScreen()
+{
+	((Camera*)player->Find("3Cam"))->viewport.x = 0.0f;
+	((Camera*)player->Find("3Cam"))->viewport.y = 0.0f;
+	((Camera*)player->Find("3Cam"))->viewport.width = App.GetWidth();
+	((Camera*)player->Find("3Cam"))->viewport.height = App.GetHeight();
+	((Camera*)player->Find("3Cam"))->width = App.GetWidth();
+	((Camera*)player->Find("3Cam"))->height = App.GetHeight();
+
+	((Camera*)player->Find("1Cam"))->viewport.x = 0.0f;
+	((Camera*)player->Find("1Cam"))->viewport.y = 0.0f;
+	((Camera*)player->Find("1Cam"))->viewport.width = App.GetWidth();
+	((Camera*)player->Find("1Cam"))->viewport.height = App.GetHeight();
+	((Camera*)player->Find("1Cam"))->width = App.GetWidth();
+	((Camera*)player->Find("1Cam"))->height = App.GetHeight();
+}
+
 void Player::PlayerControl()
 {
 	// 가만히 있을때 
@@ -131,135 +146,11 @@ void Player::PlayerControl()
 	// 걸어다닐때 (무기x / 권총 / 샷건 / ... )
 	else if (playerType == PlayerType::Walk)
 	{
-		speed = 3.0f;
+		// 속도 제어
+		speed = 5.0f;
 
+		// 플레이어 이동 구현함수 (총을 들고있는지 아닌지에 따라 모션 변경)
 		MotionPlayerWalk(gunType);
-
-		// 플레이어 이동 구현 (총을 들고있는지 아닌지에 따라 모션 변경)
-		{
-			//if (INPUT->KeyPress('W'))
-			//{
-			//	player->MoveWorldPos(player->GetForward() * speed * DELTA);
-
-			//	// 팔 모션
-			//	if (gunType == GunType::Gun)
-			//	{
-			//		player->Find("RightArmPoint")->rotation.x = 0.0f;
-			//		player->Find("LeftArmPoint")->rotation.x = 0.0f;
-
-			//		player->Find("LeftShoulderPoint")->rotation.x = -75.0f * ToRadian;
-			//		player->Find("RightShoulderPoint")->rotation.x = -75.0f * ToRadian;
-
-			//		player->Find("LeftShoulderPoint")->rotation.y = 25.0f * ToRadian;
-			//		player->Find("RightShoulderPoint")->rotation.y = -25.0f * ToRadian;
-			//		gun->GetGun()->rotation.x = 0.0f; // 총이 손을 따라다니게끔
-			//	}
-			//	else if (gunType == GunType::None)
-			//	{
-			//		// 팔꿈치 각도를 -40도 해서 팔이 접힌 상태로 만들기
-			//		player->Find("RightArmPoint")->rotation.x = -40.0f * ToRadian;
-			//		player->Find("LeftArmPoint")->rotation.x = -40.0f * ToRadian;
-			//		gun->GetGun()->rotation.x = (90.0f - 40.0f) * ToRadian; // 총이 손을 따라다니게끔
-
-			//		// 어깨 x각도를 -20 ~ 20도로 돌려서 걸을때 팔이 움직이게 보이기
-			//		player->Find("RightShoulderPoint")->rotation.x += walkHandDir * ToRadian * DELTA;
-			//		player->Find("LeftShoulderPoint")->rotation.x -= walkHandDir * ToRadian * DELTA;
-			//		if (player->Find("RightShoulderPoint")->rotation.x < -20.0f * ToRadian or
-			//			player->Find("RightShoulderPoint")->rotation.x > 20.0f * ToRadian)
-			//		{
-			//			walkHandDir = -walkHandDir;
-			//		}
-			//	}
-			//	else if (gunType == GunType::ShotGun)
-			//	{
-			//		player->Find("LeftShoulderPoint")->rotation.y += walkHandDir * 0.3f * ToRadian * DELTA;
-			//		player->Find("RightShoulderPoint")->rotation.z += walkHandDir * 0.3f * ToRadian * DELTA;
-			//		if (player->Find("RightShoulderPoint")->rotation.z < 0.0f * ToRadian or
-			//			player->Find("RightShoulderPoint")->rotation.z > 10.0f * ToRadian)
-			//		{
-			//			walkHandDir = -walkHandDir;
-			//		}
-			//	}
-
-			//	// 발 모션
-			//	{
-			//		// 무릎 각도를 25도 해서 팔이 접힌 상태로 만들기
-			//		player->Find("RightKneePoint")->rotation.x = 25.0f * ToRadian;
-			//		player->Find("LeftKneePoint")->rotation.x = 25.0f * ToRadian;
-
-			//		// 발 x각도를 -20 ~ 20도로 돌려서 걸을때 발이 움직이게 보이기
-			//		player->Find("RightLegPoint")->rotation.x -= walkLegDir * ToRadian * DELTA;
-			//		player->Find("LeftLegPoint")->rotation.x += walkLegDir * ToRadian * DELTA;
-			//		if (player->Find("RightLegPoint")->rotation.x < -20.0f * ToRadian or
-			//			player->Find("RightLegPoint")->rotation.x > 20.0f * ToRadian)
-			//		{
-			//			walkLegDir = -walkLegDir;
-			//		}
-			//	}
-			//}
-			//if (INPUT->KeyPress('S'))
-			//{
-			//	player->MoveWorldPos(-player->GetForward() * speed * DELTA);
-
-			//	if (gunType == GunType::Gun)
-			//	{
-			//		player->Find("LeftShoulderPoint")->rotation.x = -75.0f * ToRadian;
-			//		player->Find("RightShoulderPoint")->rotation.x = -75.0f * ToRadian;
-
-			//		player->Find("LeftShoulderPoint")->rotation.y = 25.0f * ToRadian;
-			//		player->Find("RightShoulderPoint")->rotation.y = -25.0f * ToRadian;
-			//		gun->GetGun()->rotation.x = 0.0f; // 총이 손을 따라다니게끔
-			//	}
-			//	else if (gunType == GunType::None)
-			//	{
-			//		// 팔꿈치 각도를 -40도 해서 팔이 접힌 상태로 만들기
-			//		player->Find("RightArmPoint")->rotation.x = -40.0f * ToRadian;
-			//		player->Find("LeftArmPoint")->rotation.x = -40.0f * ToRadian;
-			//		gun->GetGun()->rotation.x = (90.0f - 40.0f) * ToRadian; // 총이 손을 따라다니게끔
-
-			//		// 어깨 x각도를 -20 ~ 20도로 돌려서 걸을때 팔이 움직이게 보이기
-			//		player->Find("LeftShoulderPoint")->rotation.x -= walkHandDir * ToRadian * DELTA;
-			//		player->Find("RightShoulderPoint")->rotation.x += walkHandDir * ToRadian * DELTA;
-			//		if (player->Find("LeftShoulderPoint")->rotation.x < -20.0f * ToRadian or
-			//			player->Find("LeftShoulderPoint")->rotation.x > 20.0f * ToRadian)
-			//		{
-			//			walkHandDir = -walkHandDir;
-			//		}
-			//	}
-			//	else if (gunType == GunType::ShotGun)
-			//	{
-			//		player->Find("LeftShoulderPoint")->rotation.y += walkHandDir * 0.3f * ToRadian * DELTA;
-			//		player->Find("RightShoulderPoint")->rotation.z += walkHandDir * 0.3f * ToRadian * DELTA;
-			//		if (player->Find("RightShoulderPoint")->rotation.z < 0.0f * ToRadian or
-			//			player->Find("RightShoulderPoint")->rotation.z > 10.0f * ToRadian)
-			//		{
-			//			walkHandDir = -walkHandDir;
-			//		}
-			//	}
-
-
-			//	// 무릎 각도를 25도 해서 팔이 접힌 상태로 만들기
-			//	player->Find("RightKneePoint")->rotation.x = 25.0f * ToRadian;
-			//	player->Find("LeftKneePoint")->rotation.x = 25.0f * ToRadian;
-
-			//	// 발 x각도를 -20 ~ 20도로 돌려서 걸을때 발이 움직이게 보이기
-			//	player->Find("RightLegPoint")->rotation.x += walkLegDir * ToRadian * DELTA;
-			//	player->Find("LeftLegPoint")->rotation.x -= walkLegDir * ToRadian * DELTA;
-			//	if (player->Find("RightLegPoint")->rotation.x < -20.0f * ToRadian or
-			//		player->Find("RightLegPoint")->rotation.x > 20.0f * ToRadian)
-			//	{
-			//		walkLegDir = -walkLegDir;
-			//	}
-			//}
-			//if (INPUT->KeyPress('A'))
-			//{
-			//	player->MoveWorldPos(-player->GetRight() * speed * DELTA);
-			//}
-			//if (INPUT->KeyPress('D'))
-			//{
-			//	player->MoveWorldPos(player->GetRight() * speed * DELTA);
-			//}
-		}
 
 		// 걷기 -> 뛰기(쉬프트 누르면서 S를 누르지 않았을 때)
 		if (INPUT->KeyPress(VK_SHIFT) and not INPUT->KeyPress('S'))
@@ -289,113 +180,11 @@ void Player::PlayerControl()
 	// 뛰어다닐때 (무기x / 권총 / 샷건 / ... )
 	else if (playerType == PlayerType::Run)
 	{
-		speed = 6.0f;
+		// 속도 제어
+		speed = 10.0f;
 
+		// 플레이어 이동 구현함수 (총을 들고있는지 아닌지에 따라 모션 변경)
 		MotionPlayerRun(gunType);
-
-		// 플레이어 이동 구현 (총을 들고있는지 아닌지에 따라 모션 변경)
-		{
-			//if (INPUT->KeyPress('W'))
-			//{
-			//	player->MoveWorldPos(player->GetForward() * speed * DELTA);
-
-			//	if (gunType == GunType::Gun)
-			//	{
-			//		player->Find("LeftShoulderPoint")->rotation.y = 0.0f;
-			//		player->Find("RightShoulderPoint")->rotation.y = 0.0f;
-			//		player->Find("RightShoulderPoint")->rotation.z = 7.0f * ToRadian;
-
-			//		player->Find("LeftArmPoint")->rotation.x = -40.0f * ToRadian;
-			//		player->Find("LeftShoulderPoint")->rotation.x -= walkHandDir * ToRadian * DELTA;
-			//		if (player->Find("LeftShoulderPoint")->rotation.x < -25.0f * ToRadian or
-			//			player->Find("LeftShoulderPoint")->rotation.x > 25.0f * ToRadian)
-			//		{
-			//			walkHandDir = -walkHandDir;
-			//		}
-
-			//		player->Find("RightShoulderPoint")->rotation.x += walkHandDir * ToRadian * DELTA * 0.2f;
-
-
-
-			//		player->Find("RightArmPoint")->rotation.x = 0.0f;
-			//		gun->GetGun()->rotation.x = 90.0f * ToRadian;		// 총이 손을 따라다니게끔
-
-			//	}
-			//	else if (gunType == GunType::None)
-			//	{
-			//		// 팔꿈치 각도를 -40도 해서 팔이 접힌 상태로 만들기
-			//		player->Find("RightArmPoint")->rotation.x = -40.0f * ToRadian;
-			//		player->Find("LeftArmPoint")->rotation.x = -40.0f * ToRadian;
-			//		gun->GetGun()->rotation.x = (90.0f - 40.0f) * ToRadian; // 총이 손을 따라다니게끔
-
-			//		// 어깨 x각도를 -20 ~ 20도로 돌려서 걸을때 팔이 움직이게 보이기
-			//		player->Find("RightShoulderPoint")->rotation.x += walkHandDir * ToRadian * DELTA;
-			//		player->Find("LeftShoulderPoint")->rotation.x -= walkHandDir * ToRadian * DELTA;
-			//		if (player->Find("RightShoulderPoint")->rotation.x < -25.0f * ToRadian or
-			//			player->Find("RightShoulderPoint")->rotation.x > 25.0f * ToRadian)
-			//		{
-			//			walkHandDir = -walkHandDir;
-			//		}
-			//	}
-			//	else if (gunType == GunType::ShotGun)
-			//	{
-			//		player->Find("LeftShoulderPoint")->rotation.y += walkHandDir * 0.5f * ToRadian * DELTA;
-			//		player->Find("RightShoulderPoint")->rotation.z += walkHandDir * 0.5f * ToRadian * DELTA;
-			//		if (player->Find("RightShoulderPoint")->rotation.z < 0.0f * ToRadian or
-			//			player->Find("RightShoulderPoint")->rotation.z > 15.0f * ToRadian)
-			//		{
-			//			walkHandDir = -walkHandDir;
-			//		}
-			//	}
-
-
-
-
-			//	// 무릎 각도를 25도 해서 팔이 접힌 상태로 만들기
-			//	player->Find("RightKneePoint")->rotation.x = 30.0f * ToRadian;
-			//	player->Find("LeftKneePoint")->rotation.x = 30.0f * ToRadian;
-
-			//	// 발 x각도를 -20 ~ 20도로 돌려서 걸을때 발이 움직이게 보이기
-			//	player->Find("RightLegPoint")->rotation.x -= walkLegDir * ToRadian * DELTA;
-			//	player->Find("LeftLegPoint")->rotation.x += walkLegDir * ToRadian * DELTA;
-			//	if (player->Find("RightLegPoint")->rotation.x < -25.0f * ToRadian or
-			//		player->Find("RightLegPoint")->rotation.x > 25.0f * ToRadian)
-			//	{
-			//		walkLegDir = -walkLegDir;
-			//	}
-			//}
-			//// 뛰기 -> 걷기 (쉬프르틀 누르고 있는 상태일때 S를 눌렀을 때)
-			//if (INPUT->KeyPress(VK_SHIFT) and INPUT->KeyPress('S'))
-			//{
-			//	if (gunType == GunType::None or gunType == GunType::Gun)
-			//	{
-			//		player->Find("RightArmPoint")->rotation.x = 0.0f;
-			//		player->Find("LeftArmPoint")->rotation.x = 0.0f;
-			//		gun->GetGun()->rotation.x = 90.0f * ToRadian;		// 총이 손을 따라다니게끔
-
-			//		player->Find("RightShoulderPoint")->rotation.z = 0.0f;
-			//		player->Find("RightShoulderPoint")->rotation.x = 0.0f;
-			//		player->Find("LeftShoulderPoint")->rotation.x = 0.0f;
-
-			//		player->Find("LeftShoulderPoint")->rotation.y = 0.0f;
-			//		player->Find("RightShoulderPoint")->rotation.y = 0.0f;
-			//		walkHandDir = 100.0f;
-			//	}
-
-			//	playerType = PlayerType::Walk;
-			//	walkLegDir = 100.0f;
-			//	walkHandDir = 100.0f;
-			//	return;
-			//}
-			//if (INPUT->KeyPress('A'))
-			//{
-			//	player->MoveWorldPos(-player->GetRight() * speed * DELTA);
-			//}
-			//if (INPUT->KeyPress('D'))
-			//{
-			//	player->MoveWorldPos(player->GetRight() * speed * DELTA);
-			//}
-		}
 
 		// 뛰기 -> 걷기 (쉬프트를 뗐을 때)
 		if (INPUT->KeyUp(VK_SHIFT))
@@ -464,6 +253,12 @@ void Player::PlayerControl()
 	/** 점프*/
 }
 
+void Player::PlayerRotationY(Vector3 Rot)
+{
+	player->rotation.y = Rot.y;
+	player->Find("UpPoint")->rotation.x = Rot.x;
+}
+
 void Player::CollidePlayerToFloor(VillageMap* map)
 {
 	if (player->Intersect(map))
@@ -472,44 +267,18 @@ void Player::CollidePlayerToFloor(VillageMap* map)
 		isGridCollide = false;
 }
 
-//void Player::CollidePlayerToFloor(Grid* grid)
-//{
-//	// 여기서 매개변수 grid는 바닥이라고 생각하면 될듯
-//	// 바닥과 부딪혔을때 isGridCollide = true;
-//	if (player->Intersect(grid->Find("floor")))
-//		isGridCollide = true;
-//	else
-//		isGridCollide = false;
-//}
-
-void Player::CollidePlayerToWall(Actor* wall)
+void Player::CollidePlayerToWall(bool isCollide)
 {
-	if (player->Intersect(wall))
+	if (isCollide)
 	{
-		player->SetWorldPos(lastPos);
+		player->SetWorldPosX(lastPos.x);
+		player->SetWorldPosZ(lastPos.z);
 		player->Update();
-		//if (INPUT->KeyPress('W') or INPUT->KeyPress('S'))
-		//{
-		//	if (INPUT->KeyPress('A') or INPUT->KeyPress('D'))
-		//	{
-		//		player->SetWorldPosZ(lastPos.z);
-		//	}
-		//	else
-		//	{
-		//		player->SetWorldPos(lastPos);
-		//	}
-		//	player->SetWorldPos(lastPos);
-		//	player->Update();
-		//
-		//	cout << "플레이어 앞쪽으로 벽과 충돌중" << endl;
-		//}
-		//if (INPUT->KeyPress('A') or INPUT->KeyPress('D'))
-		//{
-		//	player->SetWorldPosX(lastPos.x);
-		//	player->Update();
-		//	cout << "플레이어 왼쪽으로 벽과 충돌중" << endl;
-		//}
 	}
+}
+
+void Player::CollidePlayerToZombie(bool isCollide)
+{
 }
 
 void Player::MotionPlayerWait(GunType type)

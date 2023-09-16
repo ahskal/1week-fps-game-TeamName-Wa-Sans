@@ -1,4 +1,4 @@
-<Root Name="Camera" Visible="true" ObType="2">
+<Root Name="MainCAM" Visible="true" ObType="2">
     <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
     <Transform>
         <Position X="1.2388024" Y="17.589676" Z="3.0913074"/>
