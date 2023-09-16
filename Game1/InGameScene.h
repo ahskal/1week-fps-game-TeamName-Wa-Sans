@@ -19,7 +19,7 @@ private:
 	UI* playerAim;
 	UI* optionUI;
 
-
+	bool optionOpen = false;
 	
 public:
 	//기본기능함수들
