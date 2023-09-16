@@ -26,9 +26,6 @@
     <ClCompile Include="Gun.cpp">
       <Filter>LeeSH</Filter>
     </ClCompile>
-    <ClCompile Include="Zombie.cpp">
-      <Filter>zombie</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h" />
@@ -56,9 +53,6 @@
     </ClInclude>
     <ClInclude Include="Gun.h">
       <Filter>LeeSH</Filter>
-    </ClInclude>
-    <ClInclude Include="Zombie.h">
-      <Filter>zombie</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

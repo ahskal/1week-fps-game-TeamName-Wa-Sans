@@ -29,7 +29,6 @@
     <ClInclude Include="UNIT.h" />
     <ClInclude Include="VillageMap.h" />
     <ClInclude Include="Weapon.h" />
-    <ClInclude Include="Zombie.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Gun.cpp" />
@@ -41,7 +40,6 @@
     <ClCompile Include="UNIT.cpp" />
     <ClCompile Include="VillageMap.cpp" />
     <ClCompile Include="Weapon.cpp" />
-    <ClCompile Include="Zombie.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="imgui.ini" />
