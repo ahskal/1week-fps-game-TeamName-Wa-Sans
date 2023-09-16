@@ -5,7 +5,7 @@ enum class UnitType
 	ZOMBIE
 };
 
-class UNIT
+class UNIT 
 {
 protected:
 

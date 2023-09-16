@@ -8,7 +8,7 @@ private:
 	Camera* MainCam;
 	
 	class VillageMap* Map;
-	class Player* player;
+	class Player*  player;
 	vector<class Monster*> monster;
 
 	//인게임 스폰시간변수
@@ -18,14 +18,17 @@ private:
 	//인게임 UI
 	UI* playerAim;
 	UI* optionUI;
-
 	UI* soundUI;
+	UI* sensitivityUI;
 
 	Sound* Ingamethema;
 	//설정창 켜져있는지 불리언
 	bool optionOpen = false;
 	//사운드 켜져있는지 불리언
 	bool soundOn = false;
+
+	//마우스 감도변수
+	float mouseSpeed;
 
 public:
 	//기본기능함수들

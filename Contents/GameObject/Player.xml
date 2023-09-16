@@ -6,22 +6,32 @@
         <Rotation X="0" Y="0" Z="0"/>
     </Collider>
     <Transform>
-        <Position X="-10.079829" Y="-0.0079694167" Z="9.9626503"/>
+        <Position X="-21.890894" Y="-0.075038306" Z="149.09178"/>
         <Scale X="0.89999998" Y="1" Z="1"/>
         <Rotation X="0" Y="0" Z="0"/>
     </Transform>
-    <Children Size="3"/>
-    <Child0 Name="3Cam" Visible="true" ObType="2">
+    <Children Size="4"/>
+    <Child0 Name="1Cam" Visible="true" ObType="2">
         <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
         <Transform>
-            <Position X="-0.10123762" Y="5.4677062" Z="-4.447082"/>
+            <Position X="0.0033333334" Y="4.388" Z="0.5"/>
             <Scale X="1" Y="1" Z="1"/>
-            <Rotation X="0.2720001" Y="0.014000004" Z="0"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <Camera Ortho="false" Fov="1.047192" Width="1280" Height="696" NearZ="0.1" FarZ="500" viewportX="0" viewportY="0" viewportW="1280" viewportH="696"/>
+        <Children Size="0"/>
+    </Child0>
+    <Child1 Name="3Cam" Visible="true" ObType="2">
+        <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
+        <Transform>
+            <Position X="0.03220775" Y="5.3474717" Z="-4.6254916"/>
+            <Scale X="1" Y="1" Z="1"/>
+            <Rotation X="0.2240003" Y="0.0089996774" Z="0"/>
         </Transform>
         <Camera Ortho="false" Fov="1.047192" Width="1280" Height="720" NearZ="0.1" FarZ="500" viewportX="0" viewportY="0" viewportW="1280" viewportH="720"/>
         <Children Size="0"/>
-    </Child0>
-    <Child1 Name="DownPoint" Visible="true" ObType="0">
+    </Child1>
+    <Child2 Name="DownPoint" Visible="true" ObType="0">
         <Mesh File="1.Point.mesh"/>
         <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
         <Transform>
@@ -133,8 +143,8 @@
                 <Children Size="0"/>
             </Child1>
         </Child1>
-    </Child1>
-    <Child2 Name="UpPoint" Visible="true" ObType="0">
+    </Child2>
+    <Child3 Name="UpPoint" Visible="true" ObType="0">
         <Mesh File="1.Point.mesh"/>
         <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
         <Transform>
@@ -298,5 +308,5 @@
                 <Children Size="0"/>
             </Child1>
         </Child3>
-    </Child2>
+    </Child3>
 </Root>
