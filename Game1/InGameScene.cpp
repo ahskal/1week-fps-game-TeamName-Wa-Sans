@@ -2,31 +2,36 @@
 #include "InGameScene.h"
 #include "LobbyScene.h"
 //각자 작업 영역 header 파일 추가해주시면됩니다!
-#include "UNIT.h"
-#include "VillageMap.h"
-#include "house.h"
-#include "Player.h"
-#include "Weapon.h"
-#include "Gun.h"
+
 
 
 InGameScene::InGameScene()
 {
 	MainCam = Camera::Create();
 	MainCam->LoadFile("MainCam.xml");
-
 	Map = VillageMap::Create();
-
 	player = new Player();
 
-	//playerAim = UI::Create();
-	optionUI = UI::Create();
 
+
+	//playerAim = UI::Create();
+	optionUI = UI::Create("option");
+	optionUI->LoadFile("optionUI.xml");
+
+	soundUI = UI::Create("sound");
+	soundUI->LoadFile("soundUI.xml");
+	
+	Ingamethema = new Sound();
+	Ingamethema->AddSound("mainthema.mp3","mainthema", true);
+	Ingamethema->SetVolume("mainthema",0.2f);
+	
 	//아직 xml 추가안했음 이미지 작업후 xml 유아이 저장예정
 	//playerAim->LoadFile("playerAim.xml");
-	//optionUI->LoadFile("optionUI.xml");
+	
 	optionUI->visible = false;
+	soundUI->visible = false;
 	optionOpen = false;
+	soundOn = true;
 
 	CurrentTime = 0.0f;
 	zombieSpwanTime = 10.0f;
@@ -53,7 +58,8 @@ InGameScene::InGameScene()
 
 InGameScene::~InGameScene()
 {
-	MainCam->SaveFile("MainCam.xml");
+	
+	
 	Map->Release();
 }
 
@@ -61,7 +67,7 @@ void InGameScene::Init()
 {
 	Map->Init();
 	player->Init();
-
+	Ingamethema->Play("mainthema");
 }
 
 void InGameScene::Release()
@@ -75,14 +81,13 @@ void InGameScene::Update()
 	if (INPUT->KeyDown(VK_ESCAPE))
 	{
 		optionOpen = !optionOpen;
+		optionUI->visible = !optionUI->visible;
+		soundUI->visible = !soundUI->visible;
 	}
-	
 
 
 	if (!optionOpen)
 	{
-		optionUI->visible = !optionUI->visible;
-
 		Map->Update();
 		player->PlayerControl();
 		player->Update();
@@ -94,20 +99,21 @@ void InGameScene::Update()
 		//메인 카메라 컨트롤
 		Camera::ControlMainCam();
 
-		//gui 내부제작 위치 크기 등등
-		ImGui::Begin("Hierarchy");
-		MainCam->RenderHierarchy();
-		//Map->Hierarchy();
-		player->RenderHierarchy();
-		for (auto monsterPtr : monster)
-		{
-			monsterPtr->RenderHierarchy();
-		}
-		optionUI->RenderHierarchy();
-		ImGui::End();
+
 	}
 
 
+	ImGui::Begin("Hierarchy");
+	MainCam->RenderHierarchy();
+	//Map->Hierarchy();
+	player->RenderHierarchy();
+	for (auto monsterPtr : monster)
+	{
+		monsterPtr->RenderHierarchy();
+	}
+	optionUI->RenderHierarchy();
+	soundUI->RenderHierarchy();
+	ImGui::End();
 
 	//시간으로 좀비생성
 	/*if (TIMER->GetTick(CurrentTime, zombieSpwanTime))
@@ -126,6 +132,7 @@ void InGameScene::Update()
 
 
 	optionUI->Update();
+	soundUI->Update();
 }
 
 void InGameScene::LateUpdate()
@@ -133,6 +140,34 @@ void InGameScene::LateUpdate()
 	Map->LateUpdate();
 	player->CollidePlayerToFloor(Map);
 	Map->WallCollision(player->GetActor());
+
+	
+	
+	//사운드 ui 설정
+	{
+		
+		if ((soundUI->visible and soundUI->MouseOver() and soundOn))
+		{
+			if (INPUT->KeyDown(VK_LBUTTON))
+			{
+				soundOn = false;
+				soundUI->texture = RESOURCE->textures.Load("soundoff.png");
+				cout << "사운드꺼짐" << endl;
+				Ingamethema->Pause("mainthema");
+			}
+		}
+		else if ((soundUI->visible and soundUI->MouseOver() and !soundOn))
+		{
+			if (INPUT->KeyDown(VK_LBUTTON))
+			{
+				soundOn = true;
+				soundUI->texture = RESOURCE->textures.Load("soundon.png");
+				cout << "사운드켜짐" << endl;
+				Ingamethema->Resume("mainthema");
+			}
+		}
+	}
+
 }
 
 void InGameScene::PreRender()
@@ -152,6 +187,7 @@ void InGameScene::Render()
 		monsterPtr->Render();
 	}
 	optionUI->Render();
+	soundUI->Render();
 }
 
 void InGameScene::ResizeScreen()

@@ -10,3 +10,7 @@
 #include "Weapon.h"
 #include "Player.h"
 #include "Monster.h"
+#include "VillageMap.h"
+#include "house.h"
+
+

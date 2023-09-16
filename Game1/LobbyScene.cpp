@@ -39,7 +39,7 @@ LobbyScene::LobbyScene()
 	bg = new Sound();
 	bg->AddSound("LobbyBGM.mp3","Lobby",true);
 	bg->Play("Lobby");
-
+	bg->SetVolume("Lobby", 0.2f);
 }
 
 LobbyScene::~LobbyScene()

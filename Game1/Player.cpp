@@ -464,15 +464,23 @@ void Player::PlayerControl()
 	/** 점프*/
 }
 
-void Player::CollidePlayerToFloor(Grid* grid)
+void Player::CollidePlayerToFloor(VillageMap* map)
 {
-	// 여기서 매개변수 grid는 바닥이라고 생각하면 될듯
-	// 바닥과 부딪혔을때 isGridCollide = true;
-	if (player->Intersect(grid->Find("floor")))
+	if (player->Intersect(map))
 		isGridCollide = true;
 	else
 		isGridCollide = false;
 }
+
+//void Player::CollidePlayerToFloor(Grid* grid)
+//{
+//	// 여기서 매개변수 grid는 바닥이라고 생각하면 될듯
+//	// 바닥과 부딪혔을때 isGridCollide = true;
+//	if (player->Intersect(grid->Find("floor")))
+//		isGridCollide = true;
+//	else
+//		isGridCollide = false;
+//}
 
 void Player::CollidePlayerToWall(Actor* wall)
 {

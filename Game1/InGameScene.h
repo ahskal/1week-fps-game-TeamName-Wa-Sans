@@ -19,8 +19,14 @@ private:
 	UI* playerAim;
 	UI* optionUI;
 
+	UI* soundUI;
+
+	Sound* Ingamethema;
+	//설정창 켜져있는지 불리언
 	bool optionOpen = false;
-	
+	//사운드 켜져있는지 불리언
+	bool soundOn = false;
+
 public:
 	//기본기능함수들
 	InGameScene();

@@ -41,6 +41,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GameObject", "GameObject", 
 		Contents\GameObject\Cam.xml = Contents\GameObject\Cam.xml
 		Contents\GameObject\Cam1.xml = Contents\GameObject\Cam1.xml
 		Contents\GameObject\Grid.xml = Contents\GameObject\Grid.xml
+		Contents\GameObject\optionUI.xml = Contents\GameObject\optionUI.xml
 		Contents\GameObject\Player.xml = Contents\GameObject\Player.xml
 		Contents\GameObject\Remington.xml = Contents\GameObject\Remington.xml
 		Contents\GameObject\VillageMap.xml = Contents\GameObject\VillageMap.xml

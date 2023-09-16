@@ -10,7 +10,8 @@ Main::Main()
 
 Main::~Main()
 {
-    
+    SCENE->DeleteScene("InGame");
+    SCENE->DeleteScene("LobbyScene");
 
 }
 

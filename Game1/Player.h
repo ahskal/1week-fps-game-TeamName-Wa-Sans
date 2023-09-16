@@ -51,7 +51,7 @@ public:
 	void PlayerControl();
 	void CollidePlayerToFloor(class VillageMap* map); 
 		Actor* GetActor() const { return player; }
-	void CollidePlayerToFloor(class Grid* grid);
+	//void CollidePlayerToFloor(class Grid* grid);
 	void CollidePlayerToWall(class Actor* wall);
 
 	/** 모션 함수*/
