@@ -48,6 +48,15 @@ void Main::LateUpdate()
 
     
 
+    Map->LateUpdate();
+    //맵 불러오는 도중에는 화면을 가림
+    if (Map->IsSetHouseDone()) {
+        ui->visible = true;
+    }
+    else {
+        ui->visible = false;
+    }
+}
 void Main::PreRender()
 {
 
@@ -76,7 +85,6 @@ int WINAPI wWinMain(HINSTANCE instance, HINSTANCE prevInstance, LPWSTR param, in
     main->Init();
 
     int wParam = (int)WIN->Run(main);
-
 
     main->Release();
     SafeDelete(main);
