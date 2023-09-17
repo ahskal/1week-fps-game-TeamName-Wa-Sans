@@ -27,7 +27,7 @@ void Monster::RenderHierarchy()
 
 void Monster::Update()
 {
-    cout << monster->rotation.y << endl;
+    //cout << monster->rotation.y << endl;
     //몬스터 가만히 있는 상태
     if (monType == MonType::IDLE)
     {

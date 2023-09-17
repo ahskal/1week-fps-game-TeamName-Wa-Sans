@@ -1,0 +1,12 @@
+<Root Name="killcount2" Visible="true" ObType="4">
+    <Mesh File="6.UI.mesh"/>
+    <Shader File="6.UI.hlsl"/>
+    <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
+    <Texture File="num0.png"/>
+    <Transform>
+        <Position X="0.89999998" Y="0.85000002" Z="0"/>
+        <Scale X="0.02" Y="0.050000001" Z="1"/>
+        <Rotation X="0" Y="0" Z="0"/>
+    </Transform>
+    <Children Size="0"/>
+</Root>

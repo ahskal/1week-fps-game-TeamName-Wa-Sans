@@ -23,7 +23,10 @@ private:
 	UI* sensitivityUI;
 
 	//미션 ui 추가
-	UI* missionUI;
+	UI* killmissionUI;
+	UI* killcountUI1;
+	UI* killcountUI2;
+
 	//게임오버 ui추가
 	UI* gameoverUI;
 
@@ -35,7 +38,11 @@ private:
 
 	//마우스 감도변수
 	float mouseSpeed;
-
+	//몬스터 킬숫자
+	int killCount;
+	//죽여야할 미션몬스터숫자
+	int missionKill;
+	int uikillcount;
 public:
 	//기본기능함수들
 	InGameScene();
@@ -52,7 +59,8 @@ public:
 	//Window Resize
 	virtual void ResizeScreen();
 	
-	//객체들 상호작용함수
+	//킬카운트함수
+	
 
 
 

@@ -13,6 +13,7 @@ protected:
 	float     hp;
 	float     damage;
 
+
 	UnitType  unitType;
 	Vector3   spawnPos;
 
