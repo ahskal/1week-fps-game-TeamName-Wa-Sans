@@ -4,10 +4,8 @@ class Main : public Scene
 {
 private:
 	
-	
 
-	Actor* root;
-	Vector3 LastPos;
+
 public:
 	Main();
 	~Main();
