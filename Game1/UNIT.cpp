@@ -11,8 +11,9 @@ UNIT::~UNIT()
 
 }
 
-void UNIT::Attack(UNIT* unit)
+void UNIT::Attack(UNIT* unit, float dam)
 {
+	damage = dam;
 	unit->hp -= damage;
 }
 

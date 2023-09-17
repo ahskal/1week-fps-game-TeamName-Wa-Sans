@@ -13,7 +13,7 @@ private:
 	bool	isfire = false;	// 발사속도가 되면 true, 아니면 false (false동안에는 발사 못함)
 	bool	isLoad = false;		// 장전중인지
 	bool	isrecoil = false;	// 반동이 있는지
-
+	bool	isAttack = false;
 
 	float	fireTime;		// 발사속도(쏘는 속도)
 	float	TriggerTime;	// 발사속도(쏘는 속도)
@@ -31,8 +31,15 @@ public:
 
 
 	void ShotGunControl();
+	void ShotCunAim(class Player* player);
+
+
+	/** Get함수 */
 	Actor* GetShotGun() { return shotGun; }
+	int GetBulletCount() const { return bulletCount; }
 	const bool GetIsLoad() { return isLoad; }
 	const bool GetIsRecoil() { return isrecoil; }
+	const bool GetIsAttack() { return isAttack; }
+	float GetFireTime() const { return fireTime; }
 };
 

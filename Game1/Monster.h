@@ -8,6 +8,8 @@ enum class MonType
 class Monster : public UNIT
 {
 private:
+	bool debug = false;
+
 	Actor* monster;
 	Vector3 lastPos;
 	Actor* col;
@@ -34,6 +36,7 @@ public:
 	
 	Actor* GetMonsterActor() const { return monster; }
 	
+	void CollidePlayer(Player* player);
 	void Chase(Player* player);	//플레이어 추적 함수 *** 플레이어 타입으로 변환하세요 ***
 };
 

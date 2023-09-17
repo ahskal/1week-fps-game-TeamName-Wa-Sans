@@ -72,7 +72,6 @@ public:
 
 
 
-
 	//프라이빗 변수생성
 private:
 

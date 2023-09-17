@@ -12,5 +12,3 @@
 #include "Monster.h"
 #include "VillageMap.h"
 #include "house.h"
-
-

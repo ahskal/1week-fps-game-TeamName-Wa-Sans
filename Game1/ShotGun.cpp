@@ -17,7 +17,7 @@ ShotGun::ShotGun()
 
     bulletCount = 8;
     magazineCount = 8;
-    maxBullet = 40;
+    maxBullet = 10;
 }
 
 ShotGun::~ShotGun()
@@ -109,6 +109,7 @@ void ShotGun::ShotGunControl()
         */
         if (fireTime < 0.4f)
         {
+            isAttack = false;
             if (shotGun->rotation.x > 0.0f)
             {
                 shotGun->rotation.x = 0.0f;
@@ -154,6 +155,7 @@ void ShotGun::ShotGunControl()
                 bulletCount--;
                 SOUND->Stop("ShotgunFire");
                 SOUND->Play("ShotgunFire");
+                isAttack = true;
             }
         }
 
@@ -162,4 +164,22 @@ void ShotGun::ShotGunControl()
             shotGun->Find("TriggerPoint")->rotation.x = -2 * ToRadian;
         }
     }
+}
+
+void ShotGun::ShotCunAim(Player* player)
+{
+    //shotGun->GetShotGun()->rotation.y = 0.0f * ToRadian;
+
+    player->GetPlayerActor()->Find("UpPoint")->rotation.y = 36.0f * ToRadian;
+
+    player->GetPlayerActor()->Find("RightShoulderPoint")->rotation.x = 0.0f * ToRadian;
+    player->GetPlayerActor()->Find("RightShoulderPoint")->rotation.y = -61.0f * ToRadian;
+    player->GetPlayerActor()->Find("RightShoulderPoint")->rotation.z = 50.0f * ToRadian;
+
+    player->GetPlayerActor()->Find("RightArmPoint")->rotation.x = -123.0f * ToRadian;
+
+    player->GetPlayerActor()->Find("LeftShoulderPoint")->rotation.x = -90.0f * ToRadian;
+    player->GetPlayerActor()->Find("LeftShoulderPoint")->rotation.y = 0.0f * ToRadian;
+
+    player->GetPlayerActor()->Find("LeftArmPoint")->rotation.x = 0.0f * ToRadian;
 }

@@ -4,15 +4,21 @@ Monster::Monster()
 {
     monster = Actor::Create();
     monster->LoadFile("Monster.xml");
+    SOUND->AddSound("ZombieAttack.wav", "ZombieAttack");
+    SOUND->AddSound("ZombieIdle.wav", "ZombieIdle");
+    
+    //SOUND->SetVolume("ZombieAttack", 0.2f);
+    SOUND->Play("ZombieIdle");
 }
 
 Monster::~Monster()
 {
-
+    
 }
 
 void Monster::Init(Vector3 spwan)
 {
+    
     this->GetMonsterActor()->SetWorldPos(spwan);
     hp = 100.0f;
     damage = 15.0f;
@@ -27,55 +33,36 @@ void Monster::RenderHierarchy()
 
 void Monster::Update()
 {
-    //cout << monster->rotation.y << endl;
+    /** 디버그모드*/
+    if (INPUT->KeyDown(VK_F2))
+    {
+        debug = !debug;
+    }
+    if (debug)
+        monster->collider->visible = true;
+    else monster->collider->visible = false;
+    /** 디버그모드*/
+
+
+    ImGui::Text("Monster HP : %d", (int)hp);
+    ImGui::SameLine();
+    ImGui::Text("\tMonster Damage : %d", (int)damage);
+
+
     //몬스터 가만히 있는 상태
     if (monType == MonType::IDLE)
     {
+        SOUND->Play("ZombieIdle");
+
         monster->Find("LeftThigh")->rotation.x = 0;
         monster->Find("RightThigh")->rotation.x = 0;
     }
     lastPos = monster->GetWorldPos();   //실시간 위치
 
-    //몬스터가 앞으로 움직인다면...
-    if (INPUT->KeyPress('W'))
-    {
-        monType = MonType::WALK;
-        monster->MoveWorldPos(monster->GetForward() * 3 * DELTA);
-
-        monster->Find("LeftThigh")->rotation.x += LegDir * DELTA;
-        monster->Find("RightThigh")->rotation.x -= LegDir * DELTA;
-    }
-    if (INPUT->KeyUp('W'))
-    {
-        monType = MonType::IDLE;
-    }
-
-    //몬스터가 뒤로 움직인다면...
-    if (INPUT->KeyPress('S'))
-    {
-        monster->MoveWorldPos(-monster->GetForward() * 3 * DELTA);
-    }
-
-    //몬스터가 몸을 돌린다면...
-    if (INPUT->KeyPress('A'))
-    {
-        monster->rotation.y -= DELTA;
-    }
-    if (INPUT->KeyPress('D'))
-    {
-        monster->rotation.y += DELTA;
-    }
-
     //보행 중 다리를 일정 각도 돌렸을 때(ex : 현재 10도)
     if (monster->Find("LeftThigh")->rotation.x / ToRadian > 10 or monster->Find("LeftThigh")->rotation.x / ToRadian < -10)
     {
         LegDir = -LegDir;
-    }
-
-    //충돌 시 막히기
-    if (isCollide)
-    {
-        monster->SetWorldPos(lastPos);
     }
 
     monster->Update();
@@ -86,11 +73,34 @@ void Monster::Render()
     monster->Render();
 }
 
+void Monster::CollidePlayer(Player* player)
+{
+    if (monster->Intersect(player->GetPlayerActor()))
+    {
+        monster->SetWorldPos(lastPos);
+        monster->Update();
+    }
 
+    float moveToPlayerLength = (player->GetPlayerActor()->GetWorldPos() - monster->GetWorldPos()).Length(); // 100일때 0.1 10일때 1
+    if (moveToPlayerLength > 100.0f)
+    {
+        SOUND->SetVolume("ZombieIdle", 0.05f);
+    }
+    else if (moveToPlayerLength > 10.0f and moveToPlayerLength <= 100.0f)
+    {
+        SOUND->SetVolume("ZombieIdle", 1.0f / moveToPlayerLength * 10.0f);
+    }
+    else if (moveToPlayerLength <= 10.0f)
+    {
+        SOUND->SetVolume("ZombieIdle", 1.0f);
+    }
+}
 
 //플레이어 추적 함수
 void Monster::Chase(Player* player)
 {
+    CollidePlayer(player);
+
     if (monster->Find("MonSight")->Intersect(player->GetPlayerActor()) or monster->Find("MonBackHead")->Intersect(player->GetPlayerActor()))
         isChase = true;
     else
@@ -98,18 +108,12 @@ void Monster::Chase(Player* player)
 
     if (isChase)
     {
-        if (!isCollide)
-        {
-            
-            monType = MonType::WALK;
-            Vector3 moveToPlayer = player->GetPlayerActor()->GetWorldPos() - monster->GetWorldPos();
-            monster->rotation.y = atan2f(moveToPlayer.z, moveToPlayer.x);
-            //cout << moveToPlayer.x << " " << moveToPlayer.Length() << " " << acos(moveToPlayer.x / moveToPlayer.Length())/ ToRadian << endl;
-            monster->MoveWorldPos(moveToPlayer * DELTA * 0.4f);
-            /*monster->rotation.y = 앞에서 인식하든 뒤에서 인식하든 캐릭터 방향을 바라봐야 하는데 너무 어렵습니다.현재 앞에서 오는 건 따라오니까
-                                    덜 부자연스러운데 뒤에 있음을 인식하고서는 뒷걸음으로 다가오니 추후에 변경해야 하는 부분으로 생각합니다.*/
-            monster->Find("LeftThigh")->rotation.x += LegDir * DELTA;
-            monster->Find("RightThigh")->rotation.x -= LegDir * DELTA;
-        }
+        monType = MonType::WALK;
+        Vector3 moveToPlayer = player->GetPlayerActor()->GetWorldPos() - monster->GetWorldPos();
+        monster->rotation.y = atan2f(moveToPlayer.x, moveToPlayer.z);
+        //cout << moveToPlayer.x << " " << moveToPlayer.Length() << " " << acos(moveToPlayer.x / moveToPlayer.Length())/ ToRadian << endl;
+        monster->MoveWorldPos(monster->GetForward() * DELTA * 7.0f);
+        monster->Find("LeftThigh")->rotation.x += LegDir * DELTA;
+        monster->Find("RightThigh")->rotation.x -= LegDir * DELTA;
     }
 }

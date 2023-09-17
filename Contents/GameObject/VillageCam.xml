@@ -5,6 +5,6 @@
         <Scale X="1" Y="1" Z="1"/>
         <Rotation X="138.69031" Y="1252.2089" Z="0"/>
     </Transform>
-    <Camera Ortho="false" Fov="1.047192" Width="1145" Height="607" NearZ="0.1" FarZ="1000" viewportX="0" viewportY="0" viewportW="1145" viewportH="607"/>
+    <Camera Ortho="false" Fov="1.047192" Width="1488" Height="1000" NearZ="0.1" FarZ="1000" viewportX="0" viewportY="0" viewportW="1488" viewportH="1000"/>
     <Children Size="0"/>
 </Root>

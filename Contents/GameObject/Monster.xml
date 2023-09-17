@@ -6,7 +6,7 @@
         <Rotation X="0" Y="0" Z="0"/>
     </Collider>
     <Transform>
-        <Position X="5.3337607" Y="0" Z="2.0828431"/>
+        <Position X="-30.715096" Y="0" Z="7.8049316"/>
         <Scale X="1" Y="1" Z="1"/>
         <Rotation X="0" Y="0.06981317" Z="0"/>
     </Transform>
@@ -23,7 +23,8 @@
         <Child0 Name="BodyMesh" Visible="true" ObType="0">
             <Mesh File="6.Cube.mesh"/>
             <Shader File="6.Cube.hlsl"/>
-            <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
+            <Shader_Color R="0.44072285" G="0.60722017" B="0.45560348" A="0.5"/>
+            <Texture File="ZombieSKin.png"/>
             <Transform>
                 <Position X="0" Y="0.5" Z="0"/>
                 <Scale X="0.75" Y="1.2" Z="0.40000001"/>
@@ -42,7 +43,7 @@
             <Child0 Name="LeftArm" Visible="true" ObType="0">
                 <Mesh File="6.Cube.mesh"/>
                 <Shader File="6.Cube.hlsl"/>
-                <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
+                <Shader_Color R="0.49019608" G="0.49019608" B="0.49019608" A="0.49019608"/>
                 <Transform>
                     <Position X="0" Y="-0.80000001" Z="0"/>
                     <Scale X="0.25" Y="1" Z="0.2"/>
@@ -91,9 +92,10 @@
             </Transform>
             <Children Size="1"/>
             <Child0 Name="Head" Visible="true" ObType="0">
-                <Mesh File="1.Cube.mesh"/>
+                <Mesh File="6.Cube.mesh"/>
                 <Shader File="6.Cube.hlsl"/>
-                <Shader_Color R="9.9999997e-05" G="9.9989993e-05" B="9.9989993e-05" A="0.5"/>
+                <Shader_Color R="0" G="0.49019608" B="0" A="0.50196081"/>
+                <Texture File="ZombieFaceSkin.png"/>
                 <Transform>
                     <Position X="0" Y="0.5" Z="0.1"/>
                     <Scale X="0.5" Y="0.5" Z="0.5"/>
@@ -113,7 +115,8 @@
             <Child0 Name="RightArm" Visible="true" ObType="0">
                 <Mesh File="6.Cube.mesh"/>
                 <Shader File="6.Cube.hlsl"/>
-                <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
+                <Shader_Color R="0.49019608" G="0.49019608" B="0.49019608" A="0.49019608"/>
+                <Texture File="ZombieSKin.png"/>
                 <Transform>
                     <Position X="0" Y="-0.80000001" Z="0"/>
                     <Scale X="0.2" Y="1" Z="0.2"/>
@@ -126,6 +129,7 @@
             <Mesh File="6.Cube.mesh"/>
             <Shader File="6.Cube.hlsl"/>
             <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
+            <Texture File="ZombieSKin.png"/>
             <Transform>
                 <Position X="-0.40000001" Y="-1.25" Z="0"/>
                 <Scale X="0.30000001" Y="0.60000002" Z="0.30000001"/>
@@ -167,8 +171,8 @@
     <Child2 Name="MonSight" Visible="true" ObType="0">
         <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
         <Collider ColliderType="2" Visible="true">
-            <Position X="0" Y="0" Z="0"/>
-            <Scale X="3" Y="1.95" Z="1"/>
+            <Position X="0" Y="0" Z="0.8125"/>
+            <Scale X="6.0999999" Y="2" Z="1.95"/>
             <Rotation X="0" Y="0" Z="0"/>
         </Collider>
         <Transform>
@@ -180,8 +184,8 @@
         <Child0 Name="MonBackHead" Visible="true" ObType="0">
             <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
             <Collider ColliderType="0" Visible="true">
-                <Position X="0" Y="0" Z="-1.2"/>
-                <Scale X="4.0999999" Y="4.0999999" Z="4.0999999"/>
+                <Position X="0" Y="0" Z="-1.19375"/>
+                <Scale X="6" Y="6" Z="6"/>
                 <Rotation X="0" Y="0" Z="0"/>
             </Collider>
             <Transform>

@@ -3,9 +3,6 @@
 
 LobbyScene::LobbyScene()
 {
-	
-
-
 	lobbycam = Camera::Create();
 	//lobbycam->LoadFile("lobbycam.xml");
 	Camera::main = lobbycam;
@@ -23,11 +20,6 @@ LobbyScene::LobbyScene()
 	themaback = UI::Create("themaback");
 	themaback->LoadFile("themaback.xml");
 
-
-
-
-
-
 	lobbycam->viewport.x = 0.0f;
 	lobbycam->viewport.y = 0.0f;
 	lobbycam->viewport.width = App.GetWidth();
@@ -38,8 +30,6 @@ LobbyScene::LobbyScene()
 
 	bg = new Sound();
 	bg->AddSound("LobbyBGM.mp3","Lobby",true);
-	bg->Play("Lobby");
-	bg->SetVolume("Lobby", 0.2f);
 }
 
 LobbyScene::~LobbyScene()
@@ -49,7 +39,8 @@ LobbyScene::~LobbyScene()
 
 void LobbyScene::Init()
 {
-	
+	bg->Play("Lobby");
+	bg->SetVolume("Lobby", 0.2f);
 
 	gamestart->visible = false;
 	exit->visible = false;
@@ -103,7 +94,6 @@ void LobbyScene::LateUpdate()
 
 void LobbyScene::PreRender()
 {
-
 }
 
 void LobbyScene::Render()
@@ -119,7 +109,6 @@ void LobbyScene::Render()
 	exit->Render();
 	mouse->SetWorldPos(Utility::MouseToNDC());
 	mouse->Render();
-
 }
 
 void LobbyScene::ResizeScreen()

@@ -7,8 +7,8 @@ Gun::Gun()
 
     SOUND->AddSound("beretta92Sound.wav", "beretta92");
     SOUND->AddSound("NoBullet.wav", "NoBullet");
-    SOUND->SetVolume("beretta92", 0.1f);
-    SOUND->SetVolume("NoBullet", 0.1f);
+    SOUND->SetVolume("beretta92", 0.5f);
+    SOUND->SetVolume("NoBullet", 0.5f);
     bulletCount = 15;
     maxBullet = 45;
     magazineCount = 15;
@@ -91,11 +91,6 @@ void Gun::GunControl()
             gun->Find("TriggerPoint")->rotation.x = -2 * ToRadian;
         }
 
-
-        if (TIMER->GetTick(fireTime, 1.0f))
-        {
-            b_fire = true;
-        }
         // 공격시
         if (b_fire)
         {
@@ -105,11 +100,23 @@ void Gun::GunControl()
                 gun->Find("BarrelPoint")->SetLocalPosZ(-0.01f);
                 SOUND->Stop("beretta92");
                 SOUND->Play("beretta92");
+                isAttack = true;
                 b_fire = false;
                 fireTime = 0.0f;
                 bulletCount--;
             }
 
+        }
+        else
+        {
+            if (TIMER->GetTick(attackTime, 0.1f))
+            {
+                isAttack = false;
+            }
+            if (TIMER->GetTick(fireTime, 0.5f))
+            {
+                b_fire = true;
+            }
         }
         if (INPUT->KeyUp(VK_LBUTTON))
         {
@@ -117,4 +124,17 @@ void Gun::GunControl()
             gun->Find("BarrelPoint")->SetLocalPosZ(0.0f);
         }
     }
+}
+
+void Gun::GunAim(Player* player)
+{
+    player->GetPlayerActor()->Find("RightArmPoint")->rotation.x = 0.0f;
+    player->GetPlayerActor()->Find("LeftArmPoint")->rotation.x = 0.0f;
+
+    player->GetPlayerActor()->Find("LeftShoulderPoint")->rotation.x = -75.0f * ToRadian;
+    player->GetPlayerActor()->Find("RightShoulderPoint")->rotation.x = -75.0f * ToRadian;
+
+    player->GetPlayerActor()->Find("LeftShoulderPoint")->rotation.y = 25.0f * ToRadian;
+    player->GetPlayerActor()->Find("RightShoulderPoint")->rotation.y = -25.0f * ToRadian;
+    gun->rotation.x = 0.0f; // 총이 손을 따라다니게끔
 }
