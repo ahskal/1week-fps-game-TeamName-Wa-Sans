@@ -399,7 +399,8 @@ void Player::CollidePlayerToZombie(Monster* monster)
 		}
 		else if (gunType == GunType::Gun)
 		{
-			if (INPUT->KeyPress(VK_RBUTTON) and INPUT->KeyDown(VK_LBUTTON) and gun->GetBulletCount() != 0)
+			if (INPUT->KeyPress(VK_RBUTTON) and INPUT->KeyDown(VK_LBUTTON) 
+				and gun->GetBulletCount() != 0 and gun->GetIsAttack())
 			{
 				if (moveToPlayerLength > 70.0f and moveToPlayerLength <= 120.0f)
 				{
@@ -415,7 +416,8 @@ void Player::CollidePlayerToZombie(Monster* monster)
 		}
 		else if (gunType == GunType::ShotGun)
 		{
-			if (INPUT->KeyPress(VK_RBUTTON) and INPUT->KeyDown(VK_LBUTTON) and shotGun->GetBulletCount() != 0)
+			if (INPUT->KeyPress(VK_RBUTTON) and INPUT->KeyDown(VK_LBUTTON) and 
+				shotGun->GetBulletCount() != 0 and shotGun->GetIsAttack())
 			{
 				if (moveToPlayerLength < 10.0f)
 				{

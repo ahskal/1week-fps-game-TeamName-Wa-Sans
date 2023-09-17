@@ -102,8 +102,8 @@ void InGameScene::Init()
 	player->Init();
 	Ingamethema->SetVolume("mainthema", 0.2f);
 	Ingamethema->Play("mainthema");
-	uikillcount = 1;
-	missionKill = 1;
+	uikillcount = 20;
+	missionKill = 20;
 	killCount = 0;
 }
 
@@ -141,7 +141,7 @@ void InGameScene::Update()
 	{
 		// cout<< killCount << endl;
 		uikillcount = missionKill - killCount;
-
+		uikillcount = max(0, missionKill - killCount);
 		int tensDigit = uikillcount / 10;    // 10의 자리 숫자
 		int onesDigit = uikillcount % 10;    // 1의 자리 숫자
 
@@ -218,18 +218,19 @@ void InGameScene::Update()
 
 	//작업용 카메라 플레이어 3인칭캠 변환
 	PlayerCam->SetWorldPos(player->GetPlayerActor()->Find("HeadMesh")->GetWorldPos()); // 플레이어 캠이 플레이어의 머리좌표를 계속 받아오게하기
-	{
-		//작업용
-		if (INPUT->KeyDown(VK_F5))
-		{
-			Camera::main = MainCam;
-		}
-		//플레이어 1인칭시점
-		if (INPUT->KeyDown(VK_F6))
-		{
-			Camera::main = PlayerCam;
-		}
-	}
+	Camera::main = PlayerCam;
+	//{
+	//	//작업용
+	//	if (INPUT->KeyDown(VK_F5))
+	//	{
+	//		Camera::main = MainCam;
+	//	}
+	//	//플레이어 1인칭시점
+	//	if (INPUT->KeyDown(VK_F6))
+	//	{
+	//		Camera::main = PlayerCam;
+	//	}
+	//}
 
 	//옵션창 ui 열기닫기
 	{
@@ -275,20 +276,37 @@ void InGameScene::Update()
 
 	//마우스 감도 조절
 	{
-		if (INPUT->KeyPress(VK_F1))
+		//중앙값
+		POINT ptMouse;
+		ptMouse.x = App.GetHalfWidth();
+		ptMouse.y = App.GetHalfHeight();
+		Vector3 Rot;
+		Rot.x = (INPUT->position.y - ptMouse.y) * mouseSpeed;
+		Rot.y = (INPUT->position.x - ptMouse.x) * mouseSpeed;
+		Camera::main->rotation += Rot;
+		player->PlayerRotationY(Camera::main->rotation);
+		if (!optionOpen)
 		{
-			//중앙값
-			POINT ptMouse;
-			ptMouse.x = App.GetHalfWidth();
-			ptMouse.y = App.GetHalfHeight();
-			Vector3 Rot;
-			Rot.x = (INPUT->position.y - ptMouse.y) * mouseSpeed;
-			Rot.y = (INPUT->position.x - ptMouse.x) * mouseSpeed;
-			Camera::main->rotation += Rot;
-			player->PlayerRotationY(Camera::main->rotation);
 			ClientToScreen(App.GetHandle(), &ptMouse);
 			SetCursorPos(ptMouse.x, ptMouse.y);
+			ShowCursor(false);
 		}
+		if (optionOpen) ShowCursor(true);
+		
+		//if (INPUT->KeyPress(VK_F1))
+		//{
+		//	//중앙값
+		//	POINT ptMouse;
+		//	ptMouse.x = App.GetHalfWidth();
+		//	ptMouse.y = App.GetHalfHeight();
+		//	Vector3 Rot;
+		//	Rot.x = (INPUT->position.y - ptMouse.y) * mouseSpeed;
+		//	Rot.y = (INPUT->position.x - ptMouse.x) * mouseSpeed;
+		//	Camera::main->rotation += Rot;
+		//	player->PlayerRotationY(Camera::main->rotation);
+		//	ClientToScreen(App.GetHandle(), &ptMouse);
+		//	SetCursorPos(ptMouse.x, ptMouse.y);
+		//}
 	}
 
 	//하이어라이키
@@ -315,11 +333,6 @@ void InGameScene::Update()
 	}
 
 
-
-
-
-
-
 	playerAim->Update();
 	optionUI->Update();
 	soundUI->Update();
@@ -336,23 +349,16 @@ void InGameScene::LateUpdate()
 	Map->LateUpdate();
 	player->CollidePlayerToFloor(Map);											// 플레이어 - 바닥 충돌함수
 	player->CollidePlayerToWall(Map->WallCollision(player->GetPlayerActor()));	// 플레이어 - 벽 충돌함수
-	for (auto monsterPtr : monster)
-	{
-		player->CollidePlayerToZombie(monsterPtr);										// 플레이어 - 좀비 충돌함수
-	}
+	player->CollidePlayerToItem(Map->ItemCollision(player->GetPlayerActor()));	// 플레이어 - 아이템 충돌함수
 	for (auto monsterPtr : monster)
 	{
 		if (Map->HouseToMonsterCollision(monsterPtr->GetMonsterActor())) {
 			monsterPtr->GoBack();
 		}
 	}
-	//몬스터 플레이어 추적
 	for (auto monsterPtr : monster)
 	{
 		player->CollidePlayerToZombie(monsterPtr);								// 플레이어 - 좀비 충돌함수
-		
-		//monsterPtr->CollideWall(Map->WallCollision(monsterPtr));				//좀비 - 벽 충돌함수
-
 		monsterPtr->Chase(player);												// 좀비 - 플레이어 추척함수
 	}
 

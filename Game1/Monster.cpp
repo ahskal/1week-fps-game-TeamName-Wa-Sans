@@ -8,7 +8,7 @@ Monster::Monster()
     SOUND->AddSound("ZombieIdle.wav", "ZombieIdle");
     
     //SOUND->SetVolume("ZombieAttack", 0.2f);
-    SOUND->Play("ZombieAttack");
+    SOUND->Play("ZombieIdle");
 }
 
 Monster::~Monster()
@@ -52,26 +52,12 @@ void Monster::Update()
     //몬스터 가만히 있는 상태
     if (monType == MonType::IDLE)
     {
-        SOUND->Play("ZombieAttack");
-        //SOUND->Play("ZombieIdle");
-        //SOUND->Play("ZombieAttack");
-        
+        SOUND->Play("ZombieIdle");
 
         monster->Find("LeftThigh")->rotation.x = 0;
         monster->Find("RightThigh")->rotation.x = 0;
     }
     lastPos = monster->GetWorldPos();   //실시간 위치
-
-    if (isCollide)
-    {
-        SOUND->Play("ZombieAttack");
-        monster->SetWorldPos(lastPos);
-        monster->Update();
-    }
-    else
-    {
-        SOUND->Stop("ZombieAttack");
-    }
 
     //보행 중 다리를 일정 각도 돌렸을 때(ex : 현재 10도)
     if (monster->Find("LeftThigh")->rotation.x / ToRadian > 10 or monster->Find("LeftThigh")->rotation.x / ToRadian < -10)
@@ -87,29 +73,13 @@ void Monster::Render()
     monster->Render();
 }
 
-
-
-void Monster::CollideWall(bool isCollide)
-{
-    if (isCollide)
-    {
-        monster->SetWorldPosX(lastPos.x);
-        monster->SetWorldPosZ(lastPos.z);
-        monster->Update();
-    }
-}
-
 void Monster::CollidePlayer(Player* player)
 {
     if (monster->Intersect(player->GetPlayerActor()))
     {
-        isCollide = true;
+        monster->SetWorldPos(lastPos);
+        monster->Update();
     }
-    else
-    {
-        isCollide = false;
-    }
-
 
     float moveToPlayerLength = (player->GetPlayerActor()->GetWorldPos() - monster->GetWorldPos()).Length(); // 100일때 0.1 10일때 1
     if (moveToPlayerLength > 100.0f)

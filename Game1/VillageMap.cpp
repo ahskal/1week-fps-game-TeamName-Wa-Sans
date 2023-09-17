@@ -87,7 +87,7 @@ void VillageMap::Update()
 		}
 	house2->Update();
 
-	if (TIMER->GetTick(timer, 1.0f)) {
+	if (TIMER->GetTick(timer, 5.0f)) {
 
 		Actor* temp = Actor::Create();
 		temp->LoadFile("Item.xml");

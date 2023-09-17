@@ -17,7 +17,7 @@ ShotGun::ShotGun()
 
     bulletCount = 8;
     magazineCount = 8;
-    maxBullet = 40;
+    maxBullet = 10;
 }
 
 ShotGun::~ShotGun()
@@ -109,6 +109,7 @@ void ShotGun::ShotGunControl()
         */
         if (fireTime < 0.4f)
         {
+            isAttack = false;
             if (shotGun->rotation.x > 0.0f)
             {
                 shotGun->rotation.x = 0.0f;
@@ -154,6 +155,7 @@ void ShotGun::ShotGunControl()
                 bulletCount--;
                 SOUND->Stop("ShotgunFire");
                 SOUND->Play("ShotgunFire");
+                isAttack = true;
             }
         }
 
