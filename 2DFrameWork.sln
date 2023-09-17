@@ -58,6 +58,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Contents\GameObject\VillageHouse3.xml = Contents\GameObject\VillageHouse3.xml
 		Contents\GameObject\VillageHouse4.xml = Contents\GameObject\VillageHouse4.xml
 		Contents\GameObject\VillageMap.xml = Contents\GameObject\VillageMap.xml
+		Contents\GameObject\Monster.xml = Contents\GameObject\Monster.xml
+		Contents\GameObject\testCol.xml = Contents\GameObject\testCol.xml
 	EndProjectSection
 EndProject
 Global
