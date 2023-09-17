@@ -16,6 +16,20 @@ void UNIT::Attack(UNIT* unit)
 	unit->hp -= damage;
 }
 
+bool UNIT::Die(UNIT* unit)
+{
+	cout << unit <<"»ç¸Á" << endl;
+	return true;
+}
+
+
+
+
+
+
+
+
+
 
 
 

@@ -19,7 +19,10 @@ Monster::~Monster()
 
 void Monster::Init(Vector3 spwan)
 {
-    
+    this->GetMonsterActor()->SetWorldPos(spwan);
+    hp = 100.0f;
+    damage = 15.0f;
+    speed = 5.0f;
 }
 
 void Monster::RenderHierarchy()

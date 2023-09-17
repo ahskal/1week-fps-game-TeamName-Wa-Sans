@@ -17,7 +17,9 @@ InGameScene::InGameScene()
 
 
 
-	//playerAim = UI::Create();
+	playerAim = UI::Create("playeraim");
+	playerAim->LoadFile("playerAim.xml");
+
 	optionUI = UI::Create("option");
 	optionUI->LoadFile("optionUI.xml");
 
@@ -28,15 +30,21 @@ InGameScene::InGameScene()
 	sensitivityUI->LoadFile("sensitivityUI.xml");
 
 	Ingamethema = new Sound();
-	Ingamethema->AddSound("mainthema.mp3","mainthema", true);
-	Ingamethema->SetVolume("mainthema",0.2f);
-	
-	//아직 xml 추가안했음 이미지 작업후 xml 유아이 저장예정
-	//playerAim->LoadFile("playerAim.xml");
-	
+	Ingamethema->AddSound("mainthema.mp3", "mainthema", true);
+	Ingamethema->SetVolume("mainthema", 0.2f);
+
+	missionUI = UI::Create("mission");
+	//missionUI->LoadFile("missionUI.xml");
+
+	gameoverUI = UI::Create("gameover");
+	gameoverUI->LoadFile("gameoverUI.xml");
+
+	playerAim->visible = true;
 	optionUI->visible = false;
 	soundUI->visible = false;
 	sensitivityUI->visible = false;
+	missionUI->visible = true;
+	gameoverUI->visible = false;
 	optionOpen = false;
 	soundOn = true;
 
@@ -44,10 +52,10 @@ InGameScene::InGameScene()
 	zombieSpwanTime = 10.0f;
 	mouseSpeed = 0.002f;
 
-	Monster* mob = new Monster();
+	/*Monster* mob = new Monster();
 	Vector3 randomSpwan = Vector3(RANDOM->Float(-100, 100), 0, RANDOM->Float(-100, 100));
 	mob->Init(randomSpwan);
-	monster.push_back(mob);
+	monster.push_back(mob);*/
 
 
 	/** 카메라 초기 세팅*/
@@ -119,11 +127,12 @@ void InGameScene::Update()
 		}
 	}
 
-	//옵셩창 안켰을때 인게임씬 업데이트
+	//옵션창 안켰을때 인게임씬 업데이트
 	{
 		if (!optionOpen)
 		{
 			Map->Update();
+			playerAim->Update();
 			player->PlayerControl();
 			player->Update();
 			for (auto monsterPtr : monster)
@@ -133,24 +142,36 @@ void InGameScene::Update()
 			Camera::main->Update();
 			//메인 카메라 컨트롤
 			Camera::ControlMainCam();
-		}
 
-		//마우스 감도 조절
-		{
-			if (INPUT->KeyPress(VK_F1))
+			//시간으로 좀비생성
+			if (TIMER->GetTick(CurrentTime, zombieSpwanTime))
 			{
-				//중앙값
-				POINT ptMouse;
-				ptMouse.x = App.GetHalfWidth();
-				ptMouse.y = App.GetHalfHeight();
-				Vector3 Rot;
-				Rot.x = (INPUT->position.y - ptMouse.y) * mouseSpeed;
-				Rot.y = (INPUT->position.x - ptMouse.x) * mouseSpeed;
-				Camera::main->rotation += Rot;
-				player->PlayerRotationY(Camera::main->rotation);
-				ClientToScreen(App.GetHandle(), &ptMouse);
-				SetCursorPos(ptMouse.x, ptMouse.y);
+				for (int i = 0; i < 5; i++)
+				{
+					Monster* mob = new Monster();
+					Vector3 randomSpwan = Vector3(RANDOM->Float(-150, 150), 0, RANDOM->Float(-150, 150));
+					mob->Init(randomSpwan);
+					monster.push_back(mob);
+				}
 			}
+		}
+	}
+
+	//마우스 감도 조절
+	{
+		if (INPUT->KeyPress(VK_F1))
+		{
+			//중앙값
+			POINT ptMouse;
+			ptMouse.x = App.GetHalfWidth();
+			ptMouse.y = App.GetHalfHeight();
+			Vector3 Rot;
+			Rot.x = (INPUT->position.y - ptMouse.y) * mouseSpeed;
+			Rot.y = (INPUT->position.x - ptMouse.x) * mouseSpeed;
+			Camera::main->rotation += Rot;
+			player->PlayerRotationY(Camera::main->rotation);
+			ClientToScreen(App.GetHandle(), &ptMouse);
+			SetCursorPos(ptMouse.x, ptMouse.y);
 		}
 	}
 
@@ -165,32 +186,27 @@ void InGameScene::Update()
 		{
 			monsterPtr->RenderHierarchy();
 		}
+		playerAim->RenderHierarchy();
 		optionUI->RenderHierarchy();
 		soundUI->RenderHierarchy();
 		sensitivityUI->RenderHierarchy();
+		gameoverUI->RenderHierarchy();
+		missionUI->RenderHierarchy();
 		ImGui::End();
 	}
 
 
-	//시간으로 좀비생성
-	/*if (TIMER->GetTick(CurrentTime, zombieSpwanTime))
-	{
-		for (int i = 0; i < 10; i++)
-		{
-		Zombie* zombie = new Zombie();
-		Vector3 randomSpwan = Vector3(RANDOM->Float(-100, 100), 0, RANDOM->Float(-100, 100));
-		zombie->Init(randomSpwan);
-		zombies.push_back(zombie);
-		}
-	}*/
 
 
 
 
 
+	playerAim->Update();
 	optionUI->Update();
 	soundUI->Update();
 	sensitivityUI->Update();
+	missionUI->Update();
+	gameoverUI->Update();
 }
 
 void InGameScene::LateUpdate()
@@ -202,10 +218,10 @@ void InGameScene::LateUpdate()
 	{
 		player->CollidePlayerToZombie((*iter));										// 플레이어 - 좀비 충돌함수
 	}
-	
 
-	
-	
+
+
+
 	//사운드 ui 설정
 	{
 		if ((soundUI->visible and soundUI->MouseOver() and soundOn))
@@ -248,8 +264,41 @@ void InGameScene::LateUpdate()
 	}
 
 	//마우스감도 최저치 설정
-    if (mouseSpeed < 0.001) mouseSpeed = 0.001f;
+	if (mouseSpeed < 0.001) mouseSpeed = 0.001f;
 
+
+	//임시 게임오버 확인용 플레이어 사망시
+	{
+		if (INPUT->KeyDown(VK_F10))
+		{
+			gameoverUI->visible = true;
+		}
+	}
+
+	if (gameoverUI->visible and INPUT->KeyDown('R'))
+	{
+		//플레이어 초기화
+		{
+			player->Init();
+		}
+		//몬스터 초기화
+		{
+			monster.clear();
+		}
+		//맵 초기화
+		{
+			Map->Init();
+		}
+		//게임상태 초기화
+		{
+			gameoverUI->visible = false;
+		}
+		//타이머 초기화
+		{
+			CurrentTime = 0.0f;
+			zombieSpwanTime = 10.0f;
+		}
+	}
 
 }
 
@@ -268,9 +317,12 @@ void InGameScene::Render()
 	{
 		monsterPtr->Render();
 	}
+	playerAim->Render();
 	optionUI->Render();
 	soundUI->Render();
 	sensitivityUI->Render();
+	missionUI->Render();
+	gameoverUI->Render();
 }
 
 void InGameScene::ResizeScreen()

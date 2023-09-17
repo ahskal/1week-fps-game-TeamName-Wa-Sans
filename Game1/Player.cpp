@@ -15,9 +15,7 @@ Player::Player()
 
 	unitType = UnitType::PLAYER;
 
-	hp = 100.0f;
-	damage = 10.0f;
-	speed = 5.0f;
+	
 }
 
 Player::~Player()
@@ -31,6 +29,10 @@ void Player::Init()
 	waitHandDir = 150.0f;
 	walkHandDir = 100.0f;
 	walkLegDir = 100.0f;
+
+	hp = 100.0f;
+	damage = 10.0f;
+	speed = 5.0f;
 }
 
 void Player::RenderHierarchy()

@@ -67,7 +67,7 @@ public:
 	void MotionPlayerRun(GunType type);
 	// 
 	/** 모션 함수*/
-
+	
 
 	/** Get함수*/
 	Actor* GetPlayerActor() const { return player; }

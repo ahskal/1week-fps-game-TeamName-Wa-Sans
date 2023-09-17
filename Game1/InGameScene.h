@@ -22,6 +22,11 @@ private:
 	UI* soundUI;
 	UI* sensitivityUI;
 
+	//미션 ui 추가
+	UI* missionUI;
+	//게임오버 ui추가
+	UI* gameoverUI;
+
 	Sound* Ingamethema;
 	//설정창 켜져있는지 불리언
 	bool optionOpen = false;
