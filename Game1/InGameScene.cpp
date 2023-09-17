@@ -48,6 +48,9 @@ InGameScene::InGameScene()
 	gamewinUI = UI::Create("gamewin");
 	gamewinUI->LoadFile("gamewinUI.xml");
 
+	loadingUI = UI::Create("loading");
+	loadingUI->LoadFile("loadingUI.xml");
+
 	playerAim->visible = true;
 	optionUI->visible = false;
 	soundUI->visible = false;
@@ -311,6 +314,7 @@ void InGameScene::Update()
 		killmissionUI->RenderHierarchy();
 		killcountUI1->RenderHierarchy();
 		killcountUI2->RenderHierarchy();
+		loadingUI->RenderHierarchy();
 		ImGui::End();
 	}
 
@@ -329,10 +333,16 @@ void InGameScene::Update()
 	killcountUI2->Update();
 	gameoverUI->Update();
 	gamewinUI->Update();
+	loadingUI->Update();
 }
 
 void InGameScene::LateUpdate()
 {
+
+	
+
+
+
 	Map->LateUpdate();
 	player->CollidePlayerToFloor(Map);											// 플레이어 - 바닥 충돌함수
 	player->CollidePlayerToWall(Map->WallCollision(player->GetPlayerActor()));	// 플레이어 - 벽 충돌함수
@@ -421,6 +431,7 @@ void InGameScene::Render()
 	killcountUI2->Render();
 	gameoverUI->Render();
 	gamewinUI->Render();
+	loadingUI->Render();
 }
 
 void InGameScene::ResizeScreen()

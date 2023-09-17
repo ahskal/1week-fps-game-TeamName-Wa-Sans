@@ -34,6 +34,8 @@ private:
 	UI* gameoverUI;
 	UI* gamewinUI;
 
+	UI* loadingUI;
+
 	Sound* Ingamethema;
 	//설정창 켜져있는지 불리언
 	bool optionOpen = false;
