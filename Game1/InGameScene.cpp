@@ -45,6 +45,9 @@ InGameScene::InGameScene()
 	gameoverUI = UI::Create("gameover");
 	gameoverUI->LoadFile("gameoverUI.xml");
 
+	gamewinUI = UI::Create("gamewin");
+	gamewinUI->LoadFile("gamewinUI.xml");
+
 	playerAim->visible = true;
 	optionUI->visible = false;
 	soundUI->visible = false;
@@ -53,6 +56,7 @@ InGameScene::InGameScene()
 	killcountUI1->visible = true;
 	killcountUI2->visible = true;
 	gameoverUI->visible = false;
+	gamewinUI->visible = false;
 	optionOpen = false;
 	soundOn = true;
 
@@ -60,8 +64,11 @@ InGameScene::InGameScene()
 	zombieSpwanTime = 10.0f;
 	mouseSpeed = 0.002f;
 	killCount = 0;
-	missionKill = 20;
+	missionKill = 1;
 	uikillcount = 0;
+
+
+
 	/** 카메라 초기 세팅*/
 	MainCam->mainCamSpeed = 30.0f;
 	MainCam->viewport.x = 0.0f;
@@ -95,6 +102,9 @@ void InGameScene::Init()
 	player->Init();
 	Ingamethema->SetVolume("mainthema", 0.2f);
 	Ingamethema->Play("mainthema");
+	uikillcount = 1;
+	missionKill = 1;
+	killCount = 0;
 }
 
 void InGameScene::Release()
@@ -104,10 +114,7 @@ void InGameScene::Release()
 
 void InGameScene::Update()
 {
-	//좀비킬에 따라 카운트 변하기
-	{
-
-	}
+	
 
 
 	//임시 게임오버 확인용 플레이어 사망시
@@ -144,13 +151,17 @@ void InGameScene::Update()
 		killcountUI2->texture = RESOURCE->textures.Load("num" + std::to_string(onesDigit) + ".png");
 	}
 
-	// 플레이어 사망시 초기화
-	if (gameoverUI->visible and INPUT->KeyDown('R'))
+	// 미션 달성 승리
+	if (uikillcount == 0)
 	{
+		gamewinUI->visible = true;
+	}
+	if (uikillcount == 0 and INPUT->KeyDown(VK_F11))
+	{
+		Init();
 		//플레이어 초기화
 		{
 			player->Init();
-			killCount = 0;
 		}
 		//몬스터 초기화
 		{
@@ -163,6 +174,39 @@ void InGameScene::Update()
 		//게임상태 초기화
 		{
 			gameoverUI->visible = false;
+			gamewinUI->visible = false;
+		}
+		//타이머 초기화
+		{
+			CurrentTime = 0.0f;
+			zombieSpwanTime = 10.0f;
+		}
+		
+		PostQuitMessage(0);
+	}
+	
+
+	// 플레이어 사망시 초기화
+	if (gameoverUI->visible and INPUT->KeyDown('R'))
+	{
+		//플레이어 초기화
+		{
+			player->Init();
+			killCount = 0;
+			uikillcount = 1;
+		}
+		//몬스터 초기화
+		{
+			monster.clear();
+		}
+		//맵 초기화
+		{
+			Map->Init();
+		}
+		//게임상태 초기화
+		{
+			gameoverUI->visible = false;
+			gamewinUI->visible = false;
 		}
 		//타이머 초기화
 		{
@@ -263,6 +307,7 @@ void InGameScene::Update()
 		soundUI->RenderHierarchy();
 		sensitivityUI->RenderHierarchy();
 		gameoverUI->RenderHierarchy();
+		gamewinUI->RenderHierarchy();
 		killmissionUI->RenderHierarchy();
 		killcountUI1->RenderHierarchy();
 		killcountUI2->RenderHierarchy();
@@ -283,6 +328,7 @@ void InGameScene::Update()
 	killcountUI1->Update();
 	killcountUI2->Update();
 	gameoverUI->Update();
+	gamewinUI->Update();
 }
 
 void InGameScene::LateUpdate()
@@ -369,6 +415,7 @@ void InGameScene::Render()
 	killcountUI1->Render();
 	killcountUI2->Render();
 	gameoverUI->Render();
+	gamewinUI->Render();
 }
 
 void InGameScene::ResizeScreen()

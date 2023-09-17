@@ -7,14 +7,17 @@ private:
 	//인게임 객체들 
 	Camera* MainCam;
 	Camera* PlayerCam;
-	
+
 	class VillageMap* Map;
-	class Player*  player;
+	class Player* player;
 	vector<class Monster*> monster;
 
 	//인게임 스폰시간변수
 	float CurrentTime;
 	float zombieSpwanTime;
+
+	
+
 private:
 	//인게임 UI
 	UI* playerAim;
@@ -29,20 +32,24 @@ private:
 
 	//게임오버 ui추가
 	UI* gameoverUI;
+	UI* gamewinUI;
 
 	Sound* Ingamethema;
 	//설정창 켜져있는지 불리언
 	bool optionOpen = false;
 	//사운드 켜져있는지 불리언
 	bool soundOn = false;
-
 	//마우스 감도변수
 	float mouseSpeed;
-	//몬스터 킬숫자
+
+	
+	
+    //몬스터 킬숫자
 	int killCount;
 	//죽여야할 미션몬스터숫자
 	int missionKill;
 	int uikillcount;
+
 public:
 	//기본기능함수들
 	InGameScene();
@@ -58,9 +65,9 @@ public:
 	virtual void Render();
 	//Window Resize
 	virtual void ResizeScreen();
-	
-	//킬카운트함수
-	
+
+
+
 
 
 
