@@ -27,6 +27,12 @@ public:
 	void RenderHierarchy();
 	void Update();
 	void Render();
+
+	void GoBack() {
+		monster->SetWorldPosX(lastPos.x);
+		monster->SetWorldPosZ(lastPos.z);
+		monster->Update();
+	}
 	
 	Actor* GetMonsterActor() const { return monster; }
 	

@@ -184,7 +184,7 @@ void InGameScene::Update()
 		return;
 		//PostQuitMessage(0);
 	}
-	
+
 
 	// 플레이어 사망시 초기화
 	if (gameoverUI->visible and INPUT->KeyDown('R'))
@@ -298,10 +298,10 @@ void InGameScene::Update()
 		PlayerCam->RenderHierarchy();
 		//Map->Hierarchy();
 		player->RenderHierarchy();
-		for (auto monsterPtr : monster)
+		/*for (auto monsterPtr : monster)
 		{
 			monsterPtr->RenderHierarchy();
-		}
+		}*/
 		playerAim->RenderHierarchy();
 		optionUI->RenderHierarchy();
 		soundUI->RenderHierarchy();
@@ -335,15 +335,18 @@ void InGameScene::LateUpdate()
 {
 	Map->LateUpdate();
 	player->CollidePlayerToFloor(Map);											// 플레이어 - 바닥 충돌함수
-	player->CollidePlayerToWall(Map->WallCollision(player));					// 플레이어 - 벽 충돌함수
-	player->CollidePlayerToItem(Map->ItemCollision(player->GetPlayerActor()));
-	//for (auto iter = monster.begin(); iter != monster.end(); iter++)
-	//{
-	//	player->CollidePlayerToZombie((*iter));									// 플레이어 - 좀비 충돌함수
-	//	//(*iter)->CollideWall(Map->WallCollision((*iter)));					// 좀비 - 벽 충돌함수
-	//	(*iter)->Chase(player);													// 좀비 - 플레이어 추척함수
-	//}
-
+	player->CollidePlayerToWall(Map->WallCollision(player->GetPlayerActor()));	// 플레이어 - 벽 충돌함수
+	for (auto monsterPtr : monster)
+	{
+		player->CollidePlayerToZombie(monsterPtr);										// 플레이어 - 좀비 충돌함수
+	}
+	for (auto monsterPtr : monster)
+	{
+		if (Map->HouseToMonsterCollision(monsterPtr->GetMonsterActor())) {
+			monsterPtr->GoBack();
+		}
+	}
+	//몬스터 플레이어 추적
 	for (auto monsterPtr : monster)
 	{
 		player->CollidePlayerToZombie(monsterPtr);								// 플레이어 - 좀비 충돌함수

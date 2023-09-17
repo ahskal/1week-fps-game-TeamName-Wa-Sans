@@ -47,6 +47,7 @@ public:
 
     bool WallCollision(UNIT* unit);
     bool ItemCollision(Actor* player);
+    bool HouseToMonsterCollision(Actor* actor);
 
 
 
