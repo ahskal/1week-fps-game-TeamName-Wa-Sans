@@ -1,9 +1,9 @@
 <Root Name="VillageCam" Visible="true" ObType="2">
     <Shader_Color R="0.5" G="0.5" B="0.5" A="0"/>
     <Transform>
-        <Position X="-110.92323" Y="15.684949" Z="13.217514"/>
+        <Position X="-47.307034" Y="17.216366" Z="26.598606"/>
         <Scale X="1" Y="1" Z="1"/>
-        <Rotation X="138.46973" Y="1251.2244" Z="0"/>
+        <Rotation X="138.69031" Y="1252.2089" Z="0"/>
     </Transform>
     <Camera Ortho="false" Fov="1.047192" Width="1145" Height="607" NearZ="0.1" FarZ="1000" viewportX="0" viewportY="0" viewportW="1145" viewportH="607"/>
     <Children Size="0"/>
