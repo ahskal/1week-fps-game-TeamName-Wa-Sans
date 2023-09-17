@@ -19,8 +19,10 @@ void UNIT::Attack(UNIT* unit, float dam)
 
 bool UNIT::Die()
 {
-	if (hp <= 0) return true;
-
+	if (hp <= 0)
+	{
+		return true;
+	}
 	return false;
 }
 

@@ -33,24 +33,41 @@ InGameScene::InGameScene()
 	Ingamethema->AddSound("mainthema.mp3", "mainthema", true);
 	Ingamethema->SetVolume("mainthema", 0.2f);
 
-	missionUI = UI::Create("mission");
-	//missionUI->LoadFile("missionUI.xml");
+	killmissionUI = UI::Create("killmission");
+	killmissionUI->LoadFile("killmissionUI.xml");
+
+	killcountUI1 = UI::Create("killcount1");
+	killcountUI1->LoadFile("killcount1.xml");
+	killcountUI2 = UI::Create("killcount2");
+	killcountUI2->LoadFile("killcount2.xml");
+
 
 	gameoverUI = UI::Create("gameover");
 	gameoverUI->LoadFile("gameoverUI.xml");
+
+	gamewinUI = UI::Create("gamewin");
+	gamewinUI->LoadFile("gamewinUI.xml");
 
 	playerAim->visible = true;
 	optionUI->visible = false;
 	soundUI->visible = false;
 	sensitivityUI->visible = false;
-	missionUI->visible = true;
+	killmissionUI->visible = true;
+	killcountUI1->visible = true;
+	killcountUI2->visible = true;
 	gameoverUI->visible = false;
+	gamewinUI->visible = false;
 	optionOpen = false;
 	soundOn = true;
 
 	CurrentTime = 0.0f;
 	zombieSpwanTime = 10.0f;
 	mouseSpeed = 0.002f;
+	killCount = 0;
+	missionKill = 1;
+	uikillcount = 0;
+
+
 
 	/** 카메라 초기 세팅*/
 	MainCam->mainCamSpeed = 30.0f;
@@ -85,11 +102,9 @@ void InGameScene::Init()
 	player->Init();
 	Ingamethema->SetVolume("mainthema", 0.2f);
 	Ingamethema->Play("mainthema");
-
-	Monster* mob = new Monster();
-	Vector3 randomSpwan = Vector3(RANDOM->Float(-150, 150), 0, RANDOM->Float(-150, 150));
-	mob->Init(randomSpwan);
-	monster.push_back(mob);
+	uikillcount = 1;
+	missionKill = 1;
+	killCount = 0;
 }
 
 void InGameScene::Release()
@@ -99,6 +114,9 @@ void InGameScene::Release()
 
 void InGameScene::Update()
 {
+	
+
+
 	//임시 게임오버 확인용 플레이어 사망시
 	{
 		// 플레이어 사망시 GameOverUI true
@@ -110,10 +128,11 @@ void InGameScene::Update()
 
 		// 몬스터 hp 0일때 몬스터개체 삭제
 		monster.erase(std::remove_if(monster.begin(), monster.end(),
-			[](Monster* m)
+			[this](Monster* m)
 			{
 				if (m->Die())
 				{
+					killCount++;
 					delete m;
 					return true;
 				}
@@ -121,9 +140,26 @@ void InGameScene::Update()
 			}), monster.end());
 	}
 
-	// 플레이어 사망시 초기화
-	if (gameoverUI->visible and INPUT->KeyDown('R'))
+	//killcount
 	{
+		cout << killCount << endl;
+		uikillcount = missionKill - killCount;
+
+		int tensDigit = uikillcount / 10;    // 10의 자리 숫자
+		int onesDigit = uikillcount % 10;    // 1의 자리 숫자
+
+		killcountUI1->texture = RESOURCE->textures.Load("num" + std::to_string(tensDigit) + ".png");
+		killcountUI2->texture = RESOURCE->textures.Load("num" + std::to_string(onesDigit) + ".png");
+	}
+
+	// 미션 달성 승리
+	if (uikillcount == 0)
+	{
+		gamewinUI->visible = true;
+	}
+	if (uikillcount == 0 and INPUT->KeyDown(VK_F11))
+	{
+		Init();
 		//플레이어 초기화
 		{
 			player->Init();
@@ -139,6 +175,39 @@ void InGameScene::Update()
 		//게임상태 초기화
 		{
 			gameoverUI->visible = false;
+			gamewinUI->visible = false;
+		}
+		//타이머 초기화
+		{
+			CurrentTime = 0.0f;
+			zombieSpwanTime = 10.0f;
+		}
+		
+		PostQuitMessage(0);
+	}
+	
+
+	// 플레이어 사망시 초기화
+	if (gameoverUI->visible and INPUT->KeyDown('R'))
+	{
+		//플레이어 초기화
+		{
+			player->Init();
+			killCount = 0;
+			uikillcount = 1;
+		}
+		//몬스터 초기화
+		{
+			monster.clear();
+		}
+		//맵 초기화
+		{
+			Map->Init();
+		}
+		//게임상태 초기화
+		{
+			gameoverUI->visible = false;
+			gamewinUI->visible = false;
 		}
 		//타이머 초기화
 		{
@@ -192,16 +261,16 @@ void InGameScene::Update()
 			Camera::ControlMainCam();
 
 			//시간으로 좀비생성
-			//if (TIMER->GetTick(CurrentTime, zombieSpwanTime))
-			//{
-			//	for (int i = 0; i < 5; i++)
-			//	{
-			//		Monster* mob = new Monster();
-			//		Vector3 randomSpwan = Vector3(RANDOM->Float(-150, 150), 0, RANDOM->Float(-150, 150));
-			//		mob->Init(randomSpwan);
-			//		monster.push_back(mob);
-			//	}
-			//}
+			if (TIMER->GetTick(CurrentTime, zombieSpwanTime))
+			{
+				for (int i = 0; i < 5; i++)
+				{
+					Monster* mob = new Monster();
+					Vector3 randomSpwan = Vector3(RANDOM->Float(-150, 150), 0, RANDOM->Float(-150, 150));
+					mob->Init(randomSpwan);
+					monster.push_back(mob);
+				}
+			}
 		}
 	}
 
@@ -230,16 +299,19 @@ void InGameScene::Update()
 		PlayerCam->RenderHierarchy();
 		//Map->Hierarchy();
 		player->RenderHierarchy();
-		for (auto monsterPtr : monster)
+		/*for (auto monsterPtr : monster)
 		{
 			monsterPtr->RenderHierarchy();
-		}
+		}*/
 		playerAim->RenderHierarchy();
 		optionUI->RenderHierarchy();
 		soundUI->RenderHierarchy();
 		sensitivityUI->RenderHierarchy();
 		gameoverUI->RenderHierarchy();
-		missionUI->RenderHierarchy();
+		gamewinUI->RenderHierarchy();
+		killmissionUI->RenderHierarchy();
+		killcountUI1->RenderHierarchy();
+		killcountUI2->RenderHierarchy();
 		ImGui::End();
 	}
 
@@ -253,13 +325,16 @@ void InGameScene::Update()
 	optionUI->Update();
 	soundUI->Update();
 	sensitivityUI->Update();
-	missionUI->Update();
+	killmissionUI->Update();
+	killcountUI1->Update();
+	killcountUI2->Update();
 	gameoverUI->Update();
+	gamewinUI->Update();
 }
 
 void InGameScene::LateUpdate()
 {
-	//Map->LateUpdate();
+	Map->LateUpdate();
 	player->CollidePlayerToFloor(Map);											// 플레이어 - 바닥 충돌함수
 	player->CollidePlayerToWall(Map->WallCollision(player->GetPlayerActor()));	// 플레이어 - 벽 충돌함수
 	for (auto iter = monster.begin(); iter != monster.end(); iter++)
@@ -337,8 +412,11 @@ void InGameScene::Render()
 	optionUI->Render();
 	soundUI->Render();
 	sensitivityUI->Render();
-	missionUI->Render();
+	killmissionUI->Render();
+	killcountUI1->Render();
+	killcountUI2->Render();
 	gameoverUI->Render();
+	gamewinUI->Render();
 }
 
 void InGameScene::ResizeScreen()
@@ -354,4 +432,5 @@ void InGameScene::ResizeScreen()
 	player->ResizeScreen();
 	Map->ResizeScreen();
 }
+
 
