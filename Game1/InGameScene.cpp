@@ -114,7 +114,7 @@ void InGameScene::Release()
 
 void InGameScene::Update()
 {
-	
+
 
 
 	//임시 게임오버 확인용 플레이어 사망시
@@ -181,10 +181,10 @@ void InGameScene::Update()
 			CurrentTime = 0.0f;
 			zombieSpwanTime = 10.0f;
 		}
-		
+
 		PostQuitMessage(0);
 	}
-	
+
 
 	// 플레이어 사망시 초기화
 	if (gameoverUI->visible and INPUT->KeyDown('R'))
@@ -336,11 +336,16 @@ void InGameScene::LateUpdate()
 	Map->LateUpdate();
 	player->CollidePlayerToFloor(Map);											// 플레이어 - 바닥 충돌함수
 	player->CollidePlayerToWall(Map->WallCollision(player->GetPlayerActor()));	// 플레이어 - 벽 충돌함수
-	for (auto iter = monster.begin(); iter != monster.end(); iter++)
+	for (auto monsterPtr : monster)
 	{
-		player->CollidePlayerToZombie((*iter));										// 플레이어 - 좀비 충돌함수
+		player->CollidePlayerToZombie(monsterPtr);										// 플레이어 - 좀비 충돌함수
 	}
-
+	for (auto monsterPtr : monster)
+	{
+		if (Map->HouseToMonsterCollision(monsterPtr->GetMonsterActor())) {
+			monsterPtr->GoBack();
+		}
+	}
 	//몬스터 플레이어 추적
 	for (auto monsterPtr : monster)
 	{
