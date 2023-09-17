@@ -214,14 +214,16 @@ void VillageMap::ResizeScreen()
 	cam->viewport.height = App.GetHeight();
 }
 
-bool VillageMap::WallCollision(Actor* player)
+bool VillageMap::WallCollision(UNIT* unit)
 {
 	for (int i = 0; i < HouseCount; i++) {
 		for (int j = 0; j < house[i]->Find("Pillar")->children.size(); j++) {
 			string str = "Pillar_Mesh_" + to_string(j + 1);
 			//cout << str << " " << "Ãæµ¹" << endl;
-
-			if (house[i]->Find(str)->Intersect(player))
+			if (not house[i]->Find(str)->Intersect(((Monster*)unit)->GetMonsterActor()))
+				continue;
+			if (house[i]->Find(str)->Intersect(((Player*)unit)->GetPlayerActor()) or 
+				house[i]->Find(str)->Intersect(((Monster*)unit)->GetMonsterActor()))
 			{
 				return true;
 			}
@@ -231,8 +233,11 @@ bool VillageMap::WallCollision(Actor* player)
 			string str = "Wall_" + to_string(j + 1);
 			for (int k = 0; k < house[i]->Find(str)->children.size(); k++) {
 				string str2 = str + "_Mesh_" + to_string(k + 1);
+				if (not house[i]->Find(str2)->Intersect(((Monster*)unit)->GetMonsterActor()))
+					continue;
 
-				if (house[i]->Find(str2)->Intersect(player))
+				if (house[i]->Find(str2)->Intersect(((Player*)unit)->GetPlayerActor()) or 
+					house[i]->Find(str2)->Intersect(((Monster*)unit)->GetMonsterActor()))
 				{
 					return true;
 				}

@@ -16,6 +16,9 @@ enum class PlayerType
 class Player : public UNIT
 {
 private:
+	bool debug = false;
+
+
 	Actor* player;
 
 	Gun* gun;
@@ -54,8 +57,11 @@ public:
 
 	void PlayerControl();
 	void PlayerRotationY(Vector3 Rot);
+
+	/** 충돌함수*/
 	void CollidePlayerToFloor(class VillageMap* map); 
 	void CollidePlayerToWall(bool isCollide);
+	void CollidePlayerToItem(bool isCollide);
 	void CollidePlayerToZombie(class Monster* monster);
 
 	/** 모션 함수*/

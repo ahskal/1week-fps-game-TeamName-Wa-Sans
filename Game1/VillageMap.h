@@ -45,7 +45,7 @@ public:
 
     Camera* GetCam() const { return cam; }
 
-    bool WallCollision(Actor* player);
+    bool WallCollision(UNIT* unit);
     bool ItemCollision(Actor* player);
 
 

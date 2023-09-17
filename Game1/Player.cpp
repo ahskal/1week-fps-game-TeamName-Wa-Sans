@@ -54,6 +54,16 @@ void Player::Update()
 		return;
 	}
 
+	/** 디버그모드*/
+	if (INPUT->KeyDown(VK_F2))
+	{
+		debug = !debug;
+	}
+	if (debug)
+		player->collider->visible = true;
+	else player->collider->visible = false;
+	/** 디버그모드*/
+
 
 	ImGui::Text("Player HP : %d", (int)hp);
 	ImGui::SameLine();
@@ -356,6 +366,14 @@ void Player::CollidePlayerToWall(bool isCollide)
 		player->SetWorldPosX(lastPos.x);
 		player->SetWorldPosZ(lastPos.z);
 		player->Update();
+	}
+}
+
+void Player::CollidePlayerToItem(bool isCollide)
+{
+	if (isCollide)
+	{
+		hp += 20.0f;
 	}
 }
 

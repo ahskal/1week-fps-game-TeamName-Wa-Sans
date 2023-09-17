@@ -114,9 +114,6 @@ void InGameScene::Release()
 
 void InGameScene::Update()
 {
-	
-
-
 	//임시 게임오버 확인용 플레이어 사망시
 	{
 		// 플레이어 사망시 GameOverUI true
@@ -142,7 +139,7 @@ void InGameScene::Update()
 
 	//killcount
 	{
-		cout << killCount << endl;
+		// cout<< killCount << endl;
 		uikillcount = missionKill - killCount;
 
 		int tensDigit = uikillcount / 10;    // 10의 자리 숫자
@@ -182,8 +179,10 @@ void InGameScene::Update()
 			CurrentTime = 0.0f;
 			zombieSpwanTime = 10.0f;
 		}
-		
-		PostQuitMessage(0);
+		Ingamethema->Stop("mainthema");
+		SCENE->ChangeScene("LobbyScene");
+		return;
+		//PostQuitMessage(0);
 	}
 	
 
@@ -299,10 +298,10 @@ void InGameScene::Update()
 		PlayerCam->RenderHierarchy();
 		//Map->Hierarchy();
 		player->RenderHierarchy();
-		/*for (auto monsterPtr : monster)
+		for (auto monsterPtr : monster)
 		{
 			monsterPtr->RenderHierarchy();
-		}*/
+		}
 		playerAim->RenderHierarchy();
 		optionUI->RenderHierarchy();
 		soundUI->RenderHierarchy();
@@ -336,16 +335,22 @@ void InGameScene::LateUpdate()
 {
 	Map->LateUpdate();
 	player->CollidePlayerToFloor(Map);											// 플레이어 - 바닥 충돌함수
-	player->CollidePlayerToWall(Map->WallCollision(player->GetPlayerActor()));	// 플레이어 - 벽 충돌함수
-	for (auto iter = monster.begin(); iter != monster.end(); iter++)
-	{
-		player->CollidePlayerToZombie((*iter));										// 플레이어 - 좀비 충돌함수
-	}
+	player->CollidePlayerToWall(Map->WallCollision(player));					// 플레이어 - 벽 충돌함수
+	player->CollidePlayerToItem(Map->ItemCollision(player->GetPlayerActor()));
+	//for (auto iter = monster.begin(); iter != monster.end(); iter++)
+	//{
+	//	player->CollidePlayerToZombie((*iter));									// 플레이어 - 좀비 충돌함수
+	//	//(*iter)->CollideWall(Map->WallCollision((*iter)));					// 좀비 - 벽 충돌함수
+	//	(*iter)->Chase(player);													// 좀비 - 플레이어 추척함수
+	//}
 
-	//몬스터 플레이어 추적
 	for (auto monsterPtr : monster)
 	{
-		monsterPtr->Chase(player);
+		player->CollidePlayerToZombie(monsterPtr);								// 플레이어 - 좀비 충돌함수
+		
+		//monsterPtr->CollideWall(Map->WallCollision(monsterPtr));				//좀비 - 벽 충돌함수
+
+		monsterPtr->Chase(player);												// 좀비 - 플레이어 추척함수
 	}
 
 	//사운드 ui 설정
