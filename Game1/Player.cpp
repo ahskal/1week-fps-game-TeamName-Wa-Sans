@@ -643,3 +643,5 @@ void Player::MotionPlayerRun(GunType type)
 		player->MoveWorldPos(player->GetRight() * speed * DELTA);
 	}
 }
+
+

@@ -86,19 +86,12 @@ void Monster::Render()
     monster->Render();
 }
 
-//오브젝트 충돌 함수 
-void Monster::Collide(GameObject* ob)
-{
-    if (monster->Intersect(ob))
-        isCollide = true;
-    else
-        isCollide = false;
-}
+
 
 //플레이어 추적 함수
-void Monster::Chase(GameObject* player, Vector3 playerPos)
+void Monster::Chase(Player* player)
 {
-    if (monster->Find("MonSight")->Intersect(player) or monster->Find("MonBackHead")->Intersect(player))
+    if (monster->Find("MonSight")->Intersect(player->GetPlayerActor()) or monster->Find("MonBackHead")->Intersect(player->GetPlayerActor()))
         isChase = true;
     else
         isChase = false;
@@ -109,7 +102,7 @@ void Monster::Chase(GameObject* player, Vector3 playerPos)
         {
             
             monType = MonType::WALK;
-            Vector3 moveToPlayer = playerPos - monster->GetWorldPos();
+            Vector3 moveToPlayer = player->GetPlayerActor()->GetWorldPos() - monster->GetWorldPos();
             cout << moveToPlayer.x << " " << moveToPlayer.Length() << " " << acos(moveToPlayer.x / moveToPlayer.Length())/ ToRadian << endl;
             monster->MoveWorldPos(moveToPlayer * DELTA * 0.4f);
             /*monster->rotation.y = 앞에서 인식하든 뒤에서 인식하든 캐릭터 방향을 바라봐야 하는데 너무 어렵습니다.현재 앞에서 오는 건 따라오니까

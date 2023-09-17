@@ -32,7 +32,7 @@ public:
 	// 피격함수
 	void Attack(class UNIT* unit);		// 피격당했을때 불러와지는 함수
 	//몬스터나 플레이어 죽었을때
-	virtual bool Die(class UNIT* unit);
+	bool Die();
 
 };
 

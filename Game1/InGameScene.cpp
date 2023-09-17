@@ -219,8 +219,11 @@ void InGameScene::LateUpdate()
 		player->CollidePlayerToZombie((*iter));										// 플레이어 - 좀비 충돌함수
 	}
 
-
-
+	//몬스터 플레이어 추적
+	for (auto monsterPtr : monster)
+	{
+		monsterPtr->Chase(player);
+	}
 
 	//사운드 ui 설정
 	{
@@ -269,10 +272,11 @@ void InGameScene::LateUpdate()
 
 	//임시 게임오버 확인용 플레이어 사망시
 	{
-		if (INPUT->KeyDown(VK_F10))
+		if (player->Die())
 		{
 			gameoverUI->visible = true;
 		}
+		
 	}
 
 	if (gameoverUI->visible and INPUT->KeyDown('R'))

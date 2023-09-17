@@ -71,5 +71,6 @@ public:
 
 	/** GetÇÔ¼ö*/
 	Actor* GetPlayerActor() const { return player; }
+	
 };
 
