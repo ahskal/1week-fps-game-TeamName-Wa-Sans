@@ -5,13 +5,14 @@
 Main::Main()
 {
     Map = VillageMap::Create();
+    Map->ResizeScreen();
     Camera::main = Map->GetCam();
-
     Camera::main->mainCamSpeed = 100;
-    
-    root = Actor::Create();
-    root->LoadFile("Robot.xml");
-    //1234
+
+    // 화면가릴 이미지
+    ui = UI::Create();
+    ui->LoadFile("LoaddingImage.xml");
+
 }
 
 Main::~Main()
@@ -32,31 +33,13 @@ void Main::Update()
 {
     Camera::ControlMainCam();
     ImGui::Begin("Hierarchy");
-
-    root->RenderHierarchy();
     Map->Hierarchy();
+
+    ui->RenderHierarchy();
+
     ImGui::End();
 
-    LastPos = root->GetWorldPos();
-    if (INPUT->KeyPress(VK_LEFT) ) {
-        root->MoveWorldPos(-root->GetRight() * DELTA* 10);
-    }
-    if (INPUT->KeyPress(VK_RIGHT)) {
-        root->MoveWorldPos(root->GetRight() * DELTA * 10);
-    }
-    if (INPUT->KeyPress(VK_UP)) {
-        root->MoveWorldPos(root->GetForward() * DELTA * 10);
-    }
-    if (INPUT->KeyPress(VK_DOWN)) {
-        root->MoveWorldPos(-root->GetForward() * DELTA * 10);
-    }
-
-
-
-
-
-
-    root->Update();
+    ui->Update();
     Map->Update();
     Camera::main->Update();
 }
@@ -64,17 +47,13 @@ void Main::Update()
 void Main::LateUpdate()
 {
     Map->LateUpdate();
-
-
-    if (Map->WallCollision(root)) {
-        root->SetWorldPos(LastPos);
-        root->Update();
+    //맵 불러오는 도중에는 화면을 가림
+    if (Map->IsSetHouseDone()) {
+        ui->visible = true;
     }
-    if (Map->ItemCollision(root)) {
-
+    else {
+        ui->visible = false;
     }
-
-
 }
 void Main::PreRender()
 {
@@ -83,9 +62,8 @@ void Main::PreRender()
 void Main::Render()
 {
     Camera::main->Set();
-
-    root->Render();
     Map->Render();
+    ui->Render();
 }
 
 void Main::ResizeScreen()
@@ -103,7 +81,6 @@ int WINAPI wWinMain(HINSTANCE instance, HINSTANCE prevInstance, LPWSTR param, in
     main->Init();
 
     int wParam = (int)WIN->Run(main);
-
 
     main->Release();
     SafeDelete(main);

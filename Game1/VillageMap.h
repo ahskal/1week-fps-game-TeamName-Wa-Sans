@@ -10,19 +10,12 @@ public:
     static VillageMap* Create(string name = "VillageMap");
 private:
     class House* house[HouseCount];
-    bool HouseRender;
-    bool HouseLateUpdate;
+    class Camera* cam;
+    vector<Actor*> Item;
+    
     float Timer = 0.0f;
 
-    class House* house2;
-
-    class Camera* cam;
-
-    vector<Actor*> Item;
-
-    float timer = 0.0f;
-    float nameIdx = 0;
-
+    bool SetHouse;
 public:
 
 private:
@@ -47,9 +40,9 @@ public:
 
     bool WallCollision(Actor* player);
     bool ItemCollision(Actor* player);
-
-
-
+    bool HouseToMonsterCollision(Actor* actor);
+    
+    bool IsSetHouseDone() { return SetHouse; }
 };
 
 

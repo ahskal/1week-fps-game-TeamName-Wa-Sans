@@ -7,6 +7,9 @@ private:
 
 	Actor* root;
 	Vector3 LastPos;
+
+	class UI* ui;
+
 public:
 	Main();
 	~Main();
