@@ -339,7 +339,12 @@ void InGameScene::Update()
 void InGameScene::LateUpdate()
 {
 
-	
+	if (Map->IsSetHouseDone()) {
+		loadingUI->visible = true;
+	}
+	else {
+		loadingUI->visible = false;
+	}
 
 
 

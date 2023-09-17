@@ -44,19 +44,8 @@ void Main::LateUpdate()
     SCENE->LateUpdate();
 }
 
-   
+  
 
-    
-
-    Map->LateUpdate();
-    //맵 불러오는 도중에는 화면을 가림
-    if (Map->IsSetHouseDone()) {
-        ui->visible = true;
-    }
-    else {
-        ui->visible = false;
-    }
-}
 void Main::PreRender()
 {
 
