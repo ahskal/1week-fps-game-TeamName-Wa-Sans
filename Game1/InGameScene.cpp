@@ -52,12 +52,6 @@ InGameScene::InGameScene()
 	zombieSpwanTime = 10.0f;
 	mouseSpeed = 0.002f;
 
-	/*Monster* mob = new Monster();
-	Vector3 randomSpwan = Vector3(RANDOM->Float(-100, 100), 0, RANDOM->Float(-100, 100));
-	mob->Init(randomSpwan);
-	monster.push_back(mob);*/
-
-
 	/** 카메라 초기 세팅*/
 	MainCam->mainCamSpeed = 30.0f;
 	MainCam->viewport.x = 0.0f;
@@ -100,6 +94,54 @@ void InGameScene::Release()
 
 void InGameScene::Update()
 {
+	//임시 게임오버 확인용 플레이어 사망시
+	{
+		// 플레이어 사망시 GameOverUI true
+		if (player->Die())
+		{
+			gameoverUI->visible = true;
+		}
+
+		// 몬스터 hp 0일때 몬스터개체 삭제
+		monster.erase(std::remove_if(monster.begin(), monster.end(),
+			[](Monster* m)
+			{
+				if (m->Die())
+				{
+					delete m;
+					return true;
+				}
+				else return false;
+			}), monster.end());
+	}
+
+	// 플레이어 사망시 초기화
+	if (gameoverUI->visible and INPUT->KeyDown('R'))
+	{
+		//플레이어 초기화
+		{
+			player->Init();
+		}
+		//몬스터 초기화
+		{
+			monster.clear();
+		}
+		//맵 초기화
+		{
+			Map->Init();
+		}
+		//게임상태 초기화
+		{
+			gameoverUI->visible = false;
+		}
+		//타이머 초기화
+		{
+			CurrentTime = 0.0f;
+			zombieSpwanTime = 10.0f;
+		}
+	}
+
+
 	//작업용 카메라 플레이어 3인칭캠 변환
 	PlayerCam->SetWorldPos(player->GetPlayerActor()->Find("HeadMesh")->GetWorldPos()); // 플레이어 캠이 플레이어의 머리좌표를 계속 받아오게하기
 	{
@@ -268,42 +310,6 @@ void InGameScene::LateUpdate()
 
 	//마우스감도 최저치 설정
 	if (mouseSpeed < 0.001) mouseSpeed = 0.001f;
-
-
-	//임시 게임오버 확인용 플레이어 사망시
-	{
-		if (player->Die())
-		{
-			gameoverUI->visible = true;
-		}
-		
-	}
-
-	if (gameoverUI->visible and INPUT->KeyDown('R'))
-	{
-		//플레이어 초기화
-		{
-			player->Init();
-		}
-		//몬스터 초기화
-		{
-			monster.clear();
-		}
-		//맵 초기화
-		{
-			Map->Init();
-		}
-		//게임상태 초기화
-		{
-			gameoverUI->visible = false;
-		}
-		//타이머 초기화
-		{
-			CurrentTime = 0.0f;
-			zombieSpwanTime = 10.0f;
-		}
-	}
-
 }
 
 void InGameScene::PreRender()

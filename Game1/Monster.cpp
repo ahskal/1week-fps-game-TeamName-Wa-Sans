@@ -103,7 +103,8 @@ void Monster::Chase(Player* player)
             
             monType = MonType::WALK;
             Vector3 moveToPlayer = player->GetPlayerActor()->GetWorldPos() - monster->GetWorldPos();
-            cout << moveToPlayer.x << " " << moveToPlayer.Length() << " " << acos(moveToPlayer.x / moveToPlayer.Length())/ ToRadian << endl;
+            monster->rotation.y = atan2f(moveToPlayer.z, moveToPlayer.x);
+            //cout << moveToPlayer.x << " " << moveToPlayer.Length() << " " << acos(moveToPlayer.x / moveToPlayer.Length())/ ToRadian << endl;
             monster->MoveWorldPos(moveToPlayer * DELTA * 0.4f);
             /*monster->rotation.y = 앞에서 인식하든 뒤에서 인식하든 캐릭터 방향을 바라봐야 하는데 너무 어렵습니다.현재 앞에서 오는 건 따라오니까
                                     덜 부자연스러운데 뒤에 있음을 인식하고서는 뒷걸음으로 다가오니 추후에 변경해야 하는 부분으로 생각합니다.*/

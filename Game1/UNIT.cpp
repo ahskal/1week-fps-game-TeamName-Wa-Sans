@@ -19,7 +19,8 @@ void UNIT::Attack(UNIT* unit)
 bool UNIT::Die()
 {
 	if (hp <= 0) return true;
-	return true;
+
+	return false;
 }
 
 
