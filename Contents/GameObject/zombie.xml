@@ -1,6 +1,6 @@
 <Root Name="Zombie" Visible="true" ObType="1">
     <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
-    <Collider ColliderType="2" Visible="true">
+    <Collider ColliderType="2" Visible="false">
         <Position X="0" Y="0.050000001" Z="0"/>
         <Scale X="1" Y="0.050000001" Z="0.34999999"/>
         <Rotation X="0" Y="0" Z="0"/>

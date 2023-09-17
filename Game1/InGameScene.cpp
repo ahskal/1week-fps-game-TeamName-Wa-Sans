@@ -63,6 +63,8 @@ InGameScene::InGameScene()
 	optionOpen = false;
 	soundOn = true;
 
+	
+
 	CurrentTime = 0.0f;
 	zombieSpwanTime = 10.0f;
 	mouseSpeed = 0.002f;
@@ -105,8 +107,8 @@ void InGameScene::Init()
 	player->Init();
 	Ingamethema->SetVolume("mainthema", 0.2f);
 	Ingamethema->Play("mainthema");
-	uikillcount = 20;
-	missionKill = 20;
+	uikillcount = 10;
+	missionKill = 10;
 	killCount = 0;
 }
 
@@ -292,7 +294,7 @@ void InGameScene::Update()
 		{
 			ClientToScreen(App.GetHandle(), &ptMouse);
 			SetCursorPos(ptMouse.x, ptMouse.y);
-			ShowCursor(false);
+			//ShowCursor(false);
 		}
 		if (optionOpen) ShowCursor(true);
 		

@@ -1,6 +1,6 @@
 <Root Name="Hospital" Visible="true" ObType="1">
     <Shader_Color R="0.50196081" G="0.50196081" B="0.50196081" A="0.50196081"/>
-    <Collider ColliderType="2" Visible="true">
+    <Collider ColliderType="2" Visible="false">
         <Position X="0" Y="11" Z="0"/>
         <Scale X="41" Y="11" Z="31"/>
         <Rotation X="0" Y="0" Z="0"/>
