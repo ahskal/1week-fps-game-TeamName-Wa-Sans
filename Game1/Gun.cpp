@@ -118,3 +118,16 @@ void Gun::GunControl()
         }
     }
 }
+
+void Gun::GunAim(Player* player)
+{
+    player->GetPlayerActor()->Find("RightArmPoint")->rotation.x = 0.0f;
+    player->GetPlayerActor()->Find("LeftArmPoint")->rotation.x = 0.0f;
+
+    player->GetPlayerActor()->Find("LeftShoulderPoint")->rotation.x = -75.0f * ToRadian;
+    player->GetPlayerActor()->Find("RightShoulderPoint")->rotation.x = -75.0f * ToRadian;
+
+    player->GetPlayerActor()->Find("LeftShoulderPoint")->rotation.y = 25.0f * ToRadian;
+    player->GetPlayerActor()->Find("RightShoulderPoint")->rotation.y = -25.0f * ToRadian;
+    gun->rotation.x = 0.0f; // 총이 손을 따라다니게끔
+}

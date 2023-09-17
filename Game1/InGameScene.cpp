@@ -85,6 +85,11 @@ void InGameScene::Init()
 	player->Init();
 	Ingamethema->SetVolume("mainthema", 0.2f);
 	Ingamethema->Play("mainthema");
+
+	Monster* mob = new Monster();
+	Vector3 randomSpwan = Vector3(RANDOM->Float(-150, 150), 0, RANDOM->Float(-150, 150));
+	mob->Init(randomSpwan);
+	monster.push_back(mob);
 }
 
 void InGameScene::Release()
@@ -99,6 +104,7 @@ void InGameScene::Update()
 		// 플레이어 사망시 GameOverUI true
 		if (player->Die())
 		{
+			player->GetPlayerActor()->visible = false;
 			gameoverUI->visible = true;
 		}
 
@@ -186,16 +192,16 @@ void InGameScene::Update()
 			Camera::ControlMainCam();
 
 			//시간으로 좀비생성
-			if (TIMER->GetTick(CurrentTime, zombieSpwanTime))
-			{
-				for (int i = 0; i < 5; i++)
-				{
-					Monster* mob = new Monster();
-					Vector3 randomSpwan = Vector3(RANDOM->Float(-150, 150), 0, RANDOM->Float(-150, 150));
-					mob->Init(randomSpwan);
-					monster.push_back(mob);
-				}
-			}
+			//if (TIMER->GetTick(CurrentTime, zombieSpwanTime))
+			//{
+			//	for (int i = 0; i < 5; i++)
+			//	{
+			//		Monster* mob = new Monster();
+			//		Vector3 randomSpwan = Vector3(RANDOM->Float(-150, 150), 0, RANDOM->Float(-150, 150));
+			//		mob->Init(randomSpwan);
+			//		monster.push_back(mob);
+			//	}
+			//}
 		}
 	}
 
@@ -253,7 +259,7 @@ void InGameScene::Update()
 
 void InGameScene::LateUpdate()
 {
-	Map->LateUpdate();
+	//Map->LateUpdate();
 	player->CollidePlayerToFloor(Map);											// 플레이어 - 바닥 충돌함수
 	player->CollidePlayerToWall(Map->WallCollision(player->GetPlayerActor()));	// 플레이어 - 벽 충돌함수
 	for (auto iter = monster.begin(); iter != monster.end(); iter++)
@@ -348,3 +354,4 @@ void InGameScene::ResizeScreen()
 	player->ResizeScreen();
 	Map->ResizeScreen();
 }
+

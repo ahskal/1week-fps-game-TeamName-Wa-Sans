@@ -21,8 +21,10 @@ public:
 	void Update();
 	void Render();
 
-
 	void GunControl();
+	void GunAim(class Player* player);
+	/**GetÇÔ¼ö*/
 	Actor* GetGun() { return gun; }
+	int GetBulletCount() const { return bulletCount; }
 };
 

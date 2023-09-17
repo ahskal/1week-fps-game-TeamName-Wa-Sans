@@ -16,7 +16,6 @@ private:
     class House* house2;
 
     class Camera* cam;
-
 public:
 
 private:

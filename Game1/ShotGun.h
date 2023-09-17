@@ -31,7 +31,12 @@ public:
 
 
 	void ShotGunControl();
+	void ShotCunAim(class Player* player);
+
+
+	/** GetÇÔ¼ö */
 	Actor* GetShotGun() { return shotGun; }
+	int GetBulletCount() const { return bulletCount; }
 	const bool GetIsLoad() { return isLoad; }
 	const bool GetIsRecoil() { return isrecoil; }
 };

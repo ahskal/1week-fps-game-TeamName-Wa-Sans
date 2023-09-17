@@ -28,6 +28,8 @@ public:
 	
 	Actor* GetMonsterActor() const { return monster; }
 	
+	void AttackMotion();
+	void CollidePlayer(Player* player);
 	void Chase(Player* player);	//플레이어 추적 함수 *** 플레이어 타입으로 변환하세요 ***
 };
 

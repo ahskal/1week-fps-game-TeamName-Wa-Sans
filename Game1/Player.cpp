@@ -16,6 +16,11 @@ Player::Player()
 	unitType = UnitType::PLAYER;
 
 	
+	SOUND->AddSound("playerNoneAttack.wav", "playerNoneAttack");
+	SOUND->AddSound("PlayerWalk.wav", "PlayerWalk");
+	SOUND->AddSound("PlayerRun.wav", "PlayerRun");
+
+	SOUND->SetVolume("PlayerWalk", 0.5f);
 }
 
 Player::~Player()
@@ -44,6 +49,12 @@ void Player::RenderHierarchy()
 
 void Player::Update()
 {
+	if (Die())
+	{
+		return;
+	}
+
+
 	ImGui::Text("Player HP : %d", (int)hp);
 	ImGui::SameLine();
 	ImGui::Text("\tPlayer Damage : %d", (int)damage);
@@ -91,7 +102,32 @@ void Player::Update()
 		break;
 	case GunType::ShotGun:
 		gun->GetGun()->visible = false;
-		shotGun->GetShotGun()->visible = true;
+		if (playerType == PlayerType::None)
+			shotGun->GetShotGun()->visible = true;
+		else
+		{
+			if (INPUT->KeyPress(VK_RBUTTON))
+				shotGun->GetShotGun()->visible = true;
+			else shotGun->GetShotGun()->visible = false;
+		}
+		break;
+	default:
+		break;
+	}
+
+	switch (playerType)
+	{
+	case PlayerType::None:
+		SOUND->Stop("PlayerWalk");
+		SOUND->Stop("PlayerRun");
+		break;
+	case PlayerType::Walk:
+		SOUND->Play("PlayerWalk");
+		SOUND->Stop("PlayerRun");
+		break;
+	case PlayerType::Run:
+		SOUND->Stop("PlayerWalk");
+		SOUND->Play("PlayerRun");
 		break;
 	default:
 		break;
@@ -104,6 +140,11 @@ void Player::Update()
 
 void Player::Render()
 {
+	if (Die())
+	{
+		return;
+	}
+
 	player->Render();
 	gun->Render();
 	shotGun->Render();
@@ -170,9 +211,10 @@ void Player::PlayerControl()
 		}
 
 		// 걷기 -> 서있기 (방향키를 누르지 않았을때)
-		if (INPUT->KeyUp('W') or INPUT->KeyUp('S') or 
-			INPUT->KeyUp('A') or INPUT->KeyUp('D'))
+		if (not(INPUT->KeyPress('W') or INPUT->KeyPress('S') or INPUT->KeyPress('A') or INPUT->KeyPress('D')))
 		{
+			SOUND->Stop("PlayerWalk");
+			SOUND->Stop("PlayerRun");
 			playerType = PlayerType::None;
 			gun->GetGun()->rotation.x = 0.0;
 			gun->GetGun()->rotation.y = 0.0;
@@ -206,7 +248,6 @@ void Player::PlayerControl()
 				player->Find("RightShoulderPoint")->rotation.y = 0.0f;
 				walkHandDir = 100.0f;
 			}
-
 			playerType = PlayerType::Walk;
 			walkLegDir = 100.0f;
 			walkHandDir = 100.0f;
@@ -215,8 +256,10 @@ void Player::PlayerControl()
 		}
 
 		// 뛰기 -> 가만히 있기 (방향키를 누르지 않았을때)
-		if (INPUT->KeyUp('W') or INPUT->KeyUp('S') or INPUT->KeyUp('A') or INPUT->KeyUp('D'))
+		if (INPUT->KeyUp('W') and INPUT->KeyUp('S') and INPUT->KeyUp('A') and INPUT->KeyUp('D'))
 		{
+			SOUND->Stop("PlayerWalk");
+			SOUND->Stop("PlayerRun");
 			playerType = PlayerType::None;
 			gun->GetGun()->rotation.x = 0.0;
 			gun->GetGun()->rotation.y = 0.0;
@@ -228,13 +271,27 @@ void Player::PlayerControl()
 
 
 	/** 무기 상태값(총알 발사 함수) */
-	if (gunType == GunType::Gun)
+	if (gunType == GunType::None)
 	{
-		gun->GunControl();
+		if (INPUT->KeyDown(VK_LBUTTON))
+		{
+			SOUND->Stop("playerNoneAttack");
+			SOUND->Play("playerNoneAttack");
+		}
+	}
+	else if (gunType == GunType::Gun)
+	{
+		if (INPUT->KeyPress(VK_RBUTTON))
+		{
+			gun->GunControl();
+		}
 	}
 	else if (gunType == GunType::ShotGun)
 	{
-		shotGun->ShotGunControl();
+		if (INPUT->KeyPress(VK_RBUTTON))
+		{
+			shotGun->ShotGunControl();
+		}
 	}
 	/** 무기 상태값*/
 
@@ -268,14 +325,19 @@ void Player::PlayerRotationY(Vector3 Rot)
 	// 상하 회전
 	player->Find("UpPoint")->rotation.x = Rot.x;
 
+	gun->GetGun()->rotation.y = player->rotation.y;
+	gun->GetGun()->rotation.x = player->Find("UpPoint")->rotation.x;
+
+	shotGun->GetShotGun()->rotation.y = player->rotation.y;
+	shotGun->GetShotGun()->rotation.x = player->Find("UpPoint")->rotation.x;
 
 	if (playerType == PlayerType::None)
 	{
-		gun->GetGun()->rotation.y = player->rotation.y;
-		shotGun->GetShotGun()->rotation.y = player->rotation.y;
-
-		gun->GetGun()->rotation.x = player->Find("UpPoint")->rotation.x;
-		shotGun->GetShotGun()->rotation.x = player->Find("UpPoint")->rotation.x;
+		
+		//shotGun->GetShotGun()->rotation.y = player->rotation.y;
+		//
+		//
+		//shotGun->GetShotGun()->rotation.x = player->Find("UpPoint")->rotation.x;
 	}
 }
 
@@ -304,18 +366,74 @@ void Player::CollidePlayerToZombie(Monster* monster)
 	Vector3 Hit;
 	if (monster->GetMonsterActor()->Intersect(Up, Hit))
 	{
-		if (INPUT->KeyDown(VK_LBUTTON))
-		{ 
-			Attack(monster);
-			cout << "적에게 총알 발사" << endl;
+		float moveToPlayerLength = (player->GetWorldPos() - monster->GetMonsterActor()->GetWorldPos()).Length();
+		ImGui::Text("moveToPlayerLength : %.2f", moveToPlayerLength);
+		if (gunType == GunType::None)
+		{
+			if (INPUT->KeyDown(VK_LBUTTON))
+			{
+				if (moveToPlayerLength < 10.0f)
+				{
+					Attack(monster, 5.0f);
+					cout << "적에게 근접공격" << endl;
+				}
+			}
 		}
+		else if (gunType == GunType::Gun)
+		{
+			if (INPUT->KeyPress(VK_RBUTTON) and INPUT->KeyDown(VK_LBUTTON) and gun->GetBulletCount() != 0)
+			{
+				if (moveToPlayerLength > 70.0f and moveToPlayerLength <= 120.0f)
+				{
+					Attack(monster, 5.0f);
+					cout << "적에게 먼거리에서 Gun 공격" << endl;
+				}
+				else if (moveToPlayerLength <= 70.0f)
+				{
+					Attack(monster, 10.0f);
+					cout << "적에게 Gun 공격" << endl;
+				}
+			}
+		}
+		else if (gunType == GunType::ShotGun)
+		{
+			if (INPUT->KeyPress(VK_RBUTTON) and INPUT->KeyDown(VK_LBUTTON) and shotGun->GetBulletCount() != 0)
+			{
+				if (moveToPlayerLength < 10.0f)
+				{
+					Attack(monster, 100.0f);
+					cout << "적에게 바로앞에서 ShotGun 공격" << endl;
+				}
+				else if (moveToPlayerLength < 25.0f)
+				{
+					Attack(monster, 60.0f);
+					cout << "적에게 가까운 거리에서 ShotGun 공격" << endl;
+				}
+				else if (moveToPlayerLength < 40.0f)
+				{
+					Attack(monster, 30.0f);
+					cout << "적에게 좀 먼 거리에서 ShotGun 공격" << endl;
+				}
+				else if (moveToPlayerLength < 55.0f)
+				{
+					Attack(monster, 10.0f);
+					cout << "적에게 먼거리에서 ShotGun 공격" << endl;
+				}
+				else if (moveToPlayerLength > 55.0f and moveToPlayerLength < 70.0f)
+				{
+					Attack(monster, 1.0f);
+					cout << "적에게 엄청먼거리에서 ShotGun 공격" << endl;
+				}
+			}
+		}
+		
 	}
 
 	if (monster->GetMonsterActor()->Intersect(player))
 	{
 		if (not isAttacked)
 		{
-			monster->Attack(this);
+			monster->Attack(this, 15.0f);
 			isAttacked = true;
 		}
 	}
@@ -355,14 +473,14 @@ void Player::MotionPlayerWait(GunType type)
 	else if (type == GunType::ShotGun)
 	{
 		//shotGun->GetShotGun()->rotation.y = 0.0f * ToRadian;
-
-		player->Find("UpPoint")->rotation.y = 36.0f * ToRadian;
-
-		player->Find("RightShoulderPoint")->rotation.x = 0.0f * ToRadian;
-		player->Find("RightShoulderPoint")->rotation.y = -61.0f * ToRadian;
-		player->Find("RightShoulderPoint")->rotation.z = 50.0f * ToRadian;
-
-		player->Find("RightArmPoint")->rotation.x = -123.0f * ToRadian;
+		shotGun->ShotCunAim(this);
+		//player->Find("UpPoint")->rotation.y = 36.0f * ToRadian;
+		//
+		//player->Find("RightShoulderPoint")->rotation.x = 0.0f * ToRadian;
+		//player->Find("RightShoulderPoint")->rotation.y = -61.0f * ToRadian;
+		//player->Find("RightShoulderPoint")->rotation.z = 50.0f * ToRadian;
+		//
+		//player->Find("RightArmPoint")->rotation.x = -123.0f * ToRadian;
 
 		if (shotGun->GetIsLoad())
 		{
@@ -390,20 +508,20 @@ void Player::MotionPlayerWait(GunType type)
 
 		}
 
-		player->Find("LeftShoulderPoint")->rotation.x = -90.0f * ToRadian;
-		player->Find("LeftShoulderPoint")->rotation.y = 0.0f * ToRadian;
+		//player->Find("LeftShoulderPoint")->rotation.x = -90.0f * ToRadian;
+		//player->Find("LeftShoulderPoint")->rotation.y = 0.0f * ToRadian;
+		//
+		//player->Find("LeftArmPoint")->rotation.x = 0.0f * ToRadian;
+	}
 
-		player->Find("LeftArmPoint")->rotation.x = 0.0f * ToRadian;
+	// 발 모션
+	{
+		player->Find("RightKneePoint")->rotation.x = 0;
+		player->Find("LeftKneePoint")->rotation.x = 0;
 
-		// 발 모션
-		{
-			player->Find("RightKneePoint")->rotation.x = 0;
-			player->Find("LeftKneePoint")->rotation.x = 0;
-
-			// 
-			player->Find("RightLegPoint")->rotation.x = 0;
-			player->Find("LeftLegPoint")->rotation.x = 0;
-		}
+		// 
+		player->Find("RightLegPoint")->rotation.x = 0;
+		player->Find("LeftLegPoint")->rotation.x = 0;
 	}
 }
 
@@ -418,15 +536,23 @@ void Player::MotionPlayerWalk(GunType type)
 		// 팔 모션
 		if (gunType == GunType::Gun)
 		{
-			player->Find("RightArmPoint")->rotation.x = -45.0f * ToRadian;
-			player->Find("LeftArmPoint")->rotation.x = 0.0f * ToRadian;
+			if (INPUT->KeyPress(VK_RBUTTON))
+			{
+				gun->GunAim(this);
+			}
+			else
+			{
+				player->Find("RightArmPoint")->rotation.x = -45.0f * ToRadian;
+				player->Find("LeftArmPoint")->rotation.x = 0.0f * ToRadian;
 
-			player->Find("LeftShoulderPoint")->rotation.x = -45.0f * ToRadian;
-			player->Find("RightShoulderPoint")->rotation.x = -14.0f * ToRadian;
+				player->Find("LeftShoulderPoint")->rotation.x = -45.0f * ToRadian;
+				player->Find("RightShoulderPoint")->rotation.x = -14.0f * ToRadian;
 
-			player->Find("LeftShoulderPoint")->rotation.y = 47.0f * ToRadian;
-			player->Find("RightShoulderPoint")->rotation.y = -25.0f * ToRadian;
-			gun->GetGun()->rotation.x = 45.0f; // 총이 손을 따라다니게끔
+				player->Find("LeftShoulderPoint")->rotation.y = 47.0f * ToRadian;
+				player->Find("RightShoulderPoint")->rotation.y = -25.0f * ToRadian;
+				gun->GetGun()->rotation.x = 45.0f; // 총이 손을 따라다니게끔
+			}
+			
 		}
 		else if (gunType == GunType::None)
 		{
@@ -446,16 +572,37 @@ void Player::MotionPlayerWalk(GunType type)
 		}
 		else if (gunType == GunType::ShotGun)
 		{
-			//shotGun->GetShotGun()->rotation.x = 0.0f;
-			shotGun->GetShotGun()->rotation.y = -90.0f * ToRadian;
-
-			player->Find("LeftShoulderPoint")->rotation.y += walkHandDir * 0.3f * ToRadian * DELTA;
-			player->Find("RightShoulderPoint")->rotation.z += walkHandDir * 0.3f * ToRadian * DELTA;
-			if (player->Find("RightShoulderPoint")->rotation.z < 0.0f * ToRadian or
-				player->Find("RightShoulderPoint")->rotation.z > 10.0f * ToRadian)
+			if (INPUT->KeyPress(VK_RBUTTON))
 			{
-				walkHandDir = -walkHandDir;
+				shotGun->ShotCunAim(this);
 			}
+			else
+			{
+				shotGun->GetShotGun()->rotation.y = -80.0f * ToRadian;
+
+				player->Find("UpPoint")->rotation.y = 0.0f * ToRadian;
+				player->Find("RightShoulderPoint")->rotation.x = 10.0f * ToRadian;
+				player->Find("RightShoulderPoint")->rotation.y = -25.0f * ToRadian;
+				player->Find("RightShoulderPoint")->rotation.z = 0.0f * ToRadian;
+
+				player->Find("RightArmPoint")->rotation.x = -108.0f * ToRadian;
+
+				player->Find("LeftShoulderPoint")->rotation.y = -25.0f * ToRadian;
+				player->Find("LeftShoulderPoint")->rotation.x = -7.0f * ToRadian;
+				player->Find("LeftArmPoint")->rotation.x = -100.0f * ToRadian;
+
+				//shotGun->GetShotGun()->rotation.x = 0.0f;
+				shotGun->GetShotGun()->rotation.y = -90.0f * ToRadian;
+
+				player->Find("LeftShoulderPoint")->rotation.y += walkHandDir * 0.3f * ToRadian * DELTA;
+				player->Find("RightShoulderPoint")->rotation.z += walkHandDir * 0.3f * ToRadian * DELTA;
+				if (player->Find("RightShoulderPoint")->rotation.z < 0.0f * ToRadian or
+					player->Find("RightShoulderPoint")->rotation.z > 10.0f * ToRadian)
+				{
+					walkHandDir = -walkHandDir;
+				}
+			}
+			
 		}
 
 		// 발 모션
@@ -480,12 +627,13 @@ void Player::MotionPlayerWalk(GunType type)
 
 		if (gunType == GunType::Gun)
 		{
-			player->Find("LeftShoulderPoint")->rotation.x = -75.0f * ToRadian;
-			player->Find("RightShoulderPoint")->rotation.x = -75.0f * ToRadian;
-
-			player->Find("LeftShoulderPoint")->rotation.y = 25.0f * ToRadian;
-			player->Find("RightShoulderPoint")->rotation.y = -25.0f * ToRadian;
-			gun->GetGun()->rotation.x = 0.0f; // 총이 손을 따라다니게끔
+			gun->GunAim(this);
+			//player->Find("LeftShoulderPoint")->rotation.x = -75.0f * ToRadian;
+			//player->Find("RightShoulderPoint")->rotation.x = -75.0f * ToRadian;
+			//
+			//player->Find("LeftShoulderPoint")->rotation.y = 25.0f * ToRadian;
+			//player->Find("RightShoulderPoint")->rotation.y = -25.0f * ToRadian;
+			//gun->GetGun()->rotation.x = 0.0f; // 총이 손을 따라다니게끔
 		}
 		else if (gunType == GunType::None)
 		{
@@ -548,25 +696,33 @@ void Player::MotionPlayerRun(GunType type)
 
 		if (gunType == GunType::Gun)
 		{
-			player->Find("LeftShoulderPoint")->rotation.y = 0.0f;
-			player->Find("RightShoulderPoint")->rotation.y = 0.0f;
-			player->Find("RightShoulderPoint")->rotation.z = 7.0f * ToRadian;
-
-			player->Find("LeftArmPoint")->rotation.x = -40.0f * ToRadian;
-			player->Find("LeftShoulderPoint")->rotation.x -= walkHandDir * ToRadian * DELTA;
-			if (player->Find("LeftShoulderPoint")->rotation.x < -25.0f * ToRadian or
-				player->Find("LeftShoulderPoint")->rotation.x > 25.0f * ToRadian)
+			if (INPUT->KeyPress(VK_RBUTTON))
 			{
-				walkHandDir = -walkHandDir;
+				gun->GunAim(this);
 			}
+			else if (INPUT->KeyUp(VK_RBUTTON))
+			{
+				player->Find("LeftShoulderPoint")->rotation.x = 0 * ToRadian;
+				player->Find("RightShoulderPoint")->rotation.x = 0 * ToRadian;
+			}
+			else
+			{
+				player->Find("LeftShoulderPoint")->rotation.y = 0.0f;
+				player->Find("RightShoulderPoint")->rotation.y = 0.0f;
+				player->Find("RightShoulderPoint")->rotation.z = 7.0f * ToRadian;
 
-			player->Find("RightShoulderPoint")->rotation.x += walkHandDir * ToRadian * DELTA * 0.2f;
+				player->Find("LeftArmPoint")->rotation.x = -40.0f * ToRadian;
+				player->Find("LeftShoulderPoint")->rotation.x -= walkHandDir * ToRadian * DELTA;
+				if (player->Find("LeftShoulderPoint")->rotation.x < -25.0f * ToRadian or
+					player->Find("LeftShoulderPoint")->rotation.x > 25.0f * ToRadian)
+				{
+					walkHandDir = -walkHandDir;
+				}
+				player->Find("RightShoulderPoint")->rotation.x += walkHandDir * ToRadian * DELTA * 0.2f;
 
-
-
-			player->Find("RightArmPoint")->rotation.x = 0.0f;
-			gun->GetGun()->rotation.x = 90.0f * ToRadian;		// 총이 손을 따라다니게끔
-
+				player->Find("RightArmPoint")->rotation.x = 0.0f;
+				gun->GetGun()->rotation.x = 90.0f * ToRadian;		// 총이 손을 따라다니게끔
+			}
 		}
 		else if (gunType == GunType::None)
 		{
@@ -586,12 +742,35 @@ void Player::MotionPlayerRun(GunType type)
 		}
 		else if (gunType == GunType::ShotGun)
 		{
-			player->Find("LeftShoulderPoint")->rotation.y += walkHandDir * 0.5f * ToRadian * DELTA;
-			player->Find("RightShoulderPoint")->rotation.z += walkHandDir * 0.5f * ToRadian * DELTA;
-			if (player->Find("RightShoulderPoint")->rotation.z < 0.0f * ToRadian or
-				player->Find("RightShoulderPoint")->rotation.z > 15.0f * ToRadian)
+			if (INPUT->KeyPress(VK_RBUTTON))
 			{
-				walkHandDir = -walkHandDir;
+				shotGun->ShotCunAim(this);
+			}
+			else
+			{
+				shotGun->GetShotGun()->rotation.y = -80.0f * ToRadian;
+
+				player->Find("UpPoint")->rotation.y = 0.0f * ToRadian;
+				player->Find("RightShoulderPoint")->rotation.x = 10.0f * ToRadian;
+				player->Find("RightShoulderPoint")->rotation.y = -25.0f * ToRadian;
+				player->Find("RightShoulderPoint")->rotation.z = 0.0f * ToRadian;
+
+				player->Find("RightArmPoint")->rotation.x = -108.0f * ToRadian;
+
+				player->Find("LeftShoulderPoint")->rotation.y = -25.0f * ToRadian;
+				player->Find("LeftShoulderPoint")->rotation.x = -7.0f * ToRadian;
+				player->Find("LeftArmPoint")->rotation.x = -100.0f * ToRadian;
+
+				//shotGun->GetShotGun()->rotation.x = 0.0f;
+				shotGun->GetShotGun()->rotation.y = -90.0f * ToRadian;
+
+				player->Find("LeftShoulderPoint")->rotation.y += walkHandDir * 0.5f * ToRadian * DELTA;
+				player->Find("RightShoulderPoint")->rotation.z += walkHandDir * 0.5f * ToRadian * DELTA;
+				if (player->Find("RightShoulderPoint")->rotation.z < 0.0f * ToRadian or
+					player->Find("RightShoulderPoint")->rotation.z > 15.0f * ToRadian)
+				{
+					walkHandDir = -walkHandDir;
+				}
 			}
 		}
 

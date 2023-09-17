@@ -163,3 +163,21 @@ void ShotGun::ShotGunControl()
         }
     }
 }
+
+void ShotGun::ShotCunAim(Player* player)
+{
+    //shotGun->GetShotGun()->rotation.y = 0.0f * ToRadian;
+
+    player->GetPlayerActor()->Find("UpPoint")->rotation.y = 36.0f * ToRadian;
+
+    player->GetPlayerActor()->Find("RightShoulderPoint")->rotation.x = 0.0f * ToRadian;
+    player->GetPlayerActor()->Find("RightShoulderPoint")->rotation.y = -61.0f * ToRadian;
+    player->GetPlayerActor()->Find("RightShoulderPoint")->rotation.z = 50.0f * ToRadian;
+
+    player->GetPlayerActor()->Find("RightArmPoint")->rotation.x = -123.0f * ToRadian;
+
+    player->GetPlayerActor()->Find("LeftShoulderPoint")->rotation.x = -90.0f * ToRadian;
+    player->GetPlayerActor()->Find("LeftShoulderPoint")->rotation.y = 0.0f * ToRadian;
+
+    player->GetPlayerActor()->Find("LeftArmPoint")->rotation.x = 0.0f * ToRadian;
+}
