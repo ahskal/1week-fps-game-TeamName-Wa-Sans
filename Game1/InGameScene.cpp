@@ -294,7 +294,7 @@ void InGameScene::Update()
 		{
 			ClientToScreen(App.GetHandle(), &ptMouse);
 			SetCursorPos(ptMouse.x, ptMouse.y);
-			//ShowCursor(false);
+			ShowCursor(false);
 		}
 		if (optionOpen) ShowCursor(true);
 		
