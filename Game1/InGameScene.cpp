@@ -108,8 +108,15 @@ void InGameScene::Init()
 	Ingamethema->SetVolume("mainthema", 0.2f);
 	Ingamethema->Play("mainthema");
 	uikillcount = 10;
-	missionKill = 10;
+	missionKill = 10
 	killCount = 0;
+	for (int i = 0; i < 5; i++)
+	{
+		Monster* mob = new Monster();
+		Vector3 randomSpwan = Vector3(RANDOM->Float(-150, 150), 0, RANDOM->Float(-150, 150));
+		mob->Init(randomSpwan);
+		monster.push_back(mob);
+	}
 }
 
 void InGameScene::Release()
@@ -119,6 +126,8 @@ void InGameScene::Release()
 
 void InGameScene::Update()
 {
+	uikillcount = monster.size();
+	missionKill = monster.size();
 	//임시 게임오버 확인용 플레이어 사망시
 	{
 		// 플레이어 사망시 GameOverUI true
@@ -182,7 +191,7 @@ void InGameScene::Update()
 		//타이머 초기화
 		{
 			CurrentTime = 0.0f;
-			zombieSpwanTime = 10.0f;
+			zombieSpwanTime = 5.0f;
 		}
 		Ingamethema->Stop("mainthema");
 		SCENE->ChangeScene("LobbyScene");
@@ -224,18 +233,18 @@ void InGameScene::Update()
 	//작업용 카메라 플레이어 3인칭캠 변환
 	PlayerCam->SetWorldPos(player->GetPlayerActor()->Find("HeadMesh")->GetWorldPos()); // 플레이어 캠이 플레이어의 머리좌표를 계속 받아오게하기
 	Camera::main = PlayerCam;
-	//{
-	//	//작업용
-	//	if (INPUT->KeyDown(VK_F5))
-	//	{
-	//		Camera::main = MainCam;
-	//	}
-	//	//플레이어 1인칭시점
-	//	if (INPUT->KeyDown(VK_F6))
-	//	{
-	//		Camera::main = PlayerCam;
-	//	}
-	//}
+	{
+		////작업용
+		//if (INPUT->KeyDown(VK_F5))
+		//{
+		//	Camera::main = MainCam;
+		//}
+		////플레이어 1인칭시점
+		//if (INPUT->KeyDown(VK_F6))
+		//{
+		//	Camera::main = PlayerCam;
+		//}
+	}
 
 	//옵션창 ui 열기닫기
 	{
