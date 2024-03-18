@@ -398,4 +398,6 @@ FodyWeavers.xsd
 *.sln.iml
 /Game1/window.ini
 /Game1/imgui.ini
+/Game1/
+/2DFrameWork/
 Build/

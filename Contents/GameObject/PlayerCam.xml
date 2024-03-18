@@ -1,0 +1,10 @@
+<Root Name="PlayerCAM" Visible="true" ObType="2">
+    <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
+    <Transform>
+        <Position X="-89.435493" Y="4.2796602" Z="102.34373"/>
+        <Scale X="1" Y="1" Z="1"/>
+        <Rotation X="0.0079999622" Y="-2.8100004" Z="0"/>
+    </Transform>
+    <Camera Ortho="false" Fov="1.047192" Width="1920" Height="1009" NearZ="0.1" FarZ="500" viewportX="0" viewportY="0" viewportW="1920" viewportH="1009"/>
+    <Children Size="0"/>
+</Root>

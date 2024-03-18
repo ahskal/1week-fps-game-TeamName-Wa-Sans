@@ -1,0 +1,358 @@
+<Root Name="house" Visible="true" ObType="1">
+    <Shader_Color R="0.50196081" G="0.50196081" B="0.50196081" A="0.50196081"/>
+	<Collider ColliderType="2" Visible="false">
+		<Position X="0" Y="8" Z="0"/>
+		<Scale X="17" Y="10" Z="17"/>
+		<Rotation X="0" Y="0" Z="0"/>
+	</Collider>
+    <Transform>
+        <Position X="0" Y="0" Z="0"/>
+        <Scale X="1" Y="1" Z="1"/>
+        <Rotation X="0" Y="0" Z="0"/>
+    </Transform>
+    <Children Size="4"/>
+	<Child0 Name="Floor" Visible="true" ObType="0">
+		<Shader_Color R="0.58823532" G="0.54901963" B="0.47058824" A="0.50196081"/>
+		<Transform>
+			<Position X="0" Y="0" Z="0"/>
+			<Scale X="1" Y="1" Z="1"/>
+			<Rotation X="0" Y="0" Z="0"/>
+		</Transform>
+		<Children Size="1"/>
+		<Child0 Name="Floor_Mesh_1" Visible="true" ObType="0">
+			<Mesh File="6.Cube.mesh"/>
+			<Shader File="6.Cube.hlsl"/>
+			<Shader_Color R="0.39593542" G="0.36130625" B="0.34221679" A="0.50196081"/>
+			<Collider ColliderType="2" Visible="false">
+				<Position X="0" Y="0" Z="0"/>
+				<Scale X="1" Y="1" Z="1"/>
+				<Rotation X="0" Y="0" Z="0"/>
+			</Collider>
+			<Texture File="Map/gray.png"/>
+			<Transform>
+				<Position X="0" Y="0" Z="0"/>
+				<Scale X="15" Y="1" Z="15"/>
+				<Rotation X="0" Y="0" Z="0"/>
+			</Transform>
+			<Children Size="0"/>
+		</Child0>
+	</Child0>
+	<Child1 Name="Pillar" Visible="true" ObType="0">
+		<Shader_Color R="0.58823532" G="0.54901963" B="0.47058824" A="0.50196081"/>
+		<Transform>
+			<Position X="0" Y="0" Z="0"/>
+			<Scale X="1" Y="1" Z="1"/>
+			<Rotation X="0" Y="0" Z="0"/>
+		</Transform>
+		<Children Size="4"/>
+		<Child0 Name="Pillar_Mesh_1" Visible="true" ObType="0">
+			<Mesh File="6.Cube.mesh"/>
+			<Shader File="6.Cube.hlsl"/>
+			<Shader_Color R="0.58823532" G="0.54901963" B="0.47058824" A="0.50196081"/>
+			<Collider ColliderType="2" Visible="false">
+				<Position X="0" Y="0" Z="0"/>
+				<Scale X="1" Y="1" Z="1"/>
+				<Rotation X="0" Y="0" Z="0"/>
+			</Collider>
+			<Texture File="Map/BrickTile.png"/>
+			<Transform>
+				<Position X="14.5" Y="8" Z="14.5"/>
+				<Scale X="2" Y="8" Z="2"/>
+				<Rotation X="0" Y="0" Z="0"/>
+			</Transform>
+			<Children Size="0"/>
+		</Child0>
+		<Child1 Name="Pillar_Mesh_2" Visible="true" ObType="0">
+			<Mesh File="6.Cube.mesh"/>
+			<Shader File="6.Cube.hlsl"/>
+			<Shader_Color R="0.58823532" G="0.54901963" B="0.47058824" A="0.50196081"/>
+			<Collider ColliderType="2" Visible="false">
+				<Position X="0" Y="0" Z="0"/>
+				<Scale X="1" Y="1" Z="1"/>
+				<Rotation X="0" Y="0" Z="0"/>
+			</Collider>
+			<Texture File="Map/BrickTile.png"/>
+			<Transform>
+				<Position X="-14.5" Y="8" Z="14.5"/>
+				<Scale X="2" Y="8" Z="2"/>
+				<Rotation X="0" Y="0" Z="0"/>
+			</Transform>
+			<Children Size="0"/>
+		</Child1>
+		<Child2 Name="Pillar_Mesh_3" Visible="true" ObType="0">
+			<Mesh File="6.Cube.mesh"/>
+			<Shader File="6.Cube.hlsl"/>
+			<Shader_Color R="0.58823532" G="0.54901963" B="0.47058824" A="0.50196081"/>
+			<Collider ColliderType="2" Visible="false">
+				<Position X="0" Y="0" Z="0"/>
+				<Scale X="1" Y="1" Z="1"/>
+				<Rotation X="0" Y="0" Z="0"/>
+			</Collider>
+			<Texture File="Map/BrickTile.png"/>
+			<Transform>
+				<Position X="14.5" Y="8" Z="-14.5"/>
+				<Scale X="2" Y="8" Z="2"/>
+				<Rotation X="0" Y="0" Z="0"/>
+			</Transform>
+			<Children Size="0"/>
+		</Child2>
+		<Child3 Name="Pillar_Mesh_4" Visible="true" ObType="0">
+			<Mesh File="6.Cube.mesh"/>
+			<Shader File="6.Cube.hlsl"/>
+			<Shader_Color R="0.58823532" G="0.54901963" B="0.47058824" A="0.50196081"/>
+			<Collider ColliderType="2" Visible="false">
+				<Position X="0" Y="0" Z="0"/>
+				<Scale X="1" Y="1" Z="1"/>
+				<Rotation X="0" Y="0" Z="0"/>
+			</Collider>
+			<Texture File="Map/BrickTile.png"/>
+			<Transform>
+				<Position X="-14.5" Y="8" Z="-14.5"/>
+				<Scale X="2" Y="8" Z="2"/>
+				<Rotation X="0" Y="0" Z="0"/>
+			</Transform>
+			<Children Size="0"/>
+		</Child3>
+	</Child1>
+	<Child2 Name="Roof" Visible="true" ObType="0">
+		<Shader_Color R="0.58823532" G="0.54901963" B="0.47058824" A="0.50196081"/>
+		<Transform>
+			<Position X="0" Y="17" Z="0"/>
+			<Scale X="1" Y="1" Z="1"/>
+			<Rotation X="0" Y="0" Z="0"/>
+		</Transform>
+		<Children Size="1"/>
+		<Child0 Name="Roof_Mesh_1" Visible="true" ObType="0">
+			<Mesh File="6.Cube.mesh"/>
+			<Shader File="6.Cube.hlsl"/>
+			<Shader_Color R="0.58823532" G="0.54901963" B="0.47058824" A="0.50196081"/>
+			<Collider ColliderType="2" Visible="false">
+				<Position X="0" Y="0" Z="0"/>
+				<Scale X="1" Y="1" Z="1"/>
+				<Rotation X="0" Y="0" Z="0"/>
+			</Collider>
+			<Texture File="Map/gray.png"/>
+			<Transform>
+				<Position X="0" Y="0" Z="0"/>
+				<Scale X="17" Y="1" Z="17"/>
+				<Rotation X="0" Y="0" Z="0"/>
+			</Transform>
+			<Children Size="0"/>
+		</Child0>
+	</Child2>
+    <Child3 Name="Wall" Visible="true" ObType="0">
+        <Shader_Color R="0.58823532" G="0.54901963" B="0.47058824" A="0.50196081"/>
+        <Transform>
+            <Position X="0" Y="0" Z="0"/>
+            <Scale X="1" Y="1" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <Children Size="4"/>
+        <Child0 Name="Wall_1" Visible="true" ObType="0">
+            <Shader_Color R="0.58823532" G="0.54901963" B="0.47058824" A="0.50196081"/>
+            <Transform>
+                <Position X="0" Y="0" Z="0"/>
+                <Scale X="1" Y="1" Z="1"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <Children Size="4"/>
+            <Child0 Name="Wall_1_Mesh_1" Visible="true" ObType="0">
+                <Mesh File="6.Cube.mesh"/>
+                <Shader File="6.Cube.hlsl"/>
+                <Shader_Color R="0.58823532" G="0.54901963" B="0.47058824" A="0.50196081"/>
+				<Collider ColliderType="2" Visible="false">
+					<Position X="0" Y="0" Z="0"/>
+					<Scale X="1" Y="1" Z="1"/>
+					<Rotation X="0" Y="0" Z="0"/>
+				</Collider>
+                 <Texture File="Map/BrickTile.png"/>
+                <Transform>
+                    <Position X="9" Y="8" Z="16"/>
+                    <Scale X="5" Y="8" Z="1"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <Children Size="0"/>
+            </Child0>
+            <Child1 Name="Wall_1_Mesh_2" Visible="true" ObType="0">
+                <Mesh File="6.Cube.mesh"/>
+                <Shader File="6.Cube.hlsl"/>
+                <Shader_Color R="0.58823532" G="0.54901963" B="0.47058824" A="0.50196081"/>
+				<Collider ColliderType="2" Visible="false">
+					<Position X="0" Y="0" Z="0"/>
+					<Scale X="1" Y="1" Z="1"/>
+					<Rotation X="0" Y="0" Z="0"/>
+				</Collider>
+                 <Texture File="Map/BrickTile.png"/>
+                <Transform>
+                    <Position X="-9" Y="8" Z="16"/>
+                    <Scale X="5" Y="8" Z="1"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <Children Size="0"/>
+            </Child1>
+            <Child2 Name="Wall_1_Mesh_3" Visible="true" ObType="0">
+                <Mesh File="6.Cube.mesh"/>
+                <Shader File="6.Cube.hlsl"/>
+                <Shader_Color R="0.58823532" G="0.54901963" B="0.47058824" A="0.50196081"/>
+				<Collider ColliderType="2" Visible="false">
+					<Position X="0" Y="0" Z="0"/>
+					<Scale X="1" Y="1" Z="1"/>
+					<Rotation X="0" Y="0" Z="0"/>
+				</Collider>
+                 <Texture File="Map/BrickTile_sixteenth.png"/>
+                <Transform>
+                    <Position X="0" Y="0" Z="16"/>
+                    <Scale X="4" Y="1" Z="1"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <Children Size="0"/>
+            </Child2>
+            <Child3 Name="Wall_1_Mesh_4" Visible="true" ObType="0">
+                <Mesh File="6.Cube.mesh"/>
+                <Shader File="6.Cube.hlsl"/>
+                <Shader_Color R="0.58823532" G="0.54901963" B="0.47058824" A="0.50196081"/>
+				<Collider ColliderType="2" Visible="false">
+					<Position X="0" Y="0" Z="0"/>
+					<Scale X="1" Y="1" Z="1"/>
+					<Rotation X="0" Y="0" Z="0"/>
+				</Collider>
+                 <Texture File="Map/BrickTile_sixteenth.png"/>
+                <Transform>
+                    <Position X="0" Y="14" Z="16"/>
+                    <Scale X="4" Y="2" Z="1"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <Children Size="0"/>
+            </Child3>
+        </Child0>
+        <Child1 Name="Wall_2" Visible="true" ObType="0">
+            <Shader_Color R="0.58823532" G="0.54901963" B="0.47058824" A="0.50196081"/>
+            <Transform>
+                <Position X="0" Y="0" Z="0"/>
+                <Scale X="1" Y="1" Z="1"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <Children Size="4"/>
+            <Child0 Name="Wall_2_Mesh_1" Visible="true" ObType="0">
+                <Mesh File="6.Cube.mesh"/>
+                <Shader File="6.Cube.hlsl"/>
+                <Shader_Color R="0.58823532" G="0.54901963" B="0.47058824" A="0.50196081"/>
+				<Collider ColliderType="2" Visible="false">
+					<Position X="0" Y="0" Z="0"/>
+					<Scale X="1" Y="1" Z="1"/>
+					<Rotation X="0" Y="0" Z="0"/>
+				</Collider>
+                 <Texture File="Map/BrickTile.png"/>
+                <Transform>
+                    <Position X="9" Y="8" Z="-16"/>
+                    <Scale X="5" Y="8" Z="1"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <Children Size="0"/>
+            </Child0>
+            <Child1 Name="Wall_2_Mesh_2" Visible="true" ObType="0">
+                <Mesh File="6.Cube.mesh"/>
+                <Shader File="6.Cube.hlsl"/>
+                <Shader_Color R="0.58823532" G="0.54901963" B="0.47058824" A="0.50196081"/>
+				<Collider ColliderType="2" Visible="false">
+					<Position X="0" Y="0" Z="0"/>
+					<Scale X="1" Y="1" Z="1"/>
+					<Rotation X="0" Y="0" Z="0"/>
+				</Collider>
+                 <Texture File="Map/BrickTile.png"/>
+                <Transform>
+                    <Position X="-9" Y="8" Z="-16"/>
+                    <Scale X="5" Y="8" Z="1"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <Children Size="0"/>
+            </Child1>
+            <Child2 Name="Wall_2_Mesh_3" Visible="true" ObType="0">
+                <Mesh File="6.Cube.mesh"/>
+                <Shader File="6.Cube.hlsl"/>
+                <Shader_Color R="0.58823532" G="0.54901963" B="0.47058824" A="0.50196081"/>
+				<Collider ColliderType="2" Visible="false">
+					<Position X="0" Y="0" Z="0"/>
+					<Scale X="1" Y="1" Z="1"/>
+					<Rotation X="0" Y="0" Z="0"/>
+				</Collider>
+                 <Texture File="Map/BrickTile_sixteenth.png"/>
+                <Transform>
+                    <Position X="0" Y="0" Z="-16"/>
+                    <Scale X="4" Y="1" Z="1"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <Children Size="0"/>
+            </Child2>
+            <Child3 Name="Wall_2_Mesh_4" Visible="true" ObType="0">
+                <Mesh File="6.Cube.mesh"/>
+                <Shader File="6.Cube.hlsl"/>
+                <Shader_Color R="0.58823532" G="0.54901963" B="0.47058824" A="0.50196081"/>
+				<Collider ColliderType="2" Visible="false">
+					<Position X="0" Y="0" Z="0"/>
+					<Scale X="1" Y="1" Z="1"/>
+					<Rotation X="0" Y="0" Z="0"/>
+				</Collider>
+                 <Texture File="Map/BrickTile_sixteenth.png"/>
+                <Transform>
+                    <Position X="0" Y="14" Z="-16"/>
+                    <Scale X="4" Y="2" Z="1"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <Children Size="0"/>
+            </Child3>
+        </Child1>
+        <Child2 Name="Wall_3" Visible="true" ObType="0">
+            <Shader_Color R="0.58823532" G="0.54901963" B="0.47058824" A="0.50196081"/>
+            <Transform>
+                <Position X="0" Y="0" Z="0"/>
+                <Scale X="1" Y="1" Z="1"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <Children Size="1"/>
+            <Child0 Name="Wall_3_Mesh_1" Visible="true" ObType="0">
+                <Mesh File="6.Cube.mesh"/>
+                <Shader File="6.Cube.hlsl"/>
+                <Shader_Color R="0.58823532" G="0.54901963" B="0.47058824" A="0.50196081"/>
+				<Collider ColliderType="2" Visible="false">
+					<Position X="0" Y="0" Z="0"/>
+					<Scale X="1" Y="1" Z="1"/>
+					<Rotation X="0" Y="0" Z="0"/>
+				</Collider>
+                 <Texture File="Map/BrickTile.png"/>
+                <Transform>
+                    <Position X="16" Y="8" Z="0"/>
+                    <Scale X="1" Y="8" Z="14"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <Children Size="0"/>
+            </Child0>
+        </Child2>
+        <Child3 Name="Wall_4" Visible="true" ObType="0">
+            <Shader_Color R="0.58823532" G="0.54901963" B="0.47058824" A="0.50196081"/>
+            <Transform>
+                <Position X="0" Y="0" Z="0"/>
+                <Scale X="1" Y="1" Z="1"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <Children Size="1"/>
+            <Child0 Name="Wall_4_Mesh_1" Visible="true" ObType="0">
+                <Mesh File="6.Cube.mesh"/>
+                <Shader File="6.Cube.hlsl"/>
+                <Shader_Color R="0.58823532" G="0.54901963" B="0.47058824" A="0.50196081"/>
+				<Collider ColliderType="2" Visible="false">
+					<Position X="0" Y="0" Z="0"/>
+					<Scale X="1" Y="1" Z="1"/>
+					<Rotation X="0" Y="0" Z="0"/>
+				</Collider>
+                 <Texture File="Map/BrickTile.png"/>
+                <Transform>
+                    <Position X="-16" Y="8" Z="0"/>
+                    <Scale X="1" Y="8" Z="14"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <Children Size="0"/>
+            </Child0>
+        </Child3>
+    </Child3>
+</Root>

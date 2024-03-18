@@ -13,8 +13,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shaders", "Shaders", "{E3F02C0D-0DAD-4181-A968-85F48C12D251}"
 	ProjectSection(SolutionItems) = preProject
 		Shaders\0.Cube.hlsl = Shaders\0.Cube.hlsl
+		..\Users\user\Desktop\example\Shaders\1.beretta92.hlsl = ..\Users\user\Desktop\example\Shaders\1.beretta92.hlsl
+		..\Users\user\Desktop\example\Shaders\1.beretta9201.hlsl = ..\Users\user\Desktop\example\Shaders\1.beretta9201.hlsl
+		..\Users\user\Desktop\example\Shaders\1.beretta92Black.hlsl = ..\Users\user\Desktop\example\Shaders\1.beretta92Black.hlsl
 		Shaders\1.Collider.hlsl = Shaders\1.Collider.hlsl
 		Shaders\1.Cube.hlsl = Shaders\1.Cube.hlsl
+		..\Users\user\Desktop\example\Shaders\1.muzzel.hlsl = ..\Users\user\Desktop\example\Shaders\1.muzzel.hlsl
 		Shaders\6.Cube.hlsl = Shaders\6.Cube.hlsl
 		Shaders\6.UI.hlsl = Shaders\6.UI.hlsl
 		Shaders\Common.hlsl = Shaders\Common.hlsl
@@ -30,20 +34,63 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Txt", "Txt", "{BC1DD457-26F
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{23927E1A-8E5E-46EE-82F6-D613BF3CD580}"
-	ProjectSection(SolutionItems) = preProject
-		Contents\Texture\Skin.png = Contents\Texture\Skin.png
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GameObject", "GameObject", "{2C99B77E-2775-4066-AC03-9062F4F4FC4F}"
 	ProjectSection(SolutionItems) = preProject
-		Contents\Texture\bono.png = Contents\Texture\bono.png
-		Contents\Texture\bono3.png = Contents\Texture\bono3.png
-		Contents\GameObject\bullet.xml = Contents\GameObject\bullet.xml
+		Contents\GameObject\beretta92.xml = Contents\GameObject\beretta92.xml
 		Contents\GameObject\Cam.xml = Contents\GameObject\Cam.xml
+		Contents\GameObject\Cam1.xml = Contents\GameObject\Cam1.xml
+		Contents\GameObject\Camthefirst.xml = Contents\GameObject\Camthefirst.xml
+		Contents\GameObject\exit.xml = Contents\GameObject\exit.xml
+		Contents\GameObject\gameoverUI.xml = Contents\GameObject\gameoverUI.xml
+		Contents\GameObject\gamestart.xml = Contents\GameObject\gamestart.xml
+		Contents\GameObject\gamewinUI.xml = Contents\GameObject\gamewinUI.xml
 		Contents\GameObject\Grid.xml = Contents\GameObject\Grid.xml
-		Contents\GameObject\Robot.xml = Contents\GameObject\Robot.xml
-		Contents\GameObject\Sun.xml = Contents\GameObject\Sun.xml
-		Contents\GameObject\Target.xml = Contents\GameObject\Target.xml
+		Contents\GameObject\GunShop.xml = Contents\GameObject\GunShop.xml
+		Contents\GameObject\Hospital.xml = Contents\GameObject\Hospital.xml
+		Contents\GameObject\Item.xml = Contents\GameObject\Item.xml
+		Contents\GameObject\killcount1.xml = Contents\GameObject\killcount1.xml
+		Contents\GameObject\killcount2.xml = Contents\GameObject\killcount2.xml
+		Contents\GameObject\killmissionUI.xml = Contents\GameObject\killmissionUI.xml
+		Contents\GameObject\LoaddingImage.xml = Contents\GameObject\LoaddingImage.xml
+		Contents\GameObject\loadingUI.xml = Contents\GameObject\loadingUI.xml
+		Contents\GameObject\lobbythema.xml = Contents\GameObject\lobbythema.xml
+		Contents\GameObject\MainCam.xml = Contents\GameObject\MainCam.xml
+		Contents\GameObject\Monster.xml = Contents\GameObject\Monster.xml
+		Contents\GameObject\mouse.xml = Contents\GameObject\mouse.xml
+		Contents\GameObject\option.xml = Contents\GameObject\option.xml
+		Contents\GameObject\optionUI.xml = Contents\GameObject\optionUI.xml
+		Contents\GameObject\Player.xml = Contents\GameObject\Player.xml
+		Contents\GameObject\playerAim.xml = Contents\GameObject\playerAim.xml
+		Contents\GameObject\PlayerAimUI.xml = Contents\GameObject\PlayerAimUI.xml
+		Contents\GameObject\PlayerCam.xml = Contents\GameObject\PlayerCam.xml
+		Contents\GameObject\Remington.xml = Contents\GameObject\Remington.xml
+		Contents\GameObject\sensitivityUI.xml = Contents\GameObject\sensitivityUI.xml
+		Contents\GameObject\soundUI.xml = Contents\GameObject\soundUI.xml
+		Contents\GameObject\testCol.xml = Contents\GameObject\testCol.xml
+		Contents\GameObject\themaback.xml = Contents\GameObject\themaback.xml
+		Contents\GameObject\VillageCam.xml = Contents\GameObject\VillageCam.xml
+		Contents\GameObject\VillageHouse.xml = Contents\GameObject\VillageHouse.xml
+		Contents\GameObject\VillageHouse2.xml = Contents\GameObject\VillageHouse2.xml
+		Contents\GameObject\VillageHouse3.xml = Contents\GameObject\VillageHouse3.xml
+		Contents\GameObject\VillageHouse4.xml = Contents\GameObject\VillageHouse4.xml
+		Contents\GameObject\VillageMap.xml = Contents\GameObject\VillageMap.xml
+		Contents\GameObject\Wall.xml = Contents\GameObject\Wall.xml
+		Contents\GameObject\zombie.xml = Contents\GameObject\zombie.xml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{51FE72B2-FEB9-4625-88C3-CC7637D31895}"
+	ProjectSection(SolutionItems) = preProject
+		Contents\GameObject\GunShop.xml = Contents\GameObject\GunShop.xml
+		Contents\GameObject\Hospital.xml = Contents\GameObject\Hospital.xml
+		Contents\GameObject\Monster.xml = Contents\GameObject\Monster.xml
+		Contents\GameObject\testCol.xml = Contents\GameObject\testCol.xml
+		Contents\GameObject\VillageCam.xml = Contents\GameObject\VillageCam.xml
+		Contents\GameObject\VillageHouse.xml = Contents\GameObject\VillageHouse.xml
+		Contents\GameObject\VillageHouse2.xml = Contents\GameObject\VillageHouse2.xml
+		Contents\GameObject\VillageHouse3.xml = Contents\GameObject\VillageHouse3.xml
+		Contents\GameObject\VillageHouse4.xml = Contents\GameObject\VillageHouse4.xml
+		Contents\GameObject\VillageMap.xml = Contents\GameObject\VillageMap.xml
 	EndProjectSection
 EndProject
 Global

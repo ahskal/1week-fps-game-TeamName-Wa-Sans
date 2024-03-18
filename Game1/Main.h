@@ -3,6 +3,8 @@
 class Main : public Scene
 {
 private:
+	
+
 
 public:
 	Main();

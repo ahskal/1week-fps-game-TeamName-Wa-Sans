@@ -86,6 +86,7 @@ extern Application App;//Extern Global
 #include "BinaryFile.h"
 
 #include "DepthState.h"
+#include "BlendState.h"
 
 #include "Random.h"
 #include "Texture.h"

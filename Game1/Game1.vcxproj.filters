@@ -1,18 +1,91 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="House.cpp">
+      <Filter>Jin_</Filter>
+    </ClCompile>
+    <ClCompile Include="VillageMap.cpp">
+      <Filter>Jin_</Filter>
+    </ClCompile>
+    <ClCompile Include="InGameScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="LobbyScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="UNIT.cpp">
+      <Filter>Unit</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>LeeSH</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>LeeSH</Filter>
+    </ClCompile>
+    <ClCompile Include="Gun.cpp">
+      <Filter>LeeSH</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>zombie</Filter>
+    </ClCompile>
+    <ClCompile Include="ShotGun.cpp">
+      <Filter>LeeSH</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
     <ClInclude Include="Main.h" />
     <ClInclude Include="stdafx.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="Scene">
-      <UniqueIdentifier>{e0c428c6-0d94-4784-bb3a-59d8180b610b}</UniqueIdentifier>
-    </Filter>
+    <ClInclude Include="House.h">
+      <Filter>Jin_</Filter>
+    </ClInclude>
+    <ClInclude Include="VillageMap.h">
+      <Filter>Jin_</Filter>
+    </ClInclude>
+    <ClInclude Include="InGameScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="LobbyScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="UNIT.h">
+      <Filter>Unit</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>LeeSH</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>LeeSH</Filter>
+    </ClInclude>
+    <ClInclude Include="Gun.h">
+      <Filter>LeeSH</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>zombie</Filter>
+    </ClInclude>
+    <ClInclude Include="ShotGun.h">
+      <Filter>LeeSH</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="window.ini" />
+    <None Include="imgui.ini" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Jin_">
+      <UniqueIdentifier>{4e2b3aad-7fc9-426b-b44f-f5a625eb3e73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{9dd676be-487c-4c29-b0b1-ab03eade1aad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Unit">
+      <UniqueIdentifier>{62c17db8-5797-447b-8d08-f9f7668b1025}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LeeSH">
+      <UniqueIdentifier>{72f06f21-15b6-479d-987e-b03da61ef9f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="zombie">
+      <UniqueIdentifier>{bef06469-1efb-4ca1-a0b7-1cfc8ddce82e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

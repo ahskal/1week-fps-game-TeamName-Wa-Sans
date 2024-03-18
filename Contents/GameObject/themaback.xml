@@ -1,0 +1,12 @@
+<Root Name="themaback" Visible="true" ObType="4">
+    <Mesh File="6.UI.mesh"/>
+    <Shader File="6.UI.hlsl"/>
+    <Shader_Color R="0.5" G="0.5" B="0.5" A="0.5"/>
+    <Texture File="themaback.png"/>
+    <Transform>
+        <Position X="0" Y="0" Z="0"/>
+        <Scale X="1" Y="1" Z="1"/>
+        <Rotation X="0" Y="0" Z="0"/>
+    </Transform>
+    <Children Size="0"/>
+</Root>

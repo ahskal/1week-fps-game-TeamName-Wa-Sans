@@ -1,0 +1,17 @@
+<Root Name="VillageMap" Visible="true" ObType="1">
+    <Mesh File="6.Cube.mesh"/>
+    <Shader File="6.Cube.hlsl"/>
+    <Shader_Color R="0.33051348" G="0.33048043" B="0.33048987" A="0.5"/>
+    <Collider ColliderType="2" Visible="false">
+        <Position X="0" Y="0" Z="0"/>
+        <Scale X="1" Y="1" Z="1"/>
+        <Rotation X="0" Y="0" Z="0"/>
+    </Collider>
+    <Texture File="Map/gray.png"/>
+    <Transform>
+        <Position X="0" Y="0" Z="0"/>
+        <Scale X="300" Y="0" Z="300"/>
+        <Rotation X="0" Y="0" Z="0"/>
+    </Transform>
+    <Children Size="0"/>
+</Root>
