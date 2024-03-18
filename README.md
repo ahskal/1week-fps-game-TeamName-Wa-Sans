@@ -12,4 +12,6 @@
 
 공 격 : 마우스 좌클릭
 
+[실행파일](https://github.com/ahskal/Dx11-FPS/releases/tag/v1.0.1) 
+
 ![20240318_113813](https://github.com/ahskal/Dx11-FPS/assets/34364273/d7913fbf-fb3d-4614-a4f7-b510c6fee5cc)
